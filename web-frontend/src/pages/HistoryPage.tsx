@@ -1,15 +1,40 @@
-import { useState, useMemo } from 'react';
-import { quizHistory } from '../data/mockUser';
+import { useState, useMemo, useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
+import api from '../services/api';
 import { subjects } from '../data/quizData';
 
 type SortField = 'date' | 'score' | 'subject';
 type SortDir = 'asc' | 'desc';
 
 export default function HistoryPage() {
+  const { user } = useAuth();
+  const [quizHistory, setQuizHistory] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const [sortField, setSortField] = useState<SortField>('date');
   const [sortDir, setSortDir] = useState<SortDir>('desc');
   const [filterSubject, setFilterSubject] = useState<string>('all');
   const [expandedId, setExpandedId] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (user?.id) {
+      api.get(`/history/user/${user.id}`).then(res => {
+        const mapped = res.data.map((h: any) => {
+          const subj = subjects.find(s => s.id === h.subjectId);
+          return {
+            id: h._id,
+            subjectId: h.subjectId,
+            subjectName: subj?.name || h.subjectId,
+            date: new Date(h.timestamp).toISOString().split('T')[0],
+            score: Math.round((h.score / h.totalQuestions) * 100),
+            totalQuestions: h.totalQuestions,
+            correctAnswers: h.score,
+            timeTaken: 'N/A'
+          };
+        });
+        setQuizHistory(mapped);
+      }).catch(console.error).finally(() => setLoading(false));
+    }
+  }, [user]);
 
   const filtered = useMemo(() => {
     let items = [...quizHistory];
@@ -24,19 +49,14 @@ export default function HistoryPage() {
       return sortDir === 'desc' ? -cmp : cmp;
     });
     return items;
-  }, [sortField, sortDir, filterSubject]);
+  }, [quizHistory, sortField, sortDir, filterSubject]);
 
   const toggleSort = (field: SortField) => {
     if (sortField === field) setSortDir((d) => (d === 'asc' ? 'desc' : 'asc'));
     else { setSortField(field); setSortDir('desc'); }
   };
 
-  // Score trend data
-  const scores = quizHistory
-    .slice()
-    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-    .map((q) => q.score);
-  const maxScore = Math.max(...scores, 100);
+  if (loading) return <div className="p-8 text-center text-text-secondary">Loading history...</div>;
 
   return (
     <div className="animate-fade-in">
@@ -45,41 +65,40 @@ export default function HistoryPage() {
         <p className="text-text-secondary mt-1">Review past attempts and track your improvement over time</p>
       </div>
 
-      {/* Score Trend Chart */}
-      <div className="glass rounded-2xl p-6 mb-6">
-        <h2 className="text-sm font-semibold text-text-primary mb-4">📈 Score Trend</h2>
-        <div className="flex items-end gap-3 h-36">
-          {quizHistory
-            .slice()
-            .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-            .map((q) => {
-              const height = (q.score / maxScore) * 100;
-              const subj = subjects.find((s) => s.id === q.subjectId);
-              return (
-                <div key={q.id} className="flex-1 flex flex-col items-center gap-1 group">
-                  <span className="text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-opacity">{q.score}%</span>
-                  <div
-                    className="w-full rounded-t-lg transition-all duration-500 hover:opacity-80 min-h-[4px]"
-                    style={{
-                      height: `${height}%`,
-                      background: `linear-gradient(to top, ${subj?.color || '#8b5cf6'}, ${subj?.color || '#8b5cf6'}88)`,
-                      boxShadow: `0 0 10px ${subj?.color || '#8b5cf6'}25`,
-                    }}
-                  />
-                  <span className="text-[10px] text-text-muted">{q.date.slice(5)}</span>
-                </div>
-              );
-            })}
+      {quizHistory.length > 0 && (
+        <div className="glass rounded-2xl p-6 mb-6">
+          <h2 className="text-sm font-semibold text-text-primary mb-4">📈 Score Trend</h2>
+          <div className="flex items-end gap-3 h-36">
+            {quizHistory
+              .slice()
+              .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+              .map((q) => {
+                const height = q.score;
+                const subj = subjects.find((s) => s.id === q.subjectId);
+                return (
+                  <div key={q.id} className="flex-1 flex flex-col items-center gap-1 group">
+                    <span className="text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-opacity">{q.score}%</span>
+                    <div
+                      className="w-full rounded-t-lg transition-all duration-500 hover:opacity-80 min-h-[4px]"
+                      style={{
+                        height: `${height}%`,
+                        background: `linear-gradient(to top, ${subj?.color || '#8b5cf6'}, ${subj?.color || '#8b5cf6'}88)`,
+                        boxShadow: `0 0 10px ${subj?.color || '#8b5cf6'}25`,
+                      }}
+                    />
+                    <span className="text-[10px] text-text-muted">{q.date.slice(5)}</span>
+                  </div>
+                );
+              })}
+          </div>
         </div>
-      </div>
+      )}
 
-      {/* Filters */}
       <div className="flex items-center gap-3 mb-5">
         <select
           value={filterSubject}
           onChange={(e) => setFilterSubject(e.target.value)}
-          className="px-4 py-2 rounded-xl bg-surface-lighter border border-border-light text-text-primary text-sm
-                     focus:outline-none focus:border-primary/40"
+          className="px-4 py-2 rounded-xl bg-surface-lighter border border-border-light text-text-primary text-sm focus:outline-none focus:border-primary/40"
         >
           <option value="all">All Subjects</option>
           {subjects.map((s) => (
@@ -93,9 +112,7 @@ export default function HistoryPage() {
               key={field}
               onClick={() => toggleSort(field)}
               className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-300 cursor-pointer capitalize ${
-                sortField === field
-                  ? 'bg-primary/15 text-primary-light border border-primary/25'
-                  : 'bg-surface-lighter text-text-muted hover:text-text-primary'
+                sortField === field ? 'bg-primary/15 text-primary-light border border-primary/25' : 'bg-surface-lighter text-text-muted hover:text-text-primary'
               }`}
             >
               {field} {sortField === field && (sortDir === 'desc' ? '↓' : '↑')}
@@ -104,7 +121,6 @@ export default function HistoryPage() {
         </div>
       </div>
 
-      {/* History List */}
       <div className="space-y-3 stagger-children">
         {filtered.map((quiz) => {
           const subj = subjects.find((s) => s.id === quiz.subjectId);
@@ -116,17 +132,12 @@ export default function HistoryPage() {
                 onClick={() => setExpandedId(isExpanded ? null : quiz.id)}
                 className="w-full flex items-center gap-5 p-5 text-left cursor-pointer"
               >
-                {/* Score badge */}
                 <div
                   className="w-14 h-14 rounded-xl flex items-center justify-center shrink-0"
-                  style={{
-                    background: `linear-gradient(135deg, ${subj?.color || '#8b5cf6'}22, transparent)`,
-                  }}
+                  style={{ background: `linear-gradient(135deg, ${subj?.color || '#8b5cf6'}22, transparent)` }}
                 >
                   <span className="text-xl font-bold" style={{ color: subj?.color }}>{quiz.score}%</span>
                 </div>
-
-                {/* Info */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
                     <span className="text-sm font-semibold text-text-primary">{quiz.subjectName}</span>
@@ -139,42 +150,10 @@ export default function HistoryPage() {
                     </span>
                   </div>
                   <p className="text-xs text-text-muted">
-                    {quiz.date} · {quiz.correctAnswers}/{quiz.totalQuestions} correct · ⏱ {quiz.timeTaken}
+                    {quiz.date} · {quiz.correctAnswers}/{quiz.totalQuestions} correct
                   </p>
                 </div>
-
-                {/* Expand indicator */}
-                <span className={`text-text-muted transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}>
-                  ▾
-                </span>
               </button>
-
-              {/* Expanded details */}
-              {isExpanded && (
-                <div className="px-5 pb-5 border-t border-border-light animate-slide-up">
-                  <div className="pt-4">
-                    <h4 className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-3">Weak Concepts Identified</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {quiz.weakConcepts.map((concept) => (
-                        <span
-                          key={concept}
-                          className="text-xs px-3 py-1.5 rounded-full bg-error/10 text-error border border-error/15"
-                        >
-                          ⚠️ {concept}
-                        </span>
-                      ))}
-                    </div>
-                    <div className="mt-4 p-3 rounded-xl bg-surface-lighter/50">
-                      <p className="text-xs text-text-secondary leading-relaxed">
-                        <span className="text-warning font-medium">Root Cause:</span> Gaps in{' '}
-                        {quiz.weakConcepts.slice(0, 2).join(' and ')}
-                        {' '}suggest missing prerequisite knowledge. Check the{' '}
-                        <span className="text-primary-light">Concept Graph</span> to trace dependency chains.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )}
             </div>
           );
         })}
@@ -183,7 +162,7 @@ export default function HistoryPage() {
       {filtered.length === 0 && (
         <div className="glass rounded-2xl p-12 text-center">
           <p className="text-4xl mb-4">📭</p>
-          <p className="text-text-secondary">No quiz history found for this filter.</p>
+          <p className="text-text-secondary">No quiz history found.</p>
         </div>
       )}
     </div>

@@ -15,23 +15,17 @@ export interface GraphEdge {
 }
 
 export const graphNodes: GraphNode[] = [
-  // 12th Standard Prerequisites
-  { id: '12_algebra', label: 'Algebra (12th)', category: 'topic', mastery: 85 },
-  { id: '12_calculus', label: 'Calculus (12th)', category: 'topic', mastery: 72 },
-  { id: '12_trigonometry', label: 'Trigonometry (12th)', category: 'topic', mastery: 68 },
-  { id: '12_vectors', label: 'Vectors (12th)', category: 'topic', mastery: 60 },
-  { id: '12_matrices', label: 'Matrices (12th)', category: 'topic', mastery: 55 },
-  { id: '12_physics_em', label: 'Electromagnetism (12th)', category: 'topic', mastery: 50 },
-  { id: '12_physics_optics', label: 'Optics (12th)', category: 'topic', mastery: 65 },
-  { id: '12_physics_mechanics', label: 'Mechanics (12th)', category: 'topic', mastery: 70 },
-  { id: '12_chemistry_basics', label: 'Chemistry Basics (12th)', category: 'topic', mastery: 62 },
-
   // Engineering Subjects
   { id: 'math1', label: 'Engg. Mathematics I', category: 'subject', mastery: 65 },
-  { id: 'phy1', label: 'Engg. Physics', category: 'subject', mastery: 58 },
-  { id: 'chem1', label: 'Engg. Chemistry', category: 'subject', mastery: 70 },
+  { id: 'phy1', label: 'Engg. Physics I', category: 'subject', mastery: 58 },
+  { id: 'chem1', label: 'Engg. Chemistry I', category: 'subject', mastery: 70 },
   { id: 'bee', label: 'Basic Electrical Engg.', category: 'subject', mastery: 45 },
   { id: 'mech', label: 'Engg. Mechanics', category: 'subject', mastery: 52 },
+  { id: 'm2', label: 'Engg. Mathematics II', category: 'subject', mastery: 65 },
+  { id: 'phy2', label: 'Engg. Physics II', category: 'subject', mastery: 58 },
+  { id: 'chem2', label: 'Engg. Chemistry II', category: 'subject', mastery: 72 },
+  { id: 'eg', label: 'Engg. Graphics', category: 'subject', mastery: 60 },
+  { id: 'cp', label: 'Computer Programming', category: 'subject', mastery: 75 },
 
   // Math I Topics
   { id: 'complex_numbers', label: 'Complex Numbers', category: 'concept', subject: 'math1', mastery: 75 },
@@ -61,50 +55,30 @@ export const graphNodes: GraphNode[] = [
   { id: 'equilibrium', label: 'Equilibrium', category: 'concept', subject: 'mech', mastery: 45 },
   { id: 'friction', label: 'Friction', category: 'concept', subject: 'mech', mastery: 55 },
   { id: 'centroid_moi', label: 'Centroid & MOI', category: 'concept', subject: 'mech', mastery: 40 },
+
+  // New Topics
+  { id: 'diff_eq', label: 'Differential Eq.', category: 'concept', subject: 'm2', mastery: 60 },
+  { id: 'num_methods', label: 'Numerical Methods', category: 'concept', subject: 'm2', mastery: 55 },
+  { id: 'spectroscopy', label: 'Spectroscopy', category: 'concept', subject: 'chem2', mastery: 70 },
+  { id: 'c_prog', label: 'C Programming', category: 'concept', subject: 'cp', mastery: 80 },
+  { id: 'algorithms', label: 'Algorithms', category: 'concept', subject: 'cp', mastery: 70 },
+  { id: 'ortho_proj', label: 'Orthographic Proj.', category: 'concept', subject: 'eg', mastery: 60 },
 ];
 
 export const graphEdges: GraphEdge[] = [
-  // 12th → Engineering Math
-  { source: '12_algebra', target: 'math1', label: 'prerequisite' },
-  { source: '12_calculus', target: 'math1', label: 'prerequisite' },
-  { source: '12_trigonometry', target: 'math1', label: 'prerequisite' },
-  { source: '12_matrices', target: 'math1', label: 'prerequisite' },
-
-  // 12th → Engineering Physics
-  { source: '12_physics_optics', target: 'phy1', label: 'prerequisite' },
-  { source: '12_physics_em', target: 'phy1', label: 'prerequisite' },
-  { source: '12_physics_mechanics', target: 'phy1', label: 'prerequisite' },
-
-  // 12th → Engineering Chemistry
-  { source: '12_chemistry_basics', target: 'chem1', label: 'prerequisite' },
-
-  // 12th → BEE
-  { source: '12_physics_em', target: 'bee', label: 'prerequisite' },
-  { source: '12_algebra', target: 'bee', label: 'prerequisite' },
-
-  // 12th → Mechanics
-  { source: '12_physics_mechanics', target: 'mech', label: 'prerequisite' },
-  { source: '12_vectors', target: 'mech', label: 'prerequisite' },
-  { source: '12_trigonometry', target: 'mech', label: 'prerequisite' },
-
-  // Subject → Topics
+  // Subject -> Topics
   { source: 'math1', target: 'complex_numbers' },
   { source: 'complex_numbers', target: 'de_moivre' },
-  { source: '12_trigonometry', target: 'de_moivre' },
   { source: 'complex_numbers', target: 'hyperbolic_fn' },
   { source: 'math1', target: 'partial_derivatives' },
-  { source: '12_calculus', target: 'partial_derivatives' },
   { source: 'partial_derivatives', target: 'euler_theorem' },
-  { source: '12_matrices', target: 'matrices_rank' },
   { source: 'math1', target: 'matrices_rank' },
-  { source: '12_calculus', target: 'taylor_series' },
   { source: 'math1', target: 'taylor_series' },
   { source: 'taylor_series', target: 'newton_raphson' },
 
   // Physics topics
   { source: 'phy1', target: 'interference' },
   { source: 'interference', target: 'diffraction' },
-  { source: '12_physics_optics', target: 'interference' },
   { source: 'diffraction', target: 'laser' },
   { source: 'laser', target: 'fiber_optics' },
   { source: 'phy1', target: 'quantum_mech' },
@@ -114,14 +88,25 @@ export const graphEdges: GraphEdge[] = [
   { source: 'dc_circuits', target: 'ohms_law' },
   { source: 'ohms_law', target: 'rl_rc_circuits' },
   { source: 'bee', target: 'magnetic_circuits' },
-  { source: '12_physics_em', target: 'magnetic_circuits' },
 
   // Mechanics topics
   { source: 'mech', target: 'force_systems' },
   { source: 'force_systems', target: 'equilibrium' },
   { source: 'equilibrium', target: 'friction' },
   { source: 'mech', target: 'centroid_moi' },
-  { source: '12_calculus', target: 'centroid_moi' },
+
+  // New Subject -> Topics
+  { source: 'm2', target: 'diff_eq' },
+  { source: 'm2', target: 'num_methods' },
+  { source: 'chem2', target: 'spectroscopy' },
+  { source: 'cp', target: 'c_prog' },
+  { source: 'cp', target: 'algorithms' },
+  { source: 'eg', target: 'ortho_proj' },
+
+  // Subject Prerequisites
+  { source: 'math1', target: 'm2', label: 'prerequisite' },
+  { source: 'phy1', target: 'phy2', label: 'prerequisite' },
+  { source: 'chem1', target: 'chem2', label: 'prerequisite' },
 
   // Cross-subject dependencies
   { source: 'complex_numbers', target: 'quantum_mech' },
