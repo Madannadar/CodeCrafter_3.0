@@ -2,7 +2,7 @@
 // "subject: "Basic Electrtical Engineering:,
 // "questions": [
 // {
-// "id":1,
+// "id":"BEE_001",
 // "subtopic":"Basic Electrical Quantities",
 // "concept":"Voltage Current Power",
 // "difficulty":"easy",
@@ -10,7 +10,7 @@
 // "question":"Define voltage, current, power and energy along with their SI units."
 // },
 // {
-// "id":2,
+// "id":"BEE_002",
 // "subtopic":"Basic Electrical Quantities",
 // "concept":"Resistance",
 // "difficulty":"easy",
@@ -18,7 +18,7 @@
 // "question":"Define electrical resistance and explain the factors affecting resistance."
 // },
 // {
-// "id":3,
+// "id":"BEE_003",
 // "subtopic":"Basic Electrical Quantities",
 // "concept":"Series Resistance",
 // "difficulty":"medium",
@@ -26,7 +26,7 @@
 // "question":"Three resistors 10Ω, 20Ω and 30Ω are connected in series. Find the equivalent resistance."
 // },
 // {
-// "id":4,
+// "id":"BEE_004",
 // "subtopic":"Basic Electrical Quantities",
 // "concept":"Parallel Resistance",
 // "difficulty":"medium",
@@ -34,7 +34,7 @@
 // "question":"Find the equivalent resistance of two resistors 6Ω and 3Ω connected in parallel."
 // },
 // {
-// "id":5,
+// "id":"BEE_005",
 // "subtopic":"Basic Electrical Quantities",
 // "concept":"Inductance",
 // "difficulty":"easy",
@@ -42,7 +42,7 @@
 // "question":"Define inductance and explain the unit of inductance."
 // },
 // {
-// "id":6,
+// "id":"BEE_006",
 // "subtopic":"Basic Electrical Quantities",
 // "concept":"Capacitance",
 // "difficulty":"easy",
@@ -50,7 +50,7 @@
 // "question":"Define capacitance and state the unit of capacitance."
 // },
 // {
-// "id":7,
+// "id":"BEE_007",
 // "subtopic":"Basic Electrical Quantities",
 // "concept":"Wattmeter",
 // "difficulty":"medium",
@@ -58,7 +58,7 @@
 // "question":"Explain the working principle of a wattmeter."
 // },
 // {
-// "id":8,
+// "id":"BEE_008",
 // "subtopic":"Magnetic Circuits",
 // "concept":"MMF",
 // "difficulty":"easy",
@@ -66,7 +66,7 @@
 // "question":"Define magnetomotive force (MMF) and state its unit."
 // },
 // {
-// "id":9,
+// "id":"BEE_009",
 // "subtopic":"Magnetic Circuits",
 // "concept":"Magnetic Field Strength",
 // "difficulty":"easy",
@@ -74,7 +74,7 @@
 // "question":"Define magnetic field strength and explain its significance."
 // },
 // {
-// "id":10,
+// "id":"BEE_010",
 // "subtopic":"Magnetic Circuits",
 // "concept":"Reluctance",
 // "difficulty":"medium",
@@ -82,7 +82,7 @@
 // "question":"Define magnetic reluctance and compare it with electrical resistance."
 // },
 // {
-// "id":11,
+// "id":"BEE_011",
 // "subtopic":"Magnetic Circuits",
 // "concept":"BH Curve",
 // "difficulty":"medium",
@@ -90,7 +90,7 @@
 // "question":"Explain the B-H curve and hysteresis phenomenon."
 // },
 // {
-// "id":12,
+// "id":"BEE_012",
 // "subtopic":"Magnetic Circuits",
 // "concept":"Magnetic Series Circuit",
 // "difficulty":"medium",
@@ -98,7 +98,7 @@
 // "question":"Calculate the MMF required to produce a magnetic flux in a series magnetic circuit."
 // },
 // {
-// "id":13,
+// "id":"BEE_013",
 // "subtopic":"DC Circuits",
 // "concept":"Kirchhoff Laws",
 // "difficulty":"easy",
@@ -106,7 +106,7 @@
 // "question":"State Kirchhoff’s current law and Kirchhoff’s voltage law."
 // },
 // {
-// "id":14,
+// "id":"BEE_014",
 // "subtopic":"DC Circuits",
 // "concept":"Voltage Source",
 // "difficulty":"easy",
@@ -114,7 +114,7 @@
 // "question":"Differentiate between ideal and practical voltage sources."
 // },
 // {
-// "id":15,
+// "id":"BEE_015",
 // "subtopic":"DC Circuits",
 // "concept":"Source Transformation",
 // "difficulty":"medium",
@@ -122,7 +122,7 @@
 // "question":"Convert a voltage source of 12V with series resistance of 4Ω into an equivalent current source."
 // },
 // {
-// "id":16,
+// "id":"BEE_016",
 // "subtopic":"DC Circuits",
 // "concept":"Mesh Analysis",
 // "difficulty":"medium",
@@ -130,7 +130,7 @@
 // "question":"Explain the steps involved in mesh analysis."
 // },
 // {
-// "id":17,
+// "id":"BEE_017",
 // "subtopic":"DC Circuits",
 // "concept":"Nodal Analysis",
 // "difficulty":"medium",
@@ -138,7 +138,7 @@
 // "question":"Explain nodal analysis for solving electrical circuits."
 // },
 // {
-// "id":18,
+// "id":"BEE_018",
 // "subtopic":"DC Circuits",
 // "concept":"Star Delta Transformation",
 // "difficulty":"hard",
@@ -146,7 +146,7 @@
 // "question":"Convert a star connected network into an equivalent delta network."
 // },
 // {
-// "id":19,
+// "id":"BEE_019",
 // "subtopic":"DC Circuits",
 // "concept":"Thevenin Theorem",
 // "difficulty":"medium",
@@ -154,7 +154,7 @@
 // "question":"State Thevenin’s theorem and explain its application."
 // },
 // {
-// "id":20,
+// "id":"BEE_020",
 // "subtopic":"DC Circuits",
 // "concept":"Maximum Power Transfer",
 // "difficulty":"medium",
@@ -162,7 +162,7 @@
 // "question":"State the condition for maximum power transfer in a DC circuit."
 // },
 // {
-// "id":21,
+// "id":"BEE_021",
 // "subtopic":"AC Circuits",
 // "concept":"AC Generation",
 // "difficulty":"easy",
@@ -170,7 +170,7 @@
 // "question":"Explain how alternating voltage is generated."
 // },
 // {
-// "id":22,
+// "id":"BEE_022",
 // "subtopic":"AC Circuits",
 // "concept":"RMS Value",
 // "difficulty":"medium",
@@ -178,7 +178,7 @@
 // "question":"Define RMS value of AC current and derive its expression."
 // },
 // {
-// "id":23,
+// "id":"BEE_023",
 // "subtopic":"AC Circuits",
 // "concept":"Phasor Representation",
 // "difficulty":"medium",
@@ -186,7 +186,7 @@
 // "question":"Explain phasor representation of sinusoidal quantities."
 // },
 // {
-// "id":24,
+// "id":"BEE_024",
 // "subtopic":"AC Circuits",
 // "concept":"RLC Circuit",
 // "difficulty":"hard",
@@ -194,7 +194,7 @@
 // "question":"Analyze a series RLC circuit and determine the impedance."
 // },
 // {
-// "id":25,
+// "id":"BEE_025",
 // "subtopic":"AC Circuits",
 // "concept":"Resonance",
 // "difficulty":"medium",
@@ -202,7 +202,7 @@
 // "question":"Explain series resonance in an RLC circuit."
 // },
 // {
-// "id":26,
+// "id":"BEE_026",
 // "subtopic":"Three Phase Circuits",
 // "concept":"Star Connection",
 // "difficulty":"medium",
@@ -210,7 +210,7 @@
 // "question":"Explain the relationship between line and phase voltage in star connection."
 // },
 // {
-// "id":27,
+// "id":"BEE_027",
 // "subtopic":"Three Phase Circuits",
 // "concept":"Delta Connection",
 // "difficulty":"medium",
@@ -218,7 +218,7 @@
 // "question":"Explain voltage and current relations in delta connected systems."
 // },
 // {
-// "id":28,
+// "id":"BEE_028",
 // "subtopic":"Transformers",
 // "concept":"EMF Equation",
 // "difficulty":"medium",
@@ -226,7 +226,7 @@
 // "question":"Derive the EMF equation of a single phase transformer."
 // },
 // {
-// "id":29,
+// "id":"BEE_029",
 // "subtopic":"Transformers",
 // "concept":"Transformer Tests",
 // "difficulty":"medium",
@@ -234,7 +234,7 @@
 // "question":"Explain open circuit test and short circuit test of a transformer."
 // },
 // {
-// "id":30,
+// "id":"BEE_030",
 // "subtopic":"Electrical Machines",
 // "concept":"Induction Motor",
 // "difficulty":"easy",
