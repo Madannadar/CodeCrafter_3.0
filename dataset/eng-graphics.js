@@ -1,185 +1,305 @@
 // {
 // "subject": "Engineering Graphics",
-// "questions": [
-// {
-// "id": "grap_q1",
-// "unit": "Introduction to Engineering Graphics",
-// "question": "State the principles of Engineering Graphics and explain their significance.",
-// "type": "theory"
-// },
-// {
-// "id": "grap_q2",
-// "unit": "Introduction to Engineering Graphics",
-// "question": "Explain the usage of common drawing instruments used in Engineering Graphics.",
-// "type": "theory"
-// },
-// {
-// "id": "grap_q3",
-// "unit": "Introduction to Engineering Graphics",
-// "question": "Explain different types of lines used in engineering drawings as per IS conventions.",
-// "type": "theory"
-// },
-// {
-// "id": "grap_q4",
-// "unit": "Introduction to Engineering Graphics",
-// "question": "Explain dimensioning systems used in engineering drawing.",
-// "type": "theory"
-// },
-// {
-// "id": "grap_q5",
-// "unit": "Introduction to Engineering Graphics",
-// "question": "Construct a plain scale to represent given units and subunits.",
-// "type": "problem"
-// },
-// {
-// "id": "grap_q6",
-// "unit": "Introduction to Engineering Graphics",
-// "question": "Construct a diagonal scale and explain its applications.",
-// "type": "problem"
-// },
-// {
-// "id": "grap_q7",
-// "unit": "Engineering Curves",
-// "question": "Define cycloid and explain its basic construction.",
-// "type": "problem"
-// },
-// {
-// "id": "grap_q8",
-// "unit": "Engineering Curves",
-// "question": "Explain the construction of an involute of a circle.",
-// "type": "problem"
-// },
-// {
-// "id": "grap_q9",
-// "unit": "Engineering Curves",
-// "question": "Explain the construction of a helix on a cylindrical surface.",
-// "type": "problem"
-// },
-// {
-// "id": "grap_q10",
-// "unit": "Engineering Curves",
-// "question": "State applications of cycloid, involute, and helix in engineering.",
-// "type": "theory"
-// },
-// {
-// "id": "grap_q11",
-// "unit": "Projection of Points and Lines",
-// "question": "Explain projection of a point located in different quadrants.",
-// "type": "problem"
-// },
-// {
-// "id": "grap_q12",
-// "unit": "Projection of Points and Lines",
-// "question": "Draw projection of a line inclined to HP and parallel to VP.",
-// "type": "problem"
-// },
-// {
-// "id": "grap_q13",
-// "unit": "Projection of Points and Lines",
-// "question": "Draw projection of a line inclined to VP and parallel to HP.",
-// "type": "problem"
-// },
-// {
-// "id": "grap_q14",
-// "unit": "Projection of Points and Lines",
-// "question": "Draw projection of a line inclined to both HP and VP.",
-// "type": "problem"
-// },
-// {
-// "id": "grap_q15",
-// "unit": "Projection of Points and Lines",
-// "question": "Solve a simple application problem based on projection of lines.",
-// "type": "problem"
-// },
-// {
-// "id": "grap_q16",
-// "unit": "Projection of Planes",
-// "question": "Draw projection of a triangular plane inclined to HP.",
-// "type": "problem"
-// },
-// {
-// "id": "grap_q17",
-// "unit": "Projection of Planes",
-// "question": "Draw projection of a square plane inclined to VP.",
-// "type": "problem"
-// },
-// {
-// "id": "grap_q18",
-// "unit": "Projection of Planes",
-// "question": "Draw projection of a pentagonal plane inclined to HP.",
-// "type": "problem"
-// },
-// {
-// "id": "grap_q19",
-// "unit": "Projection of Planes",
-// "question": "Draw projection of a hexagonal plane inclined to VP.",
-// "type": "problem"
-// },
-// {
-// "id": "grap_q20",
-// "unit": "Projection of Planes",
-// "question": "Draw projection of a circular plane inclined to HP.",
-// "type": "problem"
-// },
-// {
-// "id": "grap_q21",
-// "unit": "Projection of Solids",
-// "question": "Draw projection of a prism with its axis inclined to HP using change of position method.",
-// "type": "problem"
-// },
-// {
-// "id": "grap_q22",
-// "unit": "Projection of Solids",
-// "question": "Draw projection of a pyramid with axis inclined to VP.",
-// "type": "problem"
-// },
-// {
-// "id": "grap_q23",
-// "unit": "Projection of Solids",
-// "question": "Draw projection of a cylinder with axis inclined to HP.",
-// "type": "problem"
-// },
-// {
-// "id": "grap_q24",
-// "unit": "Projection of Solids",
-// "question": "Draw projection of a cone with axis inclined to VP.",
-// "type": "problem"
-// },
-// {
-// "id": "grap_q25",
-// "unit": "Section of Solids",
-// "question": "Draw sectional view of a prism cut by a plane perpendicular to HP.",
-// "type": "problem"
-// },
-// {
-// "id": "grap_q26",
-// "unit": "Section of Solids",
-// "question": "Draw sectional view of a pyramid cut by a plane perpendicular to VP.",
-// "type": "problem"
-// },
-// {
-// "id": "grap_q27",
-// "unit": "Orthographic Projection",
-// "question": "Explain fundamentals of orthographic projection.",
-// "type": "theory"
-// },
-// {
-// "id": "grap_q28",
-// "unit": "Orthographic Projection",
-// "question": "Draw orthographic views of a simple machine part using first angle projection method.",
-// "type": "problem"
-// },
-// {
-// "id": "grap_q29",
-// "unit": "Missing Views",
-// "question": "Identify the missing view from the given two orthographic views.",
-// "type": "problem"
-// },
-// {
-// "id": "grap_q30",
-// "unit": "Isometric Views",
-// "question": "Convert given orthographic views into isometric view using isometric scale.",
-// "type": "problem"
-// }
+// "questions":[
+//   {
+//     "id": "eg-q1",
+//     "type": "MCQ",
+//     "difficulty": "Easy",
+//     "concept": "Drawing Instruments",
+//     "question": "Which of the following drawing tools is used to draw parallel lines and vertical lines quickly?",
+//     "options": ["A) Protractor", "B) T-Square", "C) French Curve", "D) Divider"],
+//     "answer": "B",
+//     "explanation": "A T-square is used primarily as a guide for drawing horizontal lines and as a base for set squares to draw vertical and inclined lines."
+//   },
+//   {
+//     "id": "eg-q2",
+//     "type": "True/False",
+//     "difficulty": "Easy",
+//     "concept": "Scales",
+//     "question": "A scale of 1:5 is an enlarging scale.",
+//     "options": ["True", "False"],
+//     "answer": "False",
+//     "explanation": "1:5 is a reducing scale because the drawing size is smaller than the actual object size."
+//   },
+//   {
+//     "id": "eg-q3",
+//     "type": "MCQ",
+//     "difficulty": "Easy",
+//     "concept": "Projection Methods",
+//     "question": "In First Angle Projection, where is the object placed?",
+//     "options": ["A) Behind VP", "B) Below HP", "C) Between the observer and planes", "D) Behind the planes"],
+//     "answer": "C",
+//     "explanation": "In First Angle Projection, the object is assumed to be in the first quadrant, situated between the observer and the planes of projection."
+//   },
+//   {
+//     "id": "eg-q4",
+//     "type": "Q&A",
+//     "difficulty": "Easy",
+//     "concept": "Line Types",
+//     "question": "Which type of line is used to represent hidden edges of an object?",
+//     "options": null,
+//     "answer": "Dashed line",
+//     "explanation": "Dashed lines (short dashes) are standard for representing edges or outlines that are not visible from a specific view."
+//   },
+//   {
+//     "id": "eg-q5",
+//     "type": "MCQ",
+//     "difficulty": "Easy",
+//     "concept": "Conic Sections",
+//     "question": "If a plane cuts a cone parallel to its base, the resulting section is a:",
+//     "options": ["A) Parabola", "B) Hyperbola", "C) Circle", "D) Ellipse"],
+//     "answer": "C",
+//     "explanation": "When the cutting plane is perpendicular to the axis (parallel to the base), the section is a circle."
+//   },
+//   {
+//     "id": "eg-q6",
+//     "type": "True/False",
+//     "difficulty": "Easy",
+//     "concept": "Dimensioning",
+//     "question": "Dimension lines should generally cross each other to save space.",
+//     "options": ["True", "False"],
+//     "answer": "False",
+//     "explanation": "Dimension lines should never cross each other or extension lines if avoidable, to maintain clarity."
+//   },
+//   {
+//     "id": "eg-q7",
+//     "type": "MCQ",
+//     "difficulty": "Easy",
+//     "concept": "Projections",
+//     "question": "The front view of an object is projected onto the:",
+//     "options": ["A) Horizontal Plane (HP)", "B) Vertical Plane (VP)", "C) Profile Plane (PP)", "D) Auxiliary Plane"],
+//     "answer": "B",
+//     "explanation": "The front view (elevation) is always projected onto the Vertical Plane."
+//   },
+//   {
+//     "id": "eg-q8",
+//     "type": "Q&A",
+//     "difficulty": "Easy",
+//     "concept": "Sheet Layout",
+//     "question": "What is the standard size of an A4 drawing sheet in mm?",
+//     "options": null,
+//     "answer": "210 x 297 mm",
+//     "explanation": "Standard A4 dimensions are 210mm width by 297mm height."
+//   },
+//   {
+//     "id": "eg-q9",
+//     "type": "MCQ",
+//     "difficulty": "Easy",
+//     "concept": "Lettering",
+//     "question": "The height to width ratio for most standard engineering uppercase letters is usually:",
+//     "options": ["A) 5:1", "B) 7:4", "C) 1:1", "D) 2:5"],
+//     "answer": "B",
+//     "explanation": "Standard engineering lettering (B-type) often follows a 7:4 or 10:7 ratio for most letters."
+//   },
+//   {
+//     "id": "eg-q10",
+//     "type": "True/False",
+//     "difficulty": "Easy",
+//     "concept": "Orthographic Projection",
+//     "question": "Projectors are always parallel to each other in orthographic projection.",
+//     "options": ["True", "False"],
+//     "answer": "True",
+//     "explanation": "In orthographic projection, the projectors are parallel to each other and perpendicular to the projection plane."
+//   },
+//   {
+//     "id": "eg-q11",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "Scales",
+//     "question": "What is the Representative Fraction (RF) if a distance of 10 meters is represented by 2 centimeters?",
+//     "options": ["A) 1:5", "B) 1:50", "C) 1:500", "D) 1:5000"],
+//     "answer": "C",
+//     "explanation": "RF = Drawing Distance / Actual Distance. 2cm / 1000cm = 1/500."
+//   },
+//   {
+//     "id": "eg-q12",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "Projections of Points",
+//     "question": "A point lies 20mm above HP and 30mm behind VP. In which quadrant is the point located?",
+//     "options": ["A) First", "B) Second", "C) Third", "D) Fourth"],
+//     "answer": "B",
+//     "explanation": "Above HP and Behind VP corresponds to the Second Quadrant."
+//   },
+//   {
+//     "id": "eg-q13",
+//     "type": "Q&A",
+//     "difficulty": "Medium",
+//     "concept": "Curves",
+//     "question": "What curve is generated by a point on the circumference of a circle rolling along a straight line without slipping?",
+//     "options": null,
+//     "answer": "Cycloid",
+//     "explanation": "A cycloid is the locus of a point on the rim of a circle rolling along a straight line."
+//   },
+//   {
+//     "id": "eg-q14",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "Projections of Lines",
+//     "question": "If a line is parallel to both HP and VP, its projections will appear as:",
+//     "options": ["A) Points in both views", "B) True length in both views", "C) True length in FV, point in TV", "D) Shortened in both views"],
+//     "answer": "B",
+//     "explanation": "When a line is parallel to a plane, its projection on that plane shows the true length."
+//   },
+//   {
+//     "id": "eg-q15",
+//     "type": "True/False",
+//     "difficulty": "Medium",
+//     "concept": "Isometric Projection",
+//     "question": "In isometric projection, all three axes are inclined at 120 degrees to each other.",
+//     "options": ["True", "False"],
+//     "answer": "True",
+//     "explanation": "Isometric axes are drawn 120 degrees apart so that the object appears equally foreshortened."
+//   },
+//   {
+//     "id": "eg-q16",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "Conic Sections",
+//     "question": "When the eccentricity (e) of a conic section is exactly 1, the curve is a:",
+//     "options": ["A) Ellipse", "B) Circle", "C) Parabola", "D) Hyperbola"],
+//     "answer": "C",
+//     "explanation": "e < 1 is an ellipse, e = 1 is a parabola, and e > 1 is a hyperbola."
+//   },
+//   {
+//     "id": "eg-q17",
+//     "type": "Q&A",
+//     "difficulty": "Medium",
+//     "concept": "Section of Solids",
+//     "question": "What is the purpose of drawing 'hatching' lines in a technical drawing?",
+//     "options": null,
+//     "answer": "To indicate cut surfaces",
+//     "explanation": "Hatching (section lines) is used to show the surface that has been cut by a section plane."
+//   },
+//   {
+//     "id": "eg-q18",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "Projections of Planes",
+//     "question": "When a plane is perpendicular to HP and parallel to VP, its Top View will be a:",
+//     "options": ["A) Plane surface", "B) True shape", "C) Point", "D) Straight line"],
+//     "answer": "D",
+//     "explanation": "Since the plane is perpendicular to the HP, its projection on the HP (Top View) will be a line."
+//   },
+//   {
+//     "id": "eg-q19",
+//     "type": "True/False",
+//     "difficulty": "Medium",
+//     "concept": "Isometric View",
+//     "question": "Isometric scale is used in an Isometric View.",
+//     "options": ["True", "False"],
+//     "answer": "False",
+//     "explanation": "Isometric Scale is used in Isometric Projection. In Isometric View, actual dimensions are used."
+//   },
+//   {
+//     "id": "eg-q20",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "CAD",
+//     "question": "In AutoCAD, which command is used to round the corners of a rectangle?",
+//     "options": ["A) Chamfer", "B) Fillet", "C) Offset", "D) Trim"],
+//     "answer": "B",
+//     "explanation": "The Fillet command creates a rounded internal or external corner between two 2D objects."
+//   },
+//   {
+//     "id": "eg-q21",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Projections of Lines",
+//     "question": "A line AB has its end A in HP and 20mm in front of VP. The line is inclined at 30° to HP and 45° to VP. The length of the FV will be:",
+//     "options": ["A) Equal to true length", "B) True length * cos(45°)", "C) True length * cos(30°)", "D) True length * sin(45°)"],
+//     "answer": "B",
+//     "explanation": "The length of the Front View (Plan length) is the projection of the true length onto the VP, which is calculated as L*cos(φ), where φ is the inclination with VP."
+//   },
+//   {
+//     "id": "eg-q22",
+//     "type": "Q&A",
+//     "difficulty": "Hard",
+//     "concept": "Development of Surfaces",
+//     "question": "What is the shape of the development of the lateral surface of a cylinder?",
+//     "options": null,
+//     "answer": "Rectangle",
+//     "explanation": "When unrolled, the lateral surface of a cylinder forms a rectangle with width equal to the circumference (2πr) and height equal to the cylinder's height."
+//   },
+//   {
+//     "id": "eg-q23",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Projections of Solids",
+//     "question": "A right circular cone is resting on its generator on the HP. Its axis will be:",
+//     "options": ["A) Perpendicular to HP", "B) Parallel to VP", "C) Inclined to HP", "D) Perpendicular to VP"],
+//     "answer": "C",
+//     "explanation": "When a cone rests on its generator, the axis is automatically inclined to the plane on which the generator lies."
+//   },
+//   {
+//     "id": "eg-q24",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Isometric Projection",
+//     "question": "What is the ratio of Isometric Length to True Length?",
+//     "options": ["A) 1:1", "B) 0.816", "C) 1.225", "D) 0.5"],
+//     "answer": "B",
+//     "explanation": "Isometric length = True length * cos(45°)/cos(30°) ≈ 0.816 * True length."
+//   },
+//   {
+//     "id": "eg-q25",
+//     "type": "True/False",
+//     "difficulty": "Hard",
+//     "concept": "Intersection of Solids",
+//     "question": "The line of intersection between two cylinders of different diameters intersecting at right angles is always a straight line.",
+//     "options": ["True", "False"],
+//     "answer": "False",
+//     "explanation": "The intersection of two cylinders usually results in a curve. It only becomes a straight line if both cylinders have equal diameters."
+//   },
+//   {
+//     "id": "eg-q26",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Cycloidal Curves",
+//     "question": "What curve is traced by a point on a circle rolling on the *inside* of another circle?",
+//     "options": ["A) Epicycloid", "B) Hypocycloid", "C) Involute", "D) Archemedian Spiral"],
+//     "answer": "B",
+//     "explanation": "Rolling on the outside produces an epicycloid; rolling on the inside produces a hypocycloid."
+//   },
+//   {
+//     "id": "eg-q27",
+//     "type": "Q&A",
+//     "difficulty": "Hard",
+//     "concept": "Projections of Planes",
+//     "question": "If a regular pentagon plane is inclined to HP and perpendicular to VP, what is the shape of its Front View?",
+//     "options": null,
+//     "answer": "A straight line",
+//     "explanation": "Since the plane is perpendicular to the Vertical Plane, its projection on the VP (Front View) will collapse into a straight line inclined at the same angle as the plane."
+//   },
+//   {
+//     "id": "eg-q28",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Auxiliary Projections",
+//     "question": "An Auxiliary Vertical Plane (AVP) is:",
+//     "options": ["A) Parallel to VP", "B) Perpendicular to both HP and VP", "C) Inclined to VP and Perpendicular to HP", "D) Inclined to HP and Perpendicular to VP"],
+//     "answer": "C",
+//     "explanation": "An AVP is a plane perpendicular to HP but inclined to VP."
+//   },
+//   {
+//     "id": "eg-q29",
+//     "type": "True/False",
+//     "difficulty": "Hard",
+//     "concept": "Perspective Projection",
+//     "question": "In perspective projection, the 'Station Point' represents the eye of the observer.",
+//     "options": ["True", "False"],
+//     "answer": "True",
+//     "explanation": "The station point is the location of the observer's eye from which the object is being viewed."
+//   },
+//   {
+//     "id": "eg-q30",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Development of Surfaces",
+//     "question": "The 'Radial Line Method' of development is used for which of the following?",
+//     "options": ["A) Prisms", "B) Cylinders", "C) Pyramids", "D) Spheres"],
+//     "answer": "C",
+//     "explanation": "Prisms and cylinders use Parallel Line Development; Pyramids and Cones use Radial Line Development."
+//   }
 // ]
 // }

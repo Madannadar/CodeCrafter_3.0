@@ -1,9 +1,6 @@
 // {
 //   "subject": "Mathematics",
-//   "topic": "Complex Numbers",
-//   "source": "NCERT Class 11-12 Foundation",
 //   "questions": [
-
 // {
 // "id": "MATH_Q01",
 // "concept": "Imaginary Unit",
@@ -313,6 +310,5 @@
 // "answer": "r = |z|",
 // "explanation": "Radius equals modulus."
 // }
-
 // ]
 // }

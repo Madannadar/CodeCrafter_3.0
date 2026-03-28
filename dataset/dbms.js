@@ -1,0 +1,305 @@
+// {
+// "subject": "Database Management System",
+// "questions":[
+//   {
+//     "id": "db-q1",
+//     "type": "MCQ",
+//     "difficulty": "Easy",
+//     "concept": "Data Models",
+//     "question": "Which of the following is a collection of conceptual tools for describing data, relationships, and constraints?",
+//     "options": ["A) Database", "B) Data Model", "C) Schema", "D) Metadata"],
+//     "answer": "B",
+//     "explanation": "A data model provides the abstract framework used to define the structure and behavior of data within a database."
+//   },
+//   {
+//     "id": "db-q2",
+//     "type": "True/False",
+//     "difficulty": "Easy",
+//     "concept": "SQL",
+//     "question": "The 'DELETE' command is a Data Definition Language (DDL) command.",
+//     "options": ["True", "False"],
+//     "answer": "False",
+//     "explanation": "DELETE is a Data Manipulation Language (DML) command. DROP and TRUNCATE are DDL commands."
+//   },
+//   {
+//     "id": "db-q3",
+//     "type": "MCQ",
+//     "difficulty": "Easy",
+//     "concept": "Keys",
+//     "question": "An attribute or set of attributes that uniquely identifies a row in a table is called a:",
+//     "options": ["A) Foreign Key", "B) Primary Key", "C) Composite Key", "D) Candidate Key"],
+//     "answer": "B",
+//     "explanation": "A Primary Key is a unique identifier for each record; it cannot contain NULL values."
+//   },
+//   {
+//     "id": "db-q4",
+//     "type": "Q&A",
+//     "difficulty": "Easy",
+//     "concept": "Database Architecture",
+//     "question": "What is the three-schema architecture in DBMS?",
+//     "options": null,
+//     "answer": "External (View) level, Conceptual (Logical) level, and Internal (Physical) level.",
+//     "explanation": "This architecture is used to separate the user application from the physical database."
+//   },
+//   {
+//     "id": "db-q5",
+//     "type": "MCQ",
+//     "difficulty": "Easy",
+//     "concept": "SQL",
+//     "question": "Which SQL clause is used to filter the results of an aggregate function?",
+//     "options": ["A) WHERE", "B) GROUP BY", "C) HAVING", "D) ORDER BY"],
+//     "answer": "C",
+//     "explanation": "WHERE filters rows before aggregation; HAVING filters groups after the GROUP BY clause is applied."
+//   },
+//   {
+//     "id": "db-q6",
+//     "type": "True/False",
+//     "difficulty": "Easy",
+//     "concept": "Data Independence",
+//     "question": "Logical data independence is the ability to change the physical storage without changing the logical schema.",
+//     "options": ["True", "False"],
+//     "answer": "False",
+//     "explanation": "That is Physical Data Independence. Logical independence is the ability to change the logical schema without affecting the external views."
+//   },
+//   {
+//     "id": "db-q7",
+//     "type": "MCQ",
+//     "difficulty": "Easy",
+//     "concept": "ER Model",
+//     "question": "In an ER Diagram, a double rectangle represents which of the following?",
+//     "options": ["A) Relationship Set", "B) Weak Entity Set", "C) Attribute", "D) Multivalued Attribute"],
+//     "answer": "B",
+//     "explanation": "A weak entity set is an entity that does not have a primary key and depends on an identifying entity."
+//   },
+//   {
+//     "id": "db-q8",
+//     "type": "Q&A",
+//     "difficulty": "Easy",
+//     "concept": "Relational Algebra",
+//     "question": "What does the 'Selection' (σ) operator do in relational algebra?",
+//     "options": null,
+//     "answer": "It selects tuples (rows) that satisfy a given predicate.",
+//     "explanation": "Selection acts as a horizontal filter on a relation."
+//   },
+//   {
+//     "id": "db-q9",
+//     "type": "MCQ",
+//     "difficulty": "Easy",
+//     "concept": "SQL",
+//     "question": "Which command is used to add a new column to an existing table?",
+//     "options": ["A) UPDATE TABLE", "B) ALTER TABLE", "C) INSERT INTO", "D) MODIFY TABLE"],
+//     "answer": "B",
+//     "explanation": "ALTER TABLE allows you to change the structure of a table, such as adding, deleting, or modifying columns."
+//   },
+//   {
+//     "id": "db-q10",
+//     "type": "True/False",
+//     "difficulty": "Easy",
+//     "concept": "ACID Properties",
+//     "question": "Atomicity ensures that all operations in a transaction are completed; otherwise, none are.",
+//     "options": ["True", "False"],
+//     "answer": "True",
+//     "explanation": "Atomicity follows the 'all or nothing' principle for database transactions."
+//   },
+//   {
+//     "id": "db-q11",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "Normalization",
+//     "question": "A table is in which Normal Form if it is in 1NF and all non-key attributes are fully functionally dependent on the primary key?",
+//     "options": ["A) 2NF", "B) 3NF", "C) BCNF", "D) 4NF"],
+//     "answer": "A",
+//     "explanation": "2NF eliminates partial functional dependencies."
+//   },
+//   {
+//     "id": "db-q12",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "SQL Joins",
+//     "question": "Which join returns all rows from the left table and the matched rows from the right table?",
+//     "options": ["A) INNER JOIN", "B) FULL JOIN", "C) LEFT JOIN", "D) RIGHT JOIN"],
+//     "answer": "C",
+//     "explanation": "LEFT OUTER JOIN includes all records from the left table even if there is no match in the right table."
+//   },
+//   {
+//     "id": "db-q13",
+//     "type": "Q&A",
+//     "difficulty": "Medium",
+//     "concept": "Integrity Constraints",
+//     "question": "What is Referential Integrity?",
+//     "options": null,
+//     "answer": "A rule stating that a foreign key value must match a primary key value in the referenced table or be null.",
+//     "explanation": "This ensures consistency between related tables."
+//   },
+//   {
+//     "id": "db-q14",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "Relational Algebra",
+//     "question": "The 'Projection' (π) operator is used to:",
+//     "options": ["A) Filter rows", "B) Choose specific columns", "C) Join two tables", "D) Rename a table"],
+//     "answer": "B",
+//     "explanation": "Projection acts as a vertical filter, returning only the specified attributes."
+//   },
+//   {
+//     "id": "db-q15",
+//     "type": "True/False",
+//     "difficulty": "Medium",
+//     "concept": "Transactions",
+//     "question": "Consistency in ACID means that the database stays in a valid state before and after a transaction.",
+//     "options": ["True", "False"],
+//     "answer": "True",
+//     "explanation": "Consistency ensures that data integrity rules are never violated."
+//   },
+//   {
+//     "id": "db-q16",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "Normalization",
+//     "question": "Transitive dependencies are removed in which normal form?",
+//     "options": ["A) 1NF", "B) 2NF", "C) 3NF", "D) BCNF"],
+//     "answer": "C",
+//     "explanation": "3NF requires a table to be in 2NF and have no non-prime attribute transitively dependent on the primary key."
+//   },
+//   {
+//     "id": "db-q17",
+//     "type": "Q&A",
+//     "difficulty": "Medium",
+//     "concept": "Concurrency Control",
+//     "question": "What is a 'Deadlock'?",
+//     "options": null,
+//     "answer": "A situation where two or more transactions are waiting indefinitely for each other to release locks.",
+//     "explanation": "DBMS uses wait-for graphs or timeouts to detect and resolve deadlocks."
+//   },
+//   {
+//     "id": "db-q18",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "Indexing",
+//     "question": "A B+ tree index is better than a Hash index for which type of queries?",
+//     "options": ["A) Point queries", "B) Range queries", "C) Update queries", "D) Delete queries"],
+//     "answer": "B",
+//     "explanation": "B+ trees store data in a sorted order, making them highly efficient for range searches like 'BETWEEN 10 AND 20'."
+//   },
+//   {
+//     "id": "db-q19",
+//     "type": "True/False",
+//     "difficulty": "Medium",
+//     "concept": "SQL",
+//     "question": "The 'UNION' operator automatically removes duplicate rows from the result set.",
+//     "options": ["True", "False"],
+//     "answer": "True",
+//     "explanation": "UNION removes duplicates; UNION ALL keeps them."
+//   },
+//   {
+//     "id": "db-q20",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "Recovery",
+//     "question": "Which log-based recovery technique ensures that all updates are written to the disk only after the transaction commits?",
+//     "options": ["A) Immediate Update", "B) Deferred Update", "C) Shadow Paging", "D) Checkpointing"],
+//     "answer": "B",
+//     "explanation": "In deferred update, changes are recorded in the log and applied to the database only upon a successful commit."
+//   },
+//   {
+//     "id": "db-q21",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Normalization",
+//     "question": "If a relation is in BCNF, it is also in 3NF. Is the converse true?",
+//     "options": ["A) Yes, always", "B) No, 3NF is stricter", "C) No, 3NF may allow dependencies that BCNF prohibits", "D) Yes, if it has no multi-valued attributes"],
+//     "answer": "C",
+//     "explanation": "BCNF is a stronger version of 3NF. BCNF does not allow a non-prime attribute to determine a prime attribute."
+//   },
+//   {
+//     "id": "db-q22",
+//     "type": "Q&A",
+//     "difficulty": "Hard",
+//     "concept": "Relational Algebra",
+//     "question": "What is the Division (÷) operator used for in relational algebra?",
+//     "options": null,
+//     "answer": "To find tuples in one relation that are associated with all tuples in another relation.",
+//     "explanation": "It is typically used for queries containing the word 'all', such as 'find students who have taken all courses'."
+//   },
+//   {
+//     "id": "db-q23",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Concurrency",
+//     "question": "The 'Phantom Read' problem occurs when:",
+//     "options": ["A) A transaction reads data that is uncommitted", "B) A transaction reads a value twice and gets different results", "C) A transaction re-executes a query and finds new rows added by another transaction", "D) A transaction crashes"],
+//     "answer": "C",
+//     "explanation": "Phantom reads happen in the Repeatable Read isolation level when range queries are involved."
+//   },
+//   {
+//     "id": "db-q24",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Two-Phase Locking",
+//     "question": "In 2PL, once a transaction releases a lock, it ________.",
+//     "options": ["A) Can acquire new locks", "B) Cannot acquire any new locks", "C) Must commit immediately", "D) Must rollback"],
+//     "answer": "B",
+//     "explanation": "The 'shrinking phase' starts once the first lock is released, and no further locks can be acquired."
+//   },
+//   {
+//     "id": "db-q25",
+//     "type": "True/False",
+//     "difficulty": "Hard",
+//     "concept": "Functional Dependencies",
+//     "question": "Armstrong's Axioms (Reflexivity, Augmentation, Transitivity) are sound and complete.",
+//     "options": ["True", "False"],
+//     "answer": "True",
+//     "explanation": "Sound means they generate only correct dependencies; complete means they generate all possible dependencies."
+//   },
+//   {
+//     "id": "db-q26",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Relational Calculus",
+//     "question": "Tuple Relational Calculus (TRC) is a ________ language.",
+//     "options": ["A) Procedural", "B) Non-procedural (Declarative)", "C) Imperative", "D) Object-Oriented"],
+//     "answer": "B",
+//     "explanation": "TRC describes 'what' data is needed rather than 'how' to retrieve it, unlike Relational Algebra which is procedural."
+//   },
+//   {
+//     "id": "db-q27",
+//     "type": "Q&A",
+//     "difficulty": "Hard",
+//     "concept": "Query Optimization",
+//     "question": "What is 'Pipelining' in query execution?",
+//     "options": null,
+//     "answer": "The evaluation of a query by passing the results of one operator to the next without saving temporary relations.",
+//     "explanation": "This saves disk I/O and speeds up query processing."
+//   },
+//   {
+//     "id": "db-q28",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Transaction Isolation",
+//     "question": "Which isolation level provides the highest level of protection but lowest concurrency?",
+//     "options": ["A) Read Uncommitted", "B) Read Committed", "C) Repeatable Read", "D) Serializable"],
+//     "answer": "D",
+//     "explanation": "Serializable isolation ensures that the result of concurrent transactions is the same as if they were executed one after another."
+//   },
+//   {
+//     "id": "db-q29",
+//     "type": "True/False",
+//     "difficulty": "Hard",
+//     "concept": "Storage",
+//     "question": "In a clustered index, the physical order of rows in the table is the same as the order of the index.",
+//     "options": ["True", "False"],
+//     "answer": "True",
+//     "explanation": "This is why a table can have only one clustered index."
+//   },
+//   {
+//     "id": "db-q30",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Hashing",
+//     "question": "In Extendible Hashing, what happens when a bucket overflows?",
+//     "options": ["A) A new overflow bucket is linked", "B) The hash table size is doubled always", "C) The bucket is split and the directory may double", "D) Linear probing is used"],
+//     "answer": "C",
+//     "explanation": "Extendible hashing uses a directory of pointers; only the specific bucket that overflows is split, and the directory doubles only if necessary."
+//   }
+// ]
+// }

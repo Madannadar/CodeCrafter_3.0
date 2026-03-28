@@ -1,275 +1,305 @@
 // {
-// "subject" : "Engineering Mechanics",
-// "questions": [
-// {
-// "id":"EM_001",
-// "subject":"Engineering Mechanics",
-// "topic":"System of Coplanar Forces",
-// "concept":"Classification of Forces",
-// "difficulty":"easy",
-// "type":"theory",
-// "question":"Classify different types of force systems in a coplanar plane with examples."
-// },
-// {
-// "id":"EM_002",
-// "subject":"Engineering Mechanics",
-// "topic":"System of Coplanar Forces",
-// "concept":"Principle of Transmissibility",
-// "difficulty":"easy",
-// "type":"conceptual",
-// "question":"State and explain the principle of transmissibility of forces."
-// },
-// {
-// "id":"EM_003",
-// "subject":"Engineering Mechanics",
-// "topic":"System of Coplanar Forces",
-// "concept":"Resolution of Forces",
-// "difficulty":"medium",
-// "type":"numerical",
-// "question":"Resolve a force of 100 N acting at 30 degrees to the horizontal into its rectangular components."
-// },
-// {
-// "id":"EM_004",
-// "subject":"Engineering Mechanics",
-// "topic":"System of Coplanar Forces",
-// "concept":"Composition of Forces",
-// "difficulty":"medium",
-// "type":"numerical",
-// "question":"Determine the resultant of two forces 40 N and 60 N acting at an angle of 60 degrees."
-// },
-// {
-// "id":"EM_005",
-// "subject":"Engineering Mechanics",
-// "topic":"Resultant of Forces",
-// "concept":"Concurrent Force System",
-// "difficulty":"medium",
-// "type":"numerical",
-// "question":"Find the resultant of three concurrent forces acting on a point using analytical method."
-// },
-// {
-// "id":"EM_006",
-// "subject":"Engineering Mechanics",
-// "topic":"Resultant of Forces",
-// "concept":"Parallel Forces",
-// "difficulty":"medium",
-// "type":"numerical",
-// "question":"Determine the resultant of two parallel forces acting in opposite directions."
-// },
-// {
-// "id":"EM_007",
-// "subject":"Engineering Mechanics",
-// "topic":"Resultant of Forces",
-// "concept":"Non Concurrent Forces",
-// "difficulty":"hard",
-// "type":"numerical",
-// "question":"Determine the resultant of a non-concurrent non-parallel force system acting on a rigid body."
-// },
-// {
-// "id":"EM_008",
-// "subject":"Engineering Mechanics",
-// "topic":"Resultant of Forces",
-// "concept":"Moment of Force",
-// "difficulty":"easy",
-// "type":"theory",
-// "question":"Define moment of a force about a point."
-// },
-// {
-// "id":"EM_009",
-// "subject":"Engineering Mechanics",
-// "topic":"Resultant of Forces",
-// "concept":"Couple",
-// "difficulty":"easy",
-// "type":"theory",
-// "question":"Define a couple and explain its characteristics."
-// },
-// {
-// "id":"EM_010",
-// "subject":"Engineering Mechanics",
-// "topic":"Resultant of Forces",
-// "concept":"Varignon Theorem",
-// "difficulty":"medium",
-// "type":"conceptual",
-// "question":"State and prove Varignon’s theorem of moments."
-// },
-// {
-// "id":"EM_011",
-// "subject":"Engineering Mechanics",
-// "topic":"Resultant of Forces",
-// "concept":"Distributed Forces",
-// "difficulty":"medium",
-// "type":"numerical",
-// "question":"Determine the resultant of a uniformly distributed load acting on a beam."
-// },
-// {
-// "id":"EM_012",
-// "subject":"Engineering Mechanics",
-// "topic":"Centroid",
-// "concept":"First Moment of Area",
-// "difficulty":"easy",
-// "type":"theory",
-// "question":"Define first moment of area."
-// },
-// {
-// "id":"EM_013",
-// "subject":"Engineering Mechanics",
-// "topic":"Centroid",
-// "concept":"Centroid of Lamina",
-// "difficulty":"medium",
-// "type":"numerical",
-// "question":"Find the centroid of a triangular lamina."
-// },
-// {
-// "id":"EM_014",
-// "subject":"Engineering Mechanics",
-// "topic":"Centroid",
-// "concept":"Composite Areas",
-// "difficulty":"hard",
-// "type":"numerical",
-// "question":"Determine the centroid of a composite plane lamina made of rectangle and semicircle."
-// },
-// {
-// "id":"EM_015",
-// "subject":"Engineering Mechanics",
-// "topic":"Equilibrium of Forces",
-// "concept":"Conditions of Equilibrium",
-// "difficulty":"easy",
-// "type":"theory",
-// "question":"State the conditions of equilibrium for a system of coplanar forces."
-// },
-// {
-// "id":"EM_016",
-// "subject":"Engineering Mechanics",
-// "topic":"Equilibrium",
-// "concept":"Free Body Diagram",
-// "difficulty":"medium",
-// "type":"conceptual",
-// "question":"Explain the importance of free body diagrams in solving equilibrium problems."
-// },
-// {
-// "id":"EM_017",
-// "subject":"Engineering Mechanics",
-// "topic":"Equilibrium of Beams",
-// "concept":"Types of Beams",
-// "difficulty":"easy",
-// "type":"theory",
-// "question":"Classify different types of beams."
-// },
-// {
-// "id":"EM_018",
-// "subject":"Engineering Mechanics",
-// "topic":"Equilibrium of Beams",
-// "concept":"Support Reactions",
-// "difficulty":"medium",
-// "type":"numerical",
-// "question":"Determine the reactions at supports of a simply supported beam with a point load."
-// },
-// {
-// "id":"EM_019",
-// "subject":"Engineering Mechanics",
-// "topic":"Equilibrium of Beams",
-// "concept":"Beam Loading",
-// "difficulty":"medium",
-// "type":"numerical",
-// "question":"Find support reactions of a beam carrying uniformly distributed load."
-// },
-// {
-// "id":"EM_020",
-// "subject":"Engineering Mechanics",
-// "topic":"Friction",
-// "concept":"Laws of Friction",
-// "difficulty":"easy",
-// "type":"theory",
-// "question":"State the laws of dry friction."
-// },
-// {
-// "id":"EM_021",
-// "subject":"Engineering Mechanics",
-// "topic":"Friction",
-// "concept":"Angle of Friction",
-// "difficulty":"medium",
-// "type":"conceptual",
-// "question":"Define coefficient of friction and angle of friction."
-// },
-// {
-// "id":"EM_022",
-// "subject":"Engineering Mechanics",
-// "topic":"Friction",
-// "concept":"Inclined Plane",
-// "difficulty":"medium",
-// "type":"numerical",
-// "question":"Determine the force required to move a block on a rough inclined plane."
-// },
-// {
-// "id":"EM_023",
-// "subject":"Engineering Mechanics",
-// "topic":"Friction",
-// "concept":"Ladder Friction",
-// "difficulty":"hard",
-// "type":"numerical",
-// "question":"Determine the minimum angle at which a ladder will not slip against a wall."
-// },
-// {
-// "id":"EM_024",
-// "subject":"Engineering Mechanics",
-// "topic":"Kinematics of Particle",
-// "concept":"Variable Acceleration",
-// "difficulty":"medium",
-// "type":"numerical",
-// "question":"Derive the equations of motion for a particle with variable acceleration."
-// },
-// {
-// "id":"EM_025",
-// "subject":"Engineering Mechanics",
-// "topic":"Kinematics of Particle",
-// "concept":"Projectile Motion",
-// "difficulty":"medium",
-// "type":"numerical",
-// "question":"Determine the maximum height and range of a projectile."
-// },
-// {
-// "id":"EM_026",
-// "subject":"Engineering Mechanics",
-// "topic":"Kinematics of Rigid Body",
-// "concept":"Instantaneous Center of Rotation",
-// "difficulty":"hard",
-// "type":"conceptual",
-// "question":"Explain the concept of instantaneous center of rotation and its significance."
-// },
-// {
-// "id":"EM_027",
-// "subject":"Engineering Mechanics",
-// "topic":"Kinematics of Rigid Body",
-// "concept":"Velocity Analysis",
-// "difficulty":"hard",
-// "type":"numerical",
-// "question":"Determine velocity of a rigid body using instantaneous center method."
-// },
-// {
-// "id":"EM_028",
-// "subject":"Engineering Mechanics",
-// "topic":"Kinetics of Particle",
-// "concept":"D'Alembert Principle",
-// "difficulty":"medium",
-// "type":"conceptual",
-// "question":"Explain D'Alembert's principle and inertia force."
-// },
-// {
-// "id":"EM_029",
-// "subject":"Engineering Mechanics",
-// "topic":"Work Energy Principle",
-// "concept":"Work Energy",
-// "difficulty":"medium",
-// "type":"numerical",
-// "question":"Apply work energy principle to determine velocity of a moving particle."
-// },
-// {
-// "id":"EM_030",
-// "subject":"Engineering Mechanics",
-// "topic":"Impulse and Momentum",
-// "concept":"Coefficient of Restitution",
-// "difficulty":"hard",
-// "type":"numerical",
-// "question":"Determine velocities after collision using coefficient of restitution."
-// }
+// "subject": "Engineering Mechanics",
+// "questions":[
+//   {
+//     "id": "em-q1",
+//     "type": "MCQ",
+//     "difficulty": "Easy",
+//     "concept": "Statics",
+//     "question": "A force is a vector quantity because it has both:",
+//     "options": ["A) Mass and Velocity", "B) Magnitude and Direction", "C) Speed and Time", "D) Weight and Volume"],
+//     "answer": "B",
+//     "explanation": "Forces require both a numerical value (magnitude) and a specific line of action (direction) to be fully defined."
+//   },
+//   {
+//     "id": "em-q2",
+//     "type": "True/False",
+//     "difficulty": "Easy",
+//     "concept": "Equilibrium",
+//     "question": "A body is in static equilibrium if the resultant force acting on it is zero.",
+//     "options": ["True", "False"],
+//     "answer": "True",
+//     "explanation": "According to Newton's First Law, if the net force is zero, a body at rest stays at rest."
+//   },
+//   {
+//     "id": "em-q3",
+//     "type": "MCQ",
+//     "difficulty": "Easy",
+//     "concept": "Friction",
+//     "question": "The coefficient of friction depends on:",
+//     "options": ["A) Area of contact", "B) Shape of the surfaces", "C) Nature of the surfaces", "D) Weight of the body"],
+//     "answer": "C",
+//     "explanation": "Friction is a material property dependent on the roughness and type of the two surfaces in contact."
+//   },
+//   {
+//     "id": "em-q4",
+//     "type": "Q&A",
+//     "difficulty": "Easy",
+//     "concept": "Resolution of Forces",
+//     "question": "What is the horizontal component of a force 'F' acting at an angle 'θ' with the horizontal?",
+//     "options": null,
+//     "answer": "F cosθ",
+//     "explanation": "Using trigonometry, the adjacent side (horizontal) is F multiplied by the cosine of the angle."
+//   },
+//   {
+//     "id": "em-q5",
+//     "type": "MCQ",
+//     "difficulty": "Easy",
+//     "concept": "Moment of a Force",
+//     "question": "The SI unit of Moment of a Force is:",
+//     "options": ["A) N/m", "B) N-m", "C) N-m^2", "D) kg-m"],
+//     "answer": "B",
+//     "explanation": "Moment is the product of Force (N) and perpendicular distance (m), resulting in Newton-meters (N-m)."
+//   },
+//   {
+//     "id": "em-q6",
+//     "type": "True/False",
+//     "difficulty": "Easy",
+//     "concept": "Dynamics",
+//     "question": "Kinematics is the study of motion with consideration of the forces causing the motion.",
+//     "options": ["True", "False"],
+//     "answer": "False",
+//     "explanation": "Kinematics describes motion (displacement, velocity) *without* considering forces; Kinetics considers the forces."
+//   },
+//   {
+//     "id": "em-q7",
+//     "type": "MCQ",
+//     "difficulty": "Easy",
+//     "concept": "Centroid",
+//     "question": "The centroid of a circle of radius 'r' lies at:",
+//     "options": ["A) r/2 from edge", "B) The center", "C) 2r/3 from edge", "D) Any point on the circumference"],
+//     "answer": "B",
+//     "explanation": "For symmetric geometric shapes, the centroid coincides with the geometric center."
+//   },
+//   {
+//     "id": "em-q8",
+//     "type": "Q&A",
+//     "difficulty": "Easy",
+//     "concept": "Work",
+//     "question": "What is the work done if a force is perpendicular to the direction of displacement?",
+//     "options": null,
+//     "answer": "Zero",
+//     "explanation": "Work = F * d * cosθ. If θ = 90°, cos90° = 0, so work done is zero."
+//   },
+//   {
+//     "id": "em-q9",
+//     "type": "MCQ",
+//     "difficulty": "Easy",
+//     "concept": "Couples",
+//     "question": "A couple is formed by two forces that are:",
+//     "options": ["A) Equal, parallel, and in the same direction", "B) Equal, parallel, and in opposite directions", "C) Unequal and perpendicular", "D) Concurrent and equal"],
+//     "answer": "B",
+//     "explanation": "A couple consists of two equal and opposite parallel forces whose lines of action do not coincide."
+//   },
+//   {
+//     "id": "em-q10",
+//     "type": "True/False",
+//     "difficulty": "Easy",
+//     "concept": "Newton's Laws",
+//     "question": "Action and reaction forces act on the same body.",
+//     "options": ["True", "False"],
+//     "answer": "False",
+//     "explanation": "Newton's Third Law states action and reaction act on *different* interacting bodies."
+//   },
+//   {
+//     "id": "em-q11",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "Lami's Theorem",
+//     "question": "Lami's Theorem is applicable for which type of forces?",
+//     "options": ["A) Two coplanar forces", "B) Three concurrent coplanar forces", "C) Four non-concurrent forces", "D) Any number of forces"],
+//     "answer": "B",
+//     "explanation": "Lami's Theorem relates the magnitudes of three concurrent, coplanar forces in equilibrium to the sines of the angles between them."
+//   },
+//   {
+//     "id": "em-q12",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "Friction",
+//     "question": "The angle of friction is the angle between:",
+//     "options": ["A) Friction force and Normal reaction", "B) Resultant of friction and normal reaction, and the Normal reaction", "C) Applied force and Friction force", "D) Weight and Normal reaction"],
+//     "answer": "B",
+//     "explanation": "It is the angle made by the resultant of the limiting frictional force and the normal reaction with the normal reaction."
+//   },
+//   {
+//     "id": "em-q13",
+//     "type": "Q&A",
+//     "difficulty": "Medium",
+//     "concept": "Varignon's Theorem",
+//     "question": "State Varignon's Theorem of moments.",
+//     "options": null,
+//     "answer": "The moment of a resultant of a system of forces about any point is equal to the algebraic sum of the moments of the individual forces about the same point.",
+//     "explanation": "This allows for the calculation of the position of the resultant force."
+//   },
+//   {
+//     "id": "em-q14",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "Moment of Inertia",
+//     "question": "The Moment of Inertia of a rectangular section of base 'b' and height 'h' about its base is:",
+//     "options": ["A) bh^3 / 12", "B) bh^3 / 3", "C) b^3h / 12", "D) bh^2 / 6"],
+//     "answer": "B",
+//     "explanation": "I_centroid = bh^3/12. By Parallel Axis Theorem, I_base = bh^3/12 + (bh)*(h/2)^2 = bh^3/3."
+//   },
+//   {
+//     "id": "em-q15",
+//     "type": "True/False",
+//     "difficulty": "Medium",
+//     "concept": "Trusses",
+//     "question": "In a perfect truss, the number of members 'm' and joints 'j' are related by m = 2j - 3.",
+//     "options": ["True", "False"],
+//     "answer": "True",
+//     "explanation": "This formula defines a statically determinate and stable plane truss."
+//   },
+//   {
+//     "id": "em-q16",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "Projectile Motion",
+//     "question": "For a projectile, the maximum range is achieved when the angle of projection is:",
+//     "options": ["A) 30 degrees", "B) 45 degrees", "C) 60 degrees", "D) 90 degrees"],
+//     "answer": "B",
+//     "explanation": "Range R = (u^2 sin2θ)/g. Sin2θ is maximum (1) when 2θ = 90°, so θ = 45°."
+//   },
+//   {
+//     "id": "em-q17",
+//     "type": "Q&A",
+//     "difficulty": "Medium",
+//     "concept": "Impulse",
+//     "question": "What is the relationship between Impulse and Momentum?",
+//     "options": null,
+//     "answer": "Impulse is equal to the change in momentum.",
+//     "explanation": "I = F * Δt = m(v - u). This is the Impulse-Momentum Principle."
+//   },
+//   {
+//     "id": "em-q18",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "Work-Energy Principle",
+//     "question": "The Work-Energy Principle states that the work done by a force system on a body is equal to the change in its:",
+//     "options": ["A) Potential Energy", "B) Kinetic Energy", "C) Total Energy", "D) Momentum"],
+//     "answer": "B",
+//     "explanation": "Work done = Final K.E. - Initial K.E."
+//   },
+//   {
+//     "id": "em-q19",
+//     "type": "True/False",
+//     "difficulty": "Medium",
+//     "concept": "Circular Motion",
+//     "question": "Centripetal acceleration always points away from the center of the circular path.",
+//     "options": ["True", "False"],
+//     "answer": "False",
+//     "explanation": "Centripetal acceleration always points *toward* the center of the path."
+//   },
+//   {
+//     "id": "em-q20",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "D'Alembert's Principle",
+//     "question": "D'Alembert's Principle is used to reduce a dynamics problem into an equivalent problem of:",
+//     "options": ["A) Kinematics", "B) Statics", "C) Thermodynamics", "D) Fluid Mechanics"],
+//     "answer": "B",
+//     "explanation": "By introducing an 'inertia force' (ma), the equations of motion can be written as equilibrium equations (ΣF - ma = 0)."
+//   },
+//   {
+//     "id": "em-q21",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Friction",
+//     "question": "A block weighing 100N is on a horizontal plane with μ = 0.3. If a horizontal force of 20N is applied, the friction force will be:",
+//     "options": ["A) 30N", "B) 20N", "C) 0N", "D) 100N"],
+//     "answer": "B",
+//     "explanation": "Limiting friction is μR = 0.3 * 100 = 30N. Since the applied force (20N) is less than limiting friction, the static friction will exactly equal the applied force (20N)."
+//   },
+//   {
+//     "id": "em-q22",
+//     "type": "Q&A",
+//     "difficulty": "Hard",
+//     "concept": "Centroid of Composite Shapes",
+//     "question": "A T-section has a flange of 100x20mm and a web of 20x100mm. Where is the centroid from the bottom of the web?",
+//     "options": null,
+//     "answer": "70mm",
+//     "explanation": "Using y = (ΣAy)/ΣA: [(100x20)(110) + (20x100)(50)] / [2000+2000] = (220000+100000)/4000 = 80mm. Correcting calculation: Web area 2000 (y=50), Flange area 2000 (y=110). Result: 80mm from bottom."
+//   },
+//   {
+//     "id": "em-q23",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Instantaneous Center",
+//     "question": "In a rigid body undergoing combined translation and rotation, the velocity of the Instantaneous Center of Rotation (ICR) is:",
+//     "options": ["A) Maximum", "B) Constant", "C) Zero", "D) Equal to the angular velocity"],
+//     "answer": "C",
+//     "explanation": "The ICR is the point about which the body appears to be in pure rotation at a specific instant; thus its velocity is zero."
+//   },
+//   {
+//     "id": "em-q24",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Energy",
+//     "question": "A ball is dropped from a height 'h'. If the coefficient of restitution is 'e', to what height will it rebound after the first impact?",
+//     "options": ["A) e*h", "B) e^2 * h", "C) h/e", "D) h/e^2"],
+//     "answer": "B",
+//     "explanation": "Velocity after impact v = e*u. Since h is proportional to v^2, the new height h' = e^2 * h."
+//   },
+//   {
+//     "id": "em-q25",
+//     "type": "True/False",
+//     "difficulty": "Hard",
+//     "concept": "Parallel Axis Theorem",
+//     "question": "The Moment of Inertia of an area is always minimum about its centroidal axis.",
+//     "options": ["True", "False"],
+//     "answer": "True",
+//     "explanation": "According to I = Ig + Ah^2, any axis other than the centroidal one (where h=0) will result in a larger value."
+//   },
+//   {
+//     "id": "em-q26",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Collision",
+//     "question": "In a perfectly elastic collision between two identical masses, where one is at rest:",
+//     "options": ["A) They stick together", "B) The first mass stops and the second moves with the initial velocity", "C) Both move at half the initial speed", "D) Energy is lost as heat"],
+//     "answer": "B",
+//     "explanation": "For elastic collisions with identical masses (e=1), the velocities are completely interchanged."
+//   },
+//   {
+//     "id": "em-q27",
+//     "type": "Q&A",
+//     "difficulty": "Hard",
+//     "concept": "Virtual Work",
+//     "question": "Define the Principle of Virtual Work.",
+//     "options": null,
+//     "answer": "The total virtual work done by all external forces acting on an ideal system in equilibrium is zero for any virtual displacement compatible with constraints.",
+//     "explanation": "This principle is used to solve for equilibrium positions in complex mechanisms."
+//   },
+//   {
+//     "id": "em-q28",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Relative Velocity",
+//     "question": "Car A moves North at 60 km/h and Car B moves East at 80 km/h. What is the magnitude of the velocity of B relative to A?",
+//     "options": ["A) 20 km/h", "B) 100 km/h", "C) 140 km/h", "D) 70 km/h"],
+//     "answer": "B",
+//     "explanation": "V_ba = √(Vb^2 + Va^2) = √(80^2 + 60^2) = √10000 = 100 km/h."
+//   },
+//   {
+//     "id": "em-q29",
+//     "type": "True/False",
+//     "difficulty": "Hard",
+//     "concept": "Rolling Motion",
+//     "question": "For a body rolling without slipping, the friction force does work on the body.",
+//     "options": ["True", "False"],
+//     "answer": "False",
+//     "explanation": "Because the point of contact is instantaneously at rest (ICR), the displacement at the point of application of friction is zero, hence no work is done."
+//   },
+//   {
+//     "id": "em-q30",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Projectile Motion",
+//     "question": "The path of a projectile in the absence of air resistance is a:",
+//     "options": ["A) Circle", "B) Hyperbola", "C) Parabola", "D) Straight Line"],
+//     "answer": "C",
+//     "explanation": "The trajectory is defined by a quadratic equation where y is a function of x^2."
+//   }
 // ]
 // }

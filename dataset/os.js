@@ -1,0 +1,305 @@
+// {
+// "subject": "Operating System",
+// "questions":[
+//   {
+//     "id": "os-q1",
+//     "type": "MCQ",
+//     "difficulty": "Easy",
+//     "concept": "Process Management",
+//     "question": "Which of the following is a program in execution?",
+//     "options": ["A) Software", "B) Process", "C) Instruction", "D) Procedure"],
+//     "answer": "B",
+//     "explanation": "A process is an active entity that represents a program currently being executed by the CPU."
+//   },
+//   {
+//     "id": "os-q2",
+//     "type": "True/False",
+//     "difficulty": "Easy",
+//     "concept": "Operating System Types",
+//     "question": "A Real-Time Operating System (RTOS) must respond to events within a strict time constraint.",
+//     "options": ["True", "False"],
+//     "answer": "True",
+//     "explanation": "Predictability and meeting deadlines are the core requirements of an RTOS."
+//   },
+//   {
+//     "id": "os-q3",
+//     "type": "MCQ",
+//     "difficulty": "Easy",
+//     "concept": "CPU Scheduling",
+//     "question": "Which scheduling algorithm allocates the CPU to the process that arrives first?",
+//     "options": ["A) SJF", "B) Priority", "C) FCFS", "D) Round Robin"],
+//     "answer": "C",
+//     "explanation": "First-Come, First-Served (FCFS) is the simplest non-preemptive scheduling algorithm."
+//   },
+//   {
+//     "id": "os-q4",
+//     "type": "Q&A",
+//     "difficulty": "Easy",
+//     "concept": "Booting",
+//     "question": "What is the BIOS?",
+//     "options": null,
+//     "answer": "Basic Input/Output System.",
+//     "explanation": "It is firmware used to perform hardware initialization during the booting process."
+//   },
+//   {
+//     "id": "os-q5",
+//     "type": "MCQ",
+//     "difficulty": "Easy",
+//     "concept": "Memory Management",
+//     "question": "The process of dividing physical memory into fixed-size blocks is called:",
+//     "options": ["A) Paging", "B) Segmentation", "C) Fragmentation", "D) Swapping"],
+//     "answer": "A",
+//     "explanation": "In paging, physical memory is divided into frames, and logical memory into pages of the same size."
+//   },
+//   {
+//     "id": "os-q6",
+//     "type": "True/False",
+//     "difficulty": "Easy",
+//     "concept": "System Calls",
+//     "question": "A system call is the programmatic way in which a computer program requests a service from the kernel.",
+//     "options": ["True", "False"],
+//     "answer": "True",
+//     "explanation": "System calls provide the interface between a process and the operating system."
+//   },
+//   {
+//     "id": "os-q7",
+//     "type": "MCQ",
+//     "difficulty": "Easy",
+//     "concept": "Threads",
+//     "question": "A thread shares which of the following with other threads of the same process?",
+//     "options": ["A) Stack", "B) Register set", "C) Code section", "D) Thread ID"],
+//     "answer": "C",
+//     "explanation": "Threads share the code section, data section, and OS resources like open files, but have their own stack and registers."
+//   },
+//   {
+//     "id": "os-q8",
+//     "type": "Q&A",
+//     "difficulty": "Easy",
+//     "concept": "Virtual Memory",
+//     "question": "What is 'Thrashed' state?",
+//     "options": null,
+//     "answer": "A situation where the CPU spends more time swapping pages than executing instructions.",
+//     "explanation": "Thrashing occurs when the system's memory is over-allocated."
+//   },
+//   {
+//     "id": "os-q9",
+//     "type": "MCQ",
+//     "difficulty": "Easy",
+//     "concept": "File Systems",
+//     "question": "Which of the following is an extension of a compressed file?",
+//     "options": ["A) .exe", "B) .txt", "C) .zip", "D) .bat"],
+//     "answer": "C",
+//     "explanation": ".zip is a standard archive file format that supports lossless data compression."
+//   },
+//   {
+//     "id": "os-q10",
+//     "type": "True/False",
+//     "difficulty": "Easy",
+//     "concept": "GUI",
+//     "question": "Kernel is a part of the Operating System that remains in the main memory throughout the session.",
+//     "options": ["True", "False"],
+//     "answer": "True",
+//     "explanation": "The kernel is the core component of an OS and handles critical system tasks."
+//   },
+//   {
+//     "id": "os-q11",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "Deadlocks",
+//     "question": "Which of the following is NOT a necessary condition for a deadlock?",
+//     "options": ["A) Mutual Exclusion", "B) Circular Wait", "C) Preemption", "D) Hold and Wait"],
+//     "answer": "C",
+//     "explanation": "The four conditions are Mutual Exclusion, Hold and Wait, No Preemption, and Circular Wait."
+//   },
+//   {
+//     "id": "os-q12",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "Process Synchronization",
+//     "question": "A semaphore is a/an ________ used to solve the critical section problem.",
+//     "options": ["A) Hardware trigger", "B) Integer variable", "C) Queue", "D) System call"],
+//     "answer": "B",
+//     "explanation": "A semaphore is a protected variable that can only be accessed through wait() and signal() operations."
+//   },
+//   {
+//     "id": "os-q13",
+//     "type": "Q&A",
+//     "difficulty": "Medium",
+//     "concept": "Memory Management",
+//     "question": "What is the difference between Internal and External fragmentation?",
+//     "options": null,
+//     "answer": "Internal is wasted space inside an allocated block; External is wasted space between allocated blocks.",
+//     "explanation": "Internal occurs in fixed partitioning; External occurs in dynamic partitioning."
+//   },
+//   {
+//     "id": "os-q14",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "CPU Scheduling",
+//     "question": "Which algorithm can lead to 'Starvation'?",
+//     "options": ["A) Round Robin", "B) Priority Scheduling", "C) FCFS", "D) All of the above"],
+//     "answer": "B",
+//     "explanation": "Low-priority processes may never execute if high-priority processes keep arriving."
+//   },
+//   {
+//     "id": "os-q15",
+//     "type": "True/False",
+//     "difficulty": "Medium",
+//     "concept": "Kernel",
+//     "question": "A Monolithic Kernel runs all basic system services in the kernel space.",
+//     "options": ["True", "False"],
+//     "answer": "True",
+//     "explanation": "Unlike Microkernels, Monolithic kernels include drivers, file systems, and networking in the kernel space for performance."
+//   },
+//   {
+//     "id": "os-q16",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "Page Replacement",
+//     "question": "Belady’s Anomaly is associated with which page replacement algorithm?",
+//     "options": ["A) LRU", "B) Optimal", "C) FIFO", "D) MRU"],
+//     "answer": "C",
+//     "explanation": "In FIFO, increasing the number of page frames can sometimes result in more page faults."
+//   },
+//   {
+//     "id": "os-q17",
+//     "type": "Q&A",
+//     "difficulty": "Medium",
+//     "concept": "Disk Scheduling",
+//     "question": "Which disk scheduling algorithm is also known as the 'Elevator' algorithm?",
+//     "options": null,
+//     "answer": "SCAN",
+//     "explanation": "The head moves in one direction to the end, then reverses, similar to an elevator."
+//   },
+//   {
+//     "id": "os-q18",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "Inter-Process Communication",
+//     "question": "Which of the following is a method of IPC?",
+//     "options": ["A) Shared Memory", "B) Message Passing", "C) Pipes", "D) All of the above"],
+//     "answer": "D",
+//     "explanation": "IPC allows processes to communicate and synchronize their actions."
+//   },
+//   {
+//     "id": "os-q19",
+//     "type": "True/False",
+//     "difficulty": "Medium",
+//     "concept": "Process States",
+//     "question": "A process in the 'Blocked' state is waiting for the CPU to become available.",
+//     "options": ["True", "False"],
+//     "answer": "False",
+//     "explanation": "A blocked process is waiting for an I/O event or signal, not the CPU. The 'Ready' state is for processes waiting for the CPU."
+//   },
+//   {
+//     "id": "os-q20",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "Concurrency",
+//     "question": "In the Producer-Consumer problem, what happens if the buffer is full?",
+//     "options": ["A) Consumer must wait", "B) Producer must wait", "C) Data is overwritten", "D) System crashes"],
+//     "answer": "B",
+//     "explanation": "The producer must be blocked or sleep until the consumer removes at least one item."
+//   },
+//   {
+//     "id": "os-q21",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Deadlocks",
+//     "question": "Banker’s algorithm is used for deadlock ________.",
+//     "options": ["A) Prevention", "B) Avoidance", "C) Detection", "D) Recovery"],
+//     "answer": "B",
+//     "explanation": "It tests for 'safe states' by simulating the allocation of resources before granting them."
+//   },
+//   {
+//     "id": "os-q22",
+//     "type": "Q&A",
+//     "difficulty": "Hard",
+//     "concept": "Memory Management",
+//     "question": "Calculate the physical address if the logical address is 345, Page size is 100, and Page 3 is mapped to Frame 5.",
+//     "options": null,
+//     "answer": "545",
+//     "explanation": "Page number = 345/100 = 3. Offset = 345%100 = 45. Physical Address = (Frame * Page size) + Offset = (5 * 100) + 45 = 545."
+//   },
+//   {
+//     "id": "os-q23",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "File Allocation",
+//     "question": "Which file allocation method suffers from external fragmentation?",
+//     "options": ["A) Linked Allocation", "B) Indexed Allocation", "C) Contiguous Allocation", "D) Non-contiguous Allocation"],
+//     "answer": "C",
+//     "explanation": "Contiguous allocation requires a single continuous block of space on the disk."
+//   },
+//   {
+//     "id": "os-q24",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Virtual Memory",
+//     "question": "A Page Fault occurs when:",
+//     "options": ["A) The page is corrupted", "B) The page is in main memory", "C) The page is not in main memory", "D) The CPU crashes"],
+//     "answer": "C",
+//     "explanation": "The hardware traps to the OS to bring the missing page from the disk into a memory frame."
+//   },
+//   {
+//     "id": "os-q25",
+//     "type": "True/False",
+//     "difficulty": "Hard",
+//     "concept": "CPU Scheduling",
+//     "question": "Shortest Remaining Time First (SRTF) is the preemptive version of SJF.",
+//     "options": ["True", "False"],
+//     "answer": "True",
+//     "explanation": "SRTF will interrupt the current process if a new process arrives with a shorter remaining burst time."
+//   },
+//   {
+//     "id": "os-q26",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Input/Output",
+//     "question": "Which I/O technique is most efficient for large data transfers?",
+//     "options": ["A) Programmed I/O", "B) Interrupt-driven I/O", "C) DMA", "D) Polling"],
+//     "answer": "C",
+//     "explanation": "DMA (Direct Memory Access) allows data transfer between memory and devices with minimal CPU intervention."
+//   },
+//   {
+//     "id": "os-q27",
+//     "type": "Q&A",
+//     "difficulty": "Hard",
+//     "concept": "Processes",
+//     "question": "What is the difference between a Zombie and an Orphan process?",
+//     "options": null,
+//     "answer": "Zombie: Terminated but not reaped by parent. Orphan: Running but parent has terminated.",
+//     "explanation": "Orphans are usually adopted by the 'init' process."
+//   },
+//   {
+//     "id": "os-q28",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Protection",
+//     "question": "In the 'Access Matrix' model, the rows represent ________ and columns represent ________.",
+//     "options": ["A) Objects, Domains", "B) Domains, Objects", "C) Users, Files", "D) Read, Write"],
+//     "answer": "B",
+//     "explanation": "The intersection of a row (domain) and column (object) defines the access rights (Read, Write, etc.)."
+//   },
+//   {
+//     "id": "os-q29",
+//     "type": "True/False",
+//     "difficulty": "Hard",
+//     "concept": "Disk Management",
+//     "question": "RAID 0 provides data redundancy.",
+//     "options": ["True", "False"],
+//     "answer": "False",
+//     "explanation": "RAID 0 is 'striping' for performance; it provides no redundancy. If one disk fails, all data is lost."
+//   },
+//   {
+//     "id": "os-q30",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Memory Management",
+//     "question": "In the Buddy System of memory allocation, if a 64KB block is requested and only a 256KB block is free, how many splits occur?",
+//     "options": ["A) 1", "B) 2", "C) 3", "D) 4"],
+//     "answer": "B",
+//     "explanation": "256 -> 128 (1st split), 128 -> 64 (2nd split). The 64KB block is then allocated."
+//   }
+// ]
+// }
