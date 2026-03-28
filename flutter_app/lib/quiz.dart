@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
-import 'package:flutter_highlight/themes/dracula.dart';
+import 'package:flutter_highlight/themes/shades-of-purple.dart';
 
 class SubjectQuizManual extends StatefulWidget {
   final String subjectId;
@@ -30,6 +30,16 @@ class _SubjectQuizManualState extends State<SubjectQuizManual> {
             "void sort(int arr[], int n) {\n  for(int i=0; i<n; i++)\n    for(int j=0; j<n-i-1; j++)\n      if(arr[j] > arr[j+1]) swap(arr[j], arr[j+1]);\n}",
         "options": ["O(n)", "O(n log n)", "O(n²)", "O(1)"],
         "answer": 2,
+        "language": "C++",
+      },
+      {
+        "question":
+        "What is the output of following code:",
+        "code":
+        "st = str(False+True)\nprint(st*3)",
+        "options": ["Error", "111", "000", "3"],
+        "answer": 1,
+        "language": "Python"
       },
       {
         "question":
@@ -37,6 +47,7 @@ class _SubjectQuizManualState extends State<SubjectQuizManual> {
         "code": "int* ptr = new int(10);\ndelete ptr;",
         "options": ["malloc", "new", "alloc", "set"],
         "answer": 1,
+        "language": "C++",
       },
       {
         "question": "What does a 404 HTTP status code signify?",
@@ -88,6 +99,7 @@ class _SubjectQuizManualState extends State<SubjectQuizManual> {
 
   void _showResults(bool passed) {
     final List questions = apiResponse['questions'];
+    final theme = Theme.of(context);
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -115,8 +127,8 @@ class _SubjectQuizManualState extends State<SubjectQuizManual> {
                 _resetQuiz(); // Reset local state
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.deepPurple,
-                foregroundColor: Colors.white,
+                backgroundColor: theme.colorScheme.primary,
+                foregroundColor: theme.colorScheme.onPrimary,
               ),
               child: const Text("Try Again"),
             ),
@@ -129,15 +141,16 @@ class _SubjectQuizManualState extends State<SubjectQuizManual> {
   Widget build(BuildContext context) {
     final List questions = apiResponse['questions'];
     final currentData = questions[currentIndex];
+    final theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: Colors.grey[50],
       appBar: AppBar(
         title: Text(widget.subjectName),
         elevation: 0,
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
+        backgroundColor: theme.colorScheme.surface,
+        foregroundColor: theme.colorScheme.onSurface,
       ),
+      backgroundColor: theme.colorScheme.surfaceContainer,
       body: Column(
         children: [
           // Polished Progress Header from Version 2
@@ -164,8 +177,8 @@ class _SubjectQuizManualState extends State<SubjectQuizManual> {
                       borderRadius: BorderRadius.circular(12),
                       child: HighlightView(
                         currentData['code'],
-                        language: 'cpp',
-                        theme: draculaTheme,
+                        language: currentData['language'],
+                        theme: shadesOfPurpleTheme,
                         padding: const EdgeInsets.all(16),
                         textStyle: const TextStyle(
                           fontFamily: 'monospace',
@@ -192,8 +205,8 @@ class _SubjectQuizManualState extends State<SubjectQuizManual> {
                       child: ElevatedButton(
                         onPressed: _nextQuestion,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.deepPurple,
-                          foregroundColor: Colors.white,
+                          backgroundColor: theme.colorScheme.primary,
+                          foregroundColor: theme.colorScheme.onPrimary,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
@@ -215,9 +228,10 @@ class _SubjectQuizManualState extends State<SubjectQuizManual> {
   }
 
   Widget _buildProgressHeader(int cur, int tot) {
+    final theme = Theme.of(context);
     return Container(
       padding: const EdgeInsets.all(16),
-      color: Colors.white,
+      color: theme.colorScheme.surface,
       child: Column(
         children: [
           Row(
@@ -225,8 +239,8 @@ class _SubjectQuizManualState extends State<SubjectQuizManual> {
             children: [
               Text(
                 "Question $cur of $tot",
-                style: const TextStyle(
-                  color: Colors.deepPurple,
+                style: TextStyle(
+                  color: theme.colorScheme.primary,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -236,8 +250,8 @@ class _SubjectQuizManualState extends State<SubjectQuizManual> {
           const SizedBox(height: 8),
           LinearProgressIndicator(
             value: cur / tot,
-            backgroundColor: Colors.deepPurple.withOpacity(0.1),
-            valueColor: const AlwaysStoppedAnimation<Color>(Colors.deepPurple),
+            backgroundColor: theme.colorScheme.primary.withValues(alpha: 0.1),
+            valueColor: AlwaysStoppedAnimation<Color>(theme.colorScheme.primary),
             borderRadius: BorderRadius.circular(10),
           ),
         ],
@@ -248,8 +262,9 @@ class _SubjectQuizManualState extends State<SubjectQuizManual> {
   Widget _buildOptionTile(int index, Map<String, dynamic> data) {
     bool isCorrect = index == data['answer'];
     bool isSelected = index == selectedIndex;
+    final theme = Theme.of(context);
 
-    Color color = Colors.white;
+    Color color = theme.colorScheme.surface;
     if (isAnswered) {
       if (isCorrect) {
         color = Colors.green.shade50;
@@ -278,7 +293,7 @@ class _SubjectQuizManualState extends State<SubjectQuizManual> {
           border: Border.all(
             color: isAnswered && isCorrect
                 ? Colors.green
-                : (isSelected ? Colors.red : Colors.grey.shade300),
+                : (isSelected ? Colors.red : theme.colorScheme.outlineVariant),
             width: 2,
           ),
         ),
@@ -288,10 +303,10 @@ class _SubjectQuizManualState extends State<SubjectQuizManual> {
               radius: 14,
               backgroundColor: isAnswered && isCorrect
                   ? Colors.green
-                  : Colors.grey[200],
+                  : theme.colorScheme.surfaceContainerHighest,
               child: Text(
                 String.fromCharCode(65 + index), // A, B, C...
-                style: const TextStyle(fontSize: 12, color: Colors.black87),
+                style: TextStyle(fontSize: 12, color: theme.colorScheme.onSurfaceVariant),
               ),
             ),
             const SizedBox(width: 15),

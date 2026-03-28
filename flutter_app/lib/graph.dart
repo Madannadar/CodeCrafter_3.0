@@ -10,7 +10,6 @@ class SubjectDependencyGraph extends StatefulWidget {
 }
 
 class _SubjectDependencyGraphState extends State<SubjectDependencyGraph> {
-  // 1. Controller for InteractiveViewer
   final TransformationController _transformationController =
       TransformationController();
 
@@ -65,7 +64,6 @@ class _SubjectDependencyGraphState extends State<SubjectDependencyGraph> {
   void initState() {
     super.initState();
     _setupGraph();
-    // 2. Schedule "Fit to Screen" after the first frame is rendered
     WidgetsBinding.instance.addPostFrameCallback((_) => _resetView());
   }
 
@@ -94,10 +92,7 @@ class _SubjectDependencyGraphState extends State<SubjectDependencyGraph> {
     });
   }
 
-  // 3. Logic to Reset View / Fit to Screen
   void _resetView() {
-    // This resets the matrix to identity (Scale 1.0, Pan 0,0)
-    // For a more advanced "Fit to Screen", you'd calculate scale based on graph size
     _transformationController.value = Matrix4.identity();
   }
 
@@ -113,10 +108,11 @@ class _SubjectDependencyGraphState extends State<SubjectDependencyGraph> {
           maxChildSize: 0.9,
           expand: false,
           builder: (context, scrollController) {
+            final theme = Theme.of(context);
             return Container(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
+              decoration: BoxDecoration(
+                color: theme.colorScheme.surface,
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(25)),
               ),
               child: Column(
                 children: [
@@ -147,10 +143,14 @@ class _SubjectDependencyGraphState extends State<SubjectDependencyGraph> {
                           child: Chip(
                             label: Text(
                               subject['type'].toString().toUpperCase(),
+                              style: TextStyle(
+                                color: theme.colorScheme.onPrimaryContainer,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                            backgroundColor: subject['type'] == 'core'
-                                ? Colors.blue[50]
-                                : Colors.teal[50],
+                            backgroundColor: theme.colorScheme.primaryContainer,
+                            side: BorderSide.none,
+                            shape: const StadiumBorder(),
                           ),
                         ),
                         const SizedBox(height: 20),
@@ -177,8 +177,8 @@ class _SubjectDependencyGraphState extends State<SubjectDependencyGraph> {
                       height: 55,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.deepPurple,
-                          foregroundColor: Colors.white,
+                          backgroundColor: theme.colorScheme.primary,
+                          foregroundColor: theme.colorScheme.onPrimary,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15),
                           ),
@@ -219,35 +219,36 @@ class _SubjectDependencyGraphState extends State<SubjectDependencyGraph> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(title: const Text("Learning Roadmap"), elevation: 0),
-      // 4. Reset Button
+      appBar: AppBar(
+        title: const Text("Learning Roadmap"),
+        elevation: 0,
+        backgroundColor: theme.colorScheme.surface,
+        foregroundColor: theme.colorScheme.onSurface,
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: _resetView,
-        backgroundColor: Colors.deepPurple,
-        child: const Icon(Icons.fullscreen_exit, color: Colors.white),
+        backgroundColor: theme.colorScheme.primary,
+        child: Icon(Icons.fullscreen_exit, color: theme.colorScheme.onPrimary),
       ),
       body: !isReady
           ? const Center(child: CircularProgressIndicator())
           : InteractiveViewer(
-              transformationController:
-                  _transformationController, // 5. Attach Controller
+              transformationController: _transformationController,
               constrained: false,
-              boundaryMargin: const EdgeInsets.all(
-                500,
-              ), // Huge margin so user can pan far
-              minScale: 0.05, // Allow zooming out very far
+              boundaryMargin: const EdgeInsets.all(500),
+              minScale: 0.05,
               maxScale: 2.0,
               child: Padding(
-                padding: const EdgeInsets.all(
-                  100.0,
-                ), // Padding around the graph
+                padding: const EdgeInsets.all(100.0),
                 child: GraphView(
                   graph: graph!,
                   algorithm: algorithm!,
                   paint: Paint()
-                    ..color = Colors.blueGrey.withOpacity(0.3)
+                    ..color = theme.colorScheme.primary
                     ..strokeWidth = 2.0
+                    ..strokeCap = StrokeCap.round
                     ..style = PaintingStyle.stroke,
                   builder: (Node node) {
                     var id = node.key!.value as String;
@@ -267,18 +268,20 @@ class _SubjectDependencyGraphState extends State<SubjectDependencyGraph> {
 
   Widget _buildNodeBox(Map<String, dynamic> subject) {
     bool isDone = completedIds.contains(subject['id']);
+    final theme = Theme.of(context);
+    
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: isDone ? Colors.green[50] : Colors.white,
+        color: isDone ? Colors.green[50] : theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: isDone ? Colors.green : Colors.blue,
+          color: isDone ? Colors.green : theme.colorScheme.primary,
           width: 2,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
