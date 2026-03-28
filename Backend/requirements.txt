@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+streamlit
+requests
+langchain
+langgraph
+langchain-google-genai
+python-dotenv
+pydantic
