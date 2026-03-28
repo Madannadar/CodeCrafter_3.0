@@ -1,4 +1,5 @@
 import json
+import requests
 from typing import List, Literal
 from pydantic import BaseModel, Field, field_validator
 from chatbot_agent.llm import get_llm
@@ -87,101 +88,58 @@ Return ONLY one word.
     return state
 
 
-# ---------------- GRAPH NODE (STRICT PYDANTIC SCHEMA) ---------------- #
+# ---------------- GRAPH NODE (TRIGGERS /json API) ---------------- #
 
 def generate_flowchart(state):
-    print("\n📊 [GRAPH NODE - PYDANTIC VALIDATED]")
+    """
+    Triggers the /json API endpoint to generate prerequisites.
+    This separates the graph orchestration from the data generation logic.
+    """
+    print("\n📊 [GRAPH NODE - TRIGGERING /json API]")
     print(f"SUBJECT → {state.get('subject')}")
     
     main_subject = state.get("subject")
-    llm = get_llm()
     
-    # Strict prompt for graph format with IDs
-    prompt = f"""
-Create a prerequisite graph for "{main_subject}".
-
-Return ONLY valid JSON matching this EXACT structure (no extra fields):
-
-{{
-  "subjects": [
-    {{
-      "id": "CS101",
-      "name": "Intro to Programming",
-      "type": "core",
-      "desc": "Learn Python basics and logic."
-    }},
-    {{
-      "id": "MA101",
-      "name": "Mathematics I",
-      "type": "core",
-      "desc": "Basic algebra and calculus."
-    }},
-    {{
-      "id": "TARGET",
-      "name": "{main_subject}",
-      "type": "elective",
-      "desc": "Main subject description."
-    }}
-  ],
-  "dependencies": [
-    {{"from": "CS101", "to": "TARGET"}},
-    {{"from": "MA101", "to": "TARGET"}}
-  ]
-}}
-
-RULES:
-1. "subjects" array must contain 3-8 subjects with unique IDs (format: XX101, e.g., CS101, MA101, PY201, AI301)
-2. Each subject MUST have exactly these 4 fields: id, name, type, desc
-3. "type" must be exactly one of: "core", "elective", or "prerequisite"
-4. "dependencies" array shows prerequisite relationships (from = prerequisite, to = dependent)
-5. The main subject "{main_subject}" must have id "TARGET" or appropriate ID like "AI401"
-6. IDs in dependencies must match subject IDs exactly
-7. Create a DAG (Directed Acyclic Graph) - no circular dependencies
-8. Valid JSON only - no trailing commas, no markdown, no comments
-9. Use double quotes for all strings and keys
-
-Example IDs: CS101, CS201, MA101, MA201, PY101, AI401, DS301, ALGO201
-"""
-
+    if not main_subject:
+        error_graph = {
+            "subjects": [{"id": "ERROR", "name": "Unknown", "type": "core", "desc": "No subject provided"}],
+            "dependencies": []
+        }
+        return {
+            "response": json.dumps(error_graph, indent=2),
+            "prerequisite_data": error_graph,
+            "step": "end",
+            "error": "No subject provided"
+        }
+    
     try:
-        result = llm.invoke(prompt)
-        content = result.content.strip()
+        # Trigger the /json endpoint
+        response = requests.post(
+            "http://127.0.0.1:8000/json",
+            json={"subject": main_subject},
+            timeout=60,
+            headers={"Content-Type": "application/json"}
+        )
         
-        # Clean markdown
-        if content.startswith("```json"):
-            content = content[7:]
-        elif content.startswith("```"):
-            content = content[3:]
-        if content.endswith("```"):
-            content = content[:-3]
-        content = content.strip()
+        if response.status_code != 200:
+            raise Exception(f"API returned status {response.status_code}: {response.text}")
         
-        # Parse raw JSON
-        raw_data = json.loads(content)
+        data = response.json()
         
-        # Validate with Pydantic - enforces strict schema
-        try:
-            graph = PrerequisiteGraph.model_validate(raw_data)
-            validated_dict = graph.model_dump(by_alias=True)  # Use 'from' not 'from_'
-        except Exception as validation_error:
-            print(f"⚠️ Validation error: {validation_error}")
-            # Attempt to fix common issues and re-validate
-            fixed_data = fix_graph_data(raw_data, main_subject)
-            graph = PrerequisiteGraph.model_validate(fixed_data)
-            validated_dict = graph.model_dump(by_alias=True)
+        if not data.get("success"):
+            raise Exception(data.get("error", "Unknown error from /json endpoint"))
         
-        # Pretty print for response
-        pretty_json = json.dumps(validated_dict, indent=2, ensure_ascii=False)
+        print("✅ Successfully triggered /json endpoint")
         
         return {
-            "response": pretty_json,
-            "prerequisite_data": validated_dict,
+            "response": data.get("response"),  # Pretty printed JSON string
+            "prerequisite_data": data.get("prerequisite_data"),
             "step": "end"
         }
         
     except Exception as e:
-        print(f"❌ Error: {e}")
-        # Return error in same schema format
+        print(f"❌ Error triggering /json: {e}")
+        # Fallback error response
         error_graph = {
             "subjects": [
                 {
