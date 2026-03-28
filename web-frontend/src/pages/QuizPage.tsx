@@ -1,4 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
+import { useAuth } from '../context/AuthContext';
+import api from '../services/api';
 import { subjects, mainSubjects, getSubject, getPrerequisite, type Subject, type Question } from '../data/quizData';
 import '../data/extraQuestions';
 
@@ -27,6 +29,7 @@ function shuffleAndPick(questions: Question[], count: number): Question[] {
 }
 
 export default function QuizPage() {
+  const { user, updateUser } = useAuth();
   const [phase, setPhase] = useState<Phase>('select');
   const [currentSubject, setCurrentSubject] = useState<Subject | null>(null);
   const [quizQuestions, setQuizQuestions] = useState<Question[]>([]);
@@ -127,21 +130,59 @@ export default function QuizPage() {
     }
   }, [answers, quizQuestions, currentSubject, isPrereqPhase, mainAttempt, showFeedback]);
 
-  const saveToHistory = useCallback((s: QuizSession) => {
-    const existing = JSON.parse(localStorage.getItem('quizHistory') || '[]');
-    existing.unshift({
-      id: Date.now(),
-      date: new Date().toISOString(),
-      session: s,
-    });
-    localStorage.setItem('quizHistory', JSON.stringify(existing));
-  }, []);
+  const saveToHistory = useCallback(async (s: QuizSession) => {
+    if (!user) return;
+    try {
+      const ma = s.mainAttempt;
+      const formatAnswers = ma.questions.map((q, i) => ({
+        questionId: q.id,
+        selectedAnswer: ma.answers[i] || 'Skipped',
+        isCorrect: ma.correct[i]
+      }));
+
+      await api.post('/history', {
+        userId: user.id,
+        subjectId: ma.subjectId,
+        score: ma.score,
+        totalQuestions: ma.total,
+        answers: formatAnswers
+      });
+
+      // Update weak_subjects locally if below threshold
+      const ratio = ma.score / ma.total;
+      if (ratio < 0.7 && !user.weak_subjects.includes(ma.subjectId)) {
+        updateUser({ ...user, weak_subjects: [...user.weak_subjects, ma.subjectId] });
+      }
+
+      // If there's a prerequisite attempt, save it too
+      if (s.prereqAttempt) {
+        const pa = s.prereqAttempt;
+        const paAnswers = pa.questions.map((q, i) => ({
+          questionId: q.id,
+          selectedAnswer: pa.answers[i] || 'Skipped',
+          isCorrect: pa.correct[i]
+        }));
+        await api.post('/history', {
+          userId: user.id,
+          subjectId: pa.subjectId,
+          score: pa.score,
+          totalQuestions: pa.total,
+          answers: paAnswers
+        });
+        if ((pa.score / pa.total) < 0.7 && !user.weak_subjects.includes(pa.subjectId)) {
+          updateUser({ ...user, weak_subjects: [...user.weak_subjects, pa.subjectId] });
+        }
+      }
+    } catch (err) {
+      console.error('Failed to save to backend:', err);
+    }
+  }, [user, updateUser]);
 
   useEffect(() => {
     if (phase === 'report' && session) {
       saveToHistory(session);
     }
-  }, [phase, session]);
+  }, [phase, session, saveToHistory]);
 
   // ─── SUBJECT SELECTION ────
   if (phase === 'select') {
@@ -163,7 +204,7 @@ export default function QuizPage() {
                   transition: 'all 0.3s', position: 'relative', overflow: 'hidden',
                   boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
                 }}
-                onMouseEnter={e => { if (subj.questions.length > 0) { (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 12px 24px rgba(139,92,246,0.15)'; (e.currentTarget as HTMLElement).style.borderColor = subj.color; }}}
+                onMouseEnter={e => { if (subj.questions.length > 0) { (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 12px 24px rgba(139,92,246,0.15)'; (e.currentTarget as HTMLElement).style.borderColor = subj.color; } }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ''; (e.currentTarget as HTMLElement).style.boxShadow = '0 1px 3px rgba(0,0,0,0.06)'; (e.currentTarget as HTMLElement).style.borderColor = '#e5e7eb'; }}
               >
                 <div style={{ width: 52, height: 52, borderRadius: 14, background: `${subj.color}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, marginBottom: 14, border: `2px solid ${subj.color}30` }}>
@@ -400,7 +441,7 @@ export default function QuizPage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             {!passed && prereq && (
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: 16, background: '#faf5ff', borderRadius: 12, border: '1px solid #e9d5ff' }}>
-                <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#8b5cf6', color: 'white', display:'flex', alignItems:'center', justifyContent:'center', fontWeight: 800, flexShrink: 0 }}>1</div>
+                <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#8b5cf6', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, flexShrink: 0 }}>1</div>
                 <div>
                   <strong style={{ color: '#7c3aed' }}>Master Prerequisites: {prereq.shortName}</strong>
                   <p style={{ color: '#6b7280', fontSize: '0.85rem' }}>Strengthen foundational concepts first</p>
@@ -409,7 +450,7 @@ export default function QuizPage() {
             )}
             {allWeakConcepts.slice(0, 4).map((c, i) => (
               <div key={c} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: 16, background: '#f9fafb', borderRadius: 12, border: '1px solid #f3f4f6' }}>
-                <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#e5e7eb', color: '#374151', display:'flex', alignItems:'center', justifyContent:'center', fontWeight: 800, flexShrink: 0 }}>{(!passed && prereq ? 2 : 1) + i}</div>
+                <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#e5e7eb', color: '#374151', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, flexShrink: 0 }}>{(!passed && prereq ? 2 : 1) + i}</div>
                 <div>
                   <strong style={{ color: '#1f2937' }}>Study: {c}</strong>
                   <p style={{ color: '#9ca3af', fontSize: '0.85rem' }}>Review this concept and practice problems</p>
@@ -417,7 +458,7 @@ export default function QuizPage() {
               </div>
             ))}
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: 16, background: '#f0fdf4', borderRadius: 12, border: '1px solid #bbf7d0' }}>
-              <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#22c55e', color: 'white', display:'flex', alignItems:'center', justifyContent:'center', fontWeight: 800, flexShrink: 0 }}>✓</div>
+              <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#22c55e', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, flexShrink: 0 }}>✓</div>
               <div>
                 <strong style={{ color: '#16a34a' }}>Retake {subj?.shortName} Quiz</strong>
                 <p style={{ color: '#6b7280', fontSize: '0.85rem' }}>Verify your improvement</p>

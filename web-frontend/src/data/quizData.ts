@@ -97,6 +97,11 @@ export const subjects: Subject[] = [
   { id:'pre_bee', name:'BEE Prerequisites', shortName:'Pre-BEE', color:'#f87171', icon:'🔌', questions: [] },
   { id:'mech', name:'Engineering Mechanics', shortName:'Mechanics', color:'#06b6d4', icon:'⚙', questions: [], prerequisiteId:'pre_mech' },
   { id:'pre_mech', name:'Mechanics Prerequisites', shortName:'Pre-Mech', color:'#22d3ee', icon:'📏', questions: [] },
+  { id:'m2', name:'Engineering Mathematics 2', shortName:'Math II', color:'#ec4899', icon:'∫', questions: [], prerequisiteId:'math1' },
+  { id:'phy2', name:'Engineering Physics 2', shortName:'Physics II', color:'#f97316', icon:'🧲', questions: [], prerequisiteId:'phy1' },
+  { id:'chem2', name:'Engineering Chemistry 2', shortName:'Chemistry II', color:'#14b8a6', icon:'🧪', questions: [], prerequisiteId:'chem1' },
+  { id:'eg', name:'Engineering Graphics', shortName:'Graphics', color:'#3b82f6', icon:'📐', questions: [] },
+  { id:'cp', name:'Computer Programming', shortName:'Programming', color:'#eab308', icon:'💻', questions: [] },
 ];
 
 // Only show main engineering subjects (not prerequisite subjects) on quiz selection
