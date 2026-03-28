@@ -1,54 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:flutter_highlight/themes/shades-of-purple.dart';
-
-// Data Models for Quiz
-class Question {
-  final String questionText;
-  final String? code;
-  final String? language;
-  final List<String> options;
-  final int answerIndex;
-
-  Question({
-    required this.questionText,
-    this.code,
-    this.language,
-    required this.options,
-    required this.answerIndex,
-  });
-
-  factory Question.fromJson(Map<String, dynamic> json) {
-    return Question(
-      questionText: json['question'],
-      code: json['code'],
-      language: json['language'],
-      options: List<String>.from(json['options']),
-      answerIndex: json['answer'],
-    );
-  }
-}
-
-class QuizData {
-  final String section;
-  final List<Question> questions;
-
-  QuizData({
-    required this.section,
-    required this.questions,
-  });
-
-  factory QuizData.fromJson(Map<String, dynamic> json) {
-    var questionsList = json['questions'] as List;
-    List<Question> questions =
-        questionsList.map((i) => Question.fromJson(i)).toList();
-
-    return QuizData(
-      section: json['section'],
-      questions: questions,
-    );
-  }
-}
+import 'package:codecrafter/api_service.dart';
+import 'package:codecrafter/models.dart';
 
 class SubjectQuiz extends StatefulWidget {
   final String subjectId;
@@ -67,56 +21,50 @@ class SubjectQuiz extends StatefulWidget {
 }
 
 class _SubjectQuizState extends State<SubjectQuiz> {
-  final QuizData quizData = QuizData.fromJson({
-    "section": "Computer Engineering Core",
-    "questions": [
-      {
-        "question":
-            "What is the time complexity of a Bubble Sort in the worst case?",
-        "code":
-            "void sort(int arr[], int n) {\n  for(int i=0; i<n; i++)\n    for(int j=0; j<n-i-1; j++)\n      if(arr[j] > arr[j+1]) swap(arr[j], arr[j+1]);\n}",
-        "options": ["O(n)", "O(n log n)", "O(n²)", "O(1)"],
-        "answer": 2,
-        "language": "C++",
-      },
-      {
-        "question": "What is the output of following code:",
-        "code": "st = str(False+True)\nprint(st*3)",
-        "options": ["Error", "111", "000", "3"],
-        "answer": 1,
-        "language": "Python",
-      },
-      {
-        "question":
-            "Which of the following is used to manage dynamic memory in C++?",
-        "code": "int* ptr = new int(10);\ndelete ptr;",
-        "options": ["malloc", "new", "alloc", "set"],
-        "answer": 1,
-        "language": "C++",
-      },
-      {
-        "question": "What does a 404 HTTP status code signify?",
-        "code": null,
-        "options": [
-          "Success",
-          "Internal Server Error",
-          "Not Found",
-          "Forbidden",
-        ],
-        "answer": 2,
-        "language": null,
-      },
-    ],
-  });
+  final ApiService _apiService = ApiService();
+  QuizData? _quizData;
+  bool _isLoading = true;
 
   int currentIndex = 0;
   int? selectedIndex;
   bool isAnswered = false;
   int score = 0;
-  late final threshold = (quizData.questions.length * 0.7).ceil();
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchQuizData();
+  }
+
+  Future<void> _fetchQuizData() async {
+    setState(() {
+      _isLoading = true;
+    });
+    try {
+      final data = await _apiService.fetchQuizData(widget.subjectId);
+      setState(() {
+        _quizData = data;
+        _isLoading = false;
+      });
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error loading quiz data: $e'),
+            backgroundColor: Theme.of(context).colorScheme.error,
+          ),
+        );
+      }
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
 
   void _nextQuestion() {
-    final List<Question> questions = quizData.questions;
+    if (_quizData == null) return;
+
+    final List<Question> questions = _quizData!.questions;
     if (currentIndex < questions.length - 1) {
       setState(() {
         currentIndex++;
@@ -124,7 +72,7 @@ class _SubjectQuizState extends State<SubjectQuiz> {
         isAnswered = false;
       });
     } else {
-      // Threshold: 70% to pass
+      final threshold = (_quizData!.questions.length * 0.7).ceil();
       bool passed = score >= threshold;
 
       if (passed) {
@@ -145,33 +93,34 @@ class _SubjectQuizState extends State<SubjectQuiz> {
   }
 
   void _showResults(bool passed) {
-    final List<Question> questions = quizData.questions;
+    if (_quizData == null) return;
+
+    final List<Question> questions = _quizData!.questions;
+    final threshold = (_quizData!.questions.length * 0.7).ceil();
     final theme = Theme.of(context);
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (ctx) => AlertDialog(
-        title: Text(passed ? "Quiz Passed!" : "Quiz Failed"),
+        title: Text(passed ? "Quiz Passed! 🎉" : "Quiz Failed ❌"),
         content: Text(
           passed
               ? "Great job! You scored $score out of ${questions.length}. This subject is now marked as completed."
               : "You scored $score out of ${questions.length}. You need at least $threshold questions correct to complete this subject.",
         ),
         actions: [
-          // Always allow returning to the roadmap
           TextButton(
             onPressed: () {
-              Navigator.pop(ctx); // Close Dialog
-              Navigator.pop(context); // Return to Roadmap
+              Navigator.pop(ctx);
+              Navigator.pop(context);
             },
             child: const Text("Return to Roadmap"),
           ),
-          // Only show Retry if they failed (or always show it if you want to allow score improvement)
           if (!passed)
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(ctx); // Close Dialog
-                _resetQuiz(); // Reset local state
+                Navigator.pop(ctx);
+                _resetQuiz();
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: theme.colorScheme.primary,
@@ -186,9 +135,21 @@ class _SubjectQuizState extends State<SubjectQuiz> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Question> questions = quizData.questions;
-    final currentQuestion = questions[currentIndex];
     final theme = Theme.of(context);
+
+    if (_isLoading || _quizData == null) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(widget.subjectName),
+          backgroundColor: theme.colorScheme.surface,
+          foregroundColor: theme.colorScheme.onSurface,
+        ),
+        body: const Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    final List<Question> questions = _quizData!.questions;
+    final currentQuestion = questions[currentIndex];
 
     return Scaffold(
       appBar: AppBar(
@@ -200,7 +161,6 @@ class _SubjectQuizState extends State<SubjectQuiz> {
       backgroundColor: theme.colorScheme.surfaceContainer,
       body: Column(
         children: [
-          // Polished Progress Header from Version 2
           _buildProgressHeader(currentIndex + 1, questions.length),
 
           Expanded(
@@ -218,7 +178,6 @@ class _SubjectQuizState extends State<SubjectQuiz> {
                   ),
                   const SizedBox(height: 20),
 
-                  // Dracula Code Theme
                   if (currentQuestion.code != null)
                     ClipRRect(
                       borderRadius: BorderRadius.circular(12),
@@ -236,7 +195,6 @@ class _SubjectQuizState extends State<SubjectQuiz> {
 
                   const SizedBox(height: 25),
 
-                  // Option Tiles with Circle Avatars
                   ...List.generate(
                     currentQuestion.options.length,
                     (index) => _buildOptionTile(index, currentQuestion),
@@ -244,7 +202,6 @@ class _SubjectQuizState extends State<SubjectQuiz> {
 
                   const SizedBox(height: 30),
 
-                  // Next Button
                   if (isAnswered)
                     SizedBox(
                       width: double.infinity,
@@ -313,12 +270,7 @@ class _SubjectQuizState extends State<SubjectQuiz> {
 
     Color color = theme.colorScheme.surface;
     if (isAnswered) {
-      // if (isCorrect) {
-      //   color = Colors.green.shade50;
-      // } else if (isSelected) {
-      //   color = Colors.red.shade50;
-      // }
-      color = isCorrect ? Colors.green.shade50 : isSelected ?  Colors.red.shade50: theme.colorScheme.surface;
+      color = isCorrect ? Colors.green.shade50 : isSelected ? Colors.red.shade50 : theme.colorScheme.surface;
     }
 
     return GestureDetector(
@@ -353,7 +305,7 @@ class _SubjectQuizState extends State<SubjectQuiz> {
                   ? Colors.green
                   : theme.colorScheme.surfaceContainerHighest,
               child: Text(
-                String.fromCharCode(65 + index), // A, B, C...
+                String.fromCharCode(65 + index),
                 style: TextStyle(fontSize: 12, color: theme.colorScheme.onSurfaceVariant),
               ),
             ),

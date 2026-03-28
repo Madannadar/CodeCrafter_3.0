@@ -1,72 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:graphview/graphview.dart';
 import 'package:codecrafter/quiz.dart';
-
-// Data Models for Graph
-class Subject {
-  final String id;
-  final String name;
-  final String type;
-  final String desc;
-
-  Subject({
-    required this.id,
-    required this.name,
-    required this.type,
-    required this.desc,
-  });
-
-  factory Subject.fromJson(Map<String, dynamic> json) {
-    return Subject(
-      id: json['id'],
-      name: json['name'],
-      type: json['type'],
-      desc: json['desc'],
-    );
-  }
-}
-
-class Dependency {
-  final String from;
-  final String to;
-
-  Dependency({
-    required this.from,
-    required this.to,
-  });
-
-  factory Dependency.fromJson(Map<String, dynamic> json) {
-    return Dependency(
-      from: json['from'],
-      to: json['to'],
-    );
-  }
-}
-
-class SubjectData {
-  final List<Subject> subjects;
-  final List<Dependency> dependencies;
-
-  SubjectData({
-    required this.subjects,
-    required this.dependencies,
-  });
-
-  factory SubjectData.fromJson(Map<String, dynamic> json) {
-    var subjectsList = json['subjects'] as List;
-    List<Subject> subjects =
-        subjectsList.map((i) => Subject.fromJson(i)).toList();
-
-    var dependenciesList = json['dependencies'] as List;
-    List<Dependency> dependencies =
-        dependenciesList.map((i) => Dependency.fromJson(i)).toList();
-
-    return SubjectData(
-      subjects: subjects,
-      dependencies: dependencies,
-    );
-  }
-}
+import 'package:codecrafter/api_service.dart';
+import 'package:codecrafter/models.dart';
 
 class SubjectDependencyGraph extends StatefulWidget {
   const SubjectDependencyGraph({super.key});
@@ -78,48 +14,9 @@ class SubjectDependencyGraph extends StatefulWidget {
 class _SubjectDependencyGraphState extends State<SubjectDependencyGraph> {
   final TransformationController _transformationController =
       TransformationController();
-
-  final SubjectData subjectData = SubjectData.fromJson({
-    "subjects": [
-      {
-        "id": "CS101",
-        "name": "Intro to Programming",
-        "type": "core",
-        "desc": "Learn Python basics and logic.",
-      },
-      {
-        "id": "MA101",
-        "name": "Calculus I",
-        "type": "core",
-        "desc": "Limits, derivatives, and integrals.",
-      },
-      {
-        "id": "CS201",
-        "name": "Data Structures",
-        "type": "core",
-        "desc": "Stacks, Queues, and Linked Lists.",
-      },
-      {
-        "id": "CS301",
-        "name": "Algorithms",
-        "type": "core",
-        "desc": "Big O notation and sorting algorithms.",
-      },
-      {
-        "id": "AI401",
-        "name": "Machine Learning",
-        "type": "elective",
-        "desc": "Neural networks and data models.",
-      },
-    ],
-    "dependencies": [
-      {"from": "CS101", "to": "CS201"},
-      {"from": "CS201", "to": "CS301"},
-      {"from": "CS301", "to": "AI401"},
-      {"from": "MA101", "to": "CS301"},
-      {"from": "MA101", "to": "AI401"},
-    ],
-  });
+  
+  final ApiService _apiService = ApiService();
+  SubjectData? _subjectData;
 
   Graph? graph;
   SugiyamaAlgorithm? algorithm;
@@ -129,20 +26,42 @@ class _SubjectDependencyGraphState extends State<SubjectDependencyGraph> {
   @override
   void initState() {
     super.initState();
-    _setupGraph();
+    _fetchGraphData();
     WidgetsBinding.instance.addPostFrameCallback((_) => _resetView());
   }
 
+  Future<void> _fetchGraphData() async {
+    try {
+      final data = await _apiService.fetchSubjectData();
+      setState(() {
+        _subjectData = data;
+        _setupGraph();
+        isReady = true;
+      });
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error loading graph data: $e'),
+            backgroundColor: Theme.of(context).colorScheme.error,
+          ),
+        );
+      }
+    }
+  }
+
   void _setupGraph() {
+    if (_subjectData == null) return;
+
     final newGraph = Graph();
     final Map<String, Node> nodeMap = {};
 
-    for (var subject in subjectData.subjects) {
+    for (var subject in _subjectData!.subjects) {
       var node = Node.Id(subject.id);
       nodeMap[subject.id] = node;
     }
 
-    for (var dep in subjectData.dependencies) {
+    for (var dep in _subjectData!.dependencies) {
       newGraph.addEdge(nodeMap[dep.from]!, nodeMap[dep.to]!);
     }
 
@@ -154,7 +73,6 @@ class _SubjectDependencyGraphState extends State<SubjectDependencyGraph> {
     setState(() {
       graph = newGraph;
       algorithm = SugiyamaAlgorithm(config);
-      isReady = true;
     });
   }
 
@@ -168,16 +86,10 @@ class _SubjectDependencyGraphState extends State<SubjectDependencyGraph> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Learning Roadmap"),
-        // elevation: 0,
         actions: [
-          ElevatedButton.icon(
+          IconButton(
             onPressed: _resetView,
-            icon: const Icon(Icons.fullscreen),
-            label: const Text('Reset'),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: theme.colorScheme.primary,
-              foregroundColor: theme.colorScheme.onPrimary, // Colors both icon and text
-            ),
+            icon: const Icon(Icons.center_focus_strong),
           )
         ],
         backgroundColor: theme.colorScheme.surface,
@@ -188,7 +100,7 @@ class _SubjectDependencyGraphState extends State<SubjectDependencyGraph> {
         backgroundColor: theme.colorScheme.primary,
         child: Icon(Icons.fullscreen_exit, color: theme.colorScheme.onPrimary),
       ),
-      body: !isReady
+      body: !isReady || _subjectData == null
           ? const Center(child: CircularProgressIndicator())
           : InteractiveViewer(
         transformationController: _transformationController,
@@ -207,7 +119,7 @@ class _SubjectDependencyGraphState extends State<SubjectDependencyGraph> {
               ..style = PaintingStyle.stroke,
             builder: (Node node) {
               var id = node.key!.value as String;
-              var subject = subjectData.subjects.firstWhere(
+              var subject = _subjectData!.subjects.firstWhere(
                     (s) => s.id == id,
               );
               return GestureDetector(
