@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from chatbot_agent import run_agent
@@ -130,6 +130,7 @@ RULES:
             validated_dict = graph.model_dump(by_alias=True)
         
         pretty_json = json.dumps(validated_dict, indent=2, ensure_ascii=False)
+        print(f"✅ Successfully generated prerequisite graph for '{main_subject}':\n{pretty_json}")
         
         return {
             "prerequisite_data": validated_dict,
@@ -139,11 +140,7 @@ RULES:
         
     except Exception as e:
         print(f"❌ Error in /json: {e}")
-        return {
-            "error": str(e),
-            "success": False,
-            "prerequisite_data": None
-        }
+        raise HTTPException(status_code=500, detail=f"Internal Server Error: {e}")
 
 if __name__ == "__main__":
     import uvicorn

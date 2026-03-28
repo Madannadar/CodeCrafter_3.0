@@ -3,6 +3,7 @@ import 'package:graphview/graphview.dart';
 import 'package:codecrafter/quiz.dart';
 import 'package:codecrafter/api_service.dart';
 import 'package:codecrafter/models.dart';
+import 'package:codecrafter/chat_view.dart';
 
 class SubjectDependencyGraph extends StatefulWidget {
   const SubjectDependencyGraph({super.key});
@@ -17,6 +18,7 @@ class _SubjectDependencyGraphState extends State<SubjectDependencyGraph> {
   
   final ApiService _apiService = ApiService();
   SubjectData? _subjectData;
+  String? _errorMessage;
 
   Graph? graph;
   SugiyamaAlgorithm? algorithm;
@@ -31,15 +33,34 @@ class _SubjectDependencyGraphState extends State<SubjectDependencyGraph> {
   }
 
   Future<void> _fetchGraphData() async {
+    setState(() {
+      isReady = false;
+      _errorMessage = null;
+    });
     try {
-      final data = await _apiService.fetchSubjectData();
+      final data = await _apiService.fetchSubjectData("Machine Learning");
+      // debugPrint('Graph Fetch Success: $data');
+      if (data.subjects.isEmpty) {
+        debugPrint('Warning: Fetched subject data is empty');
+        setState(() {
+          _errorMessage = "No subjects found for this roadmap.";
+          isReady = true;
+        });
+        return;
+      }
+
       setState(() {
         _subjectData = data;
         _setupGraph();
         isReady = true;
       });
     } catch (e) {
+      debugPrint('Graph Fetch Error: $e');
       if (mounted) {
+        setState(() {
+          _errorMessage = e.toString();
+          isReady = true;
+        });
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Error loading graph data: $e'),
@@ -51,7 +72,7 @@ class _SubjectDependencyGraphState extends State<SubjectDependencyGraph> {
   }
 
   void _setupGraph() {
-    if (_subjectData == null) return;
+    if (_subjectData == null || _subjectData!.subjects.isEmpty) return;
 
     final newGraph = Graph();
     final Map<String, Node> nodeMap = {};
@@ -59,10 +80,17 @@ class _SubjectDependencyGraphState extends State<SubjectDependencyGraph> {
     for (var subject in _subjectData!.subjects) {
       var node = Node.Id(subject.id);
       nodeMap[subject.id] = node;
+      newGraph.addNode(node);
     }
 
     for (var dep in _subjectData!.dependencies) {
-      newGraph.addEdge(nodeMap[dep.from]!, nodeMap[dep.to]!);
+      final fromNode = nodeMap[dep.from];
+      final toNode = nodeMap[dep.to];
+      if (fromNode != null && toNode != null) {
+        newGraph.addEdge(fromNode, toNode);
+      } else {
+        debugPrint('Warning: Missing node for dependency from ${dep.from} to ${dep.to}');
+      }
     }
 
     final config = SugiyamaConfiguration()
@@ -88,6 +116,19 @@ class _SubjectDependencyGraphState extends State<SubjectDependencyGraph> {
         title: const Text("Learning Roadmap"),
         actions: [
           IconButton(
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ChatView()),
+            ),
+            icon: const Icon(Icons.chat_bubble_outline),
+            tooltip: "Chat with AI",
+          ),
+          IconButton(
+            onPressed: _fetchGraphData,
+            icon: const Icon(Icons.refresh),
+            tooltip: "Refresh Data",
+          ),
+          IconButton(
             onPressed: _resetView,
             icon: const Icon(Icons.center_focus_strong),
           )
@@ -100,34 +141,74 @@ class _SubjectDependencyGraphState extends State<SubjectDependencyGraph> {
         backgroundColor: theme.colorScheme.primary,
         child: Icon(Icons.fullscreen_exit, color: theme.colorScheme.onPrimary),
       ),
-      body: !isReady || _subjectData == null
-          ? const Center(child: CircularProgressIndicator())
-          : InteractiveViewer(
-        transformationController: _transformationController,
-        constrained: false,
-        boundaryMargin: const EdgeInsets.all(500),
-        minScale: 0.05,
-        maxScale: 2.0,
+      body: _buildBody(theme),
+    );
+  }
+
+  Widget _buildBody(ThemeData theme) {
+    if (!isReady) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    if (_errorMessage != null) {
+      return Center(
         child: Padding(
-          padding: const EdgeInsets.all(100.0),
-          child: GraphView(
-            graph: graph!,
-            algorithm: algorithm!,
-            paint: Paint()
-              ..color = theme.colorScheme.primary
-              ..strokeWidth = 2.0
-              ..style = PaintingStyle.stroke,
-            builder: (Node node) {
-              var id = node.key!.value as String;
-              var subject = _subjectData!.subjects.firstWhere(
-                    (s) => s.id == id,
-              );
-              return GestureDetector(
-                onTap: () => _showDetails(subject),
-                child: _buildNodeBox(subject),
-              );
-            },
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.error_outline, size: 60, color: Colors.red),
+              const SizedBox(height: 16),
+              Text(
+                "Something went wrong",
+                style: theme.textTheme.titleLarge,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                _errorMessage!,
+                textAlign: TextAlign.center,
+                style: theme.textTheme.bodyMedium,
+              ),
+              const SizedBox(height: 24),
+              ElevatedButton(
+                onPressed: _fetchGraphData,
+                child: const Text("Retry"),
+              )
+            ],
           ),
+        ),
+      );
+    }
+
+    if (graph == null || graph!.nodes.isEmpty) {
+      return const Center(child: Text("No subjects available to display."));
+    }
+
+    return InteractiveViewer(
+      transformationController: _transformationController,
+      constrained: false,
+      boundaryMargin: const EdgeInsets.all(500),
+      minScale: 0.05,
+      maxScale: 2.0,
+      child: Padding(
+        padding: const EdgeInsets.all(100.0),
+        child: GraphView(
+          graph: graph!,
+          algorithm: algorithm!,
+          paint: Paint()
+            ..color = theme.colorScheme.primary
+            ..strokeWidth = 2.0
+            ..style = PaintingStyle.stroke,
+          builder: (Node node) {
+            var id = node.key!.value as String;
+            var subject = _subjectData!.subjects.firstWhere(
+                  (s) => s.id == id,
+            );
+            return GestureDetector(
+              onTap: () => _showDetails(subject),
+              child: _buildNodeBox(subject),
+            );
+          },
         ),
       ),
     );
