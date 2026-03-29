@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import gsap from 'gsap';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
 import { useQuizData } from '../context/QuizDataContext';
@@ -42,6 +43,12 @@ interface SemEntry {
 }
 
 type Tab = 'quiz' | 'sem';
+
+interface QuizGroup {
+  id: string;
+  label: string;
+  items: QuizEntry[];
+}
 
 const SEM_LABEL: Record<string, string> = {
   sem1: 'Semester 1',
@@ -89,9 +96,35 @@ function cardStyle(borderColor = '#ede9fe') {
   } as const;
 }
 
+function inferQuizGroupLabel(
+  quiz: QuizEntry,
+  subjectMeta?: { name?: string; shortName?: string; semId?: string }
+) {
+  const subjectName = (subjectMeta?.name || quiz.subjectName || quiz.subjectId || 'General').trim();
+  const normalized = subjectName.toLowerCase();
+
+  if (normalized.includes('machine learning') || normalized === 'ml' || normalized.includes('artificial intelligence') || normalized === 'ai') {
+    return 'AI And Machine Learning';
+  }
+  if (normalized.includes('data') || normalized.includes('algorithm') || normalized.includes('program') || normalized.includes('computer') || normalized.includes('python')) {
+    return 'Programming And Data';
+  }
+  if (normalized.includes('math') || normalized.includes('algebra') || normalized.includes('calculus') || normalized.includes('statistics')) {
+    return 'Mathematics';
+  }
+  if (normalized.includes('physics') || normalized.includes('chemistry') || normalized.includes('mechanics')) {
+    return 'Core Sciences';
+  }
+  if (subjectMeta?.semId) {
+    return SEM_LABEL[subjectMeta.semId] || 'Semester Cluster';
+  }
+  return subjectName;
+}
+
 export default function HistoryPage() {
   const { user } = useAuth();
   const { subjects } = useQuizData();
+  const pageRef = useRef<HTMLDivElement>(null);
 
   const [tab, setTab] = useState<Tab>('quiz');
   const [quizHistory, setQuizHistory] = useState<QuizEntry[]>([]);
@@ -100,6 +133,7 @@ export default function HistoryPage() {
   const [filterSubject, setFilterSubject] = useState('all');
   const [filterDiff, setFilterDiff] = useState('all');
   const [expandedQuizId, setExpandedQuizId] = useState<string | null>(null);
+  const [expandedQuizGroupId, setExpandedQuizGroupId] = useState<string | null>(null);
   const [expandedSemId, setExpandedSemId] = useState<string | null>(null);
   const [filterSem, setFilterSem] = useState('all');
 
@@ -130,6 +164,24 @@ export default function HistoryPage() {
     [filterSem, semHistory]
   );
 
+  const groupedQuizHistory = useMemo<QuizGroup[]>(() => {
+    const groups = new Map<string, QuizEntry[]>();
+
+    for (const quiz of filteredQuiz) {
+      const subjectMeta = subjects.find((item) => item.id === quiz.subjectId);
+      const label = inferQuizGroupLabel(quiz, subjectMeta);
+      const existing = groups.get(label) || [];
+      existing.push(quiz);
+      groups.set(label, existing);
+    }
+
+    return Array.from(groups.entries()).map(([label, items]) => ({
+      id: label.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+      label,
+      items,
+    }));
+  }, [filteredQuiz, subjects]);
+
   const stats = useMemo(() => {
     const avg =
       quizHistory.length > 0
@@ -146,6 +198,25 @@ export default function HistoryPage() {
     const weakFlags = semHistory.reduce((sum, item) => sum + item.weakSubjectIds.length, 0);
     return { avg, best, chainRuns, weakFlags };
   }, [quizHistory, semHistory]);
+
+  useEffect(() => {
+    if (!pageRef.current || loading) return;
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        '.history-hero, .history-tabs, .history-filter, .history-trend, .history-group, .history-sem-card',
+        { y: 20, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.55,
+          stagger: 0.06,
+          ease: 'power3.out',
+          clearProps: 'transform,opacity',
+        }
+      );
+    }, pageRef);
+    return () => ctx.revert();
+  }, [loading, tab, groupedQuizHistory.length, filteredSem.length, filterDiff, filterSubject, filterSem]);
 
   if (loading) {
     return (
@@ -175,8 +246,9 @@ export default function HistoryPage() {
   }
 
   return (
-    <div style={{ maxWidth: 1040, margin: '0 auto', paddingBottom: 40 }}>
+    <div ref={pageRef} style={{ maxWidth: 1040, margin: '0 auto', paddingBottom: 40 }}>
       <div
+        className="history-hero"
         style={{
           ...cardStyle('#e9d5ff'),
           padding: '30px 32px',
@@ -267,6 +339,7 @@ export default function HistoryPage() {
       </div>
 
       <div
+        className="history-tabs"
         style={{
           display: 'flex',
           gap: 0,
@@ -321,6 +394,7 @@ export default function HistoryPage() {
       {tab === 'quiz' && (
         <div>
           <div
+            className="history-filter"
             style={{
               ...cardStyle(),
               padding: 18,
@@ -405,7 +479,7 @@ export default function HistoryPage() {
           </div>
 
           {quizHistory.length > 0 && (
-            <div style={{ ...cardStyle(), padding: 22, marginBottom: 16 }}>
+            <div className="history-trend" style={{ ...cardStyle(), padding: 22, marginBottom: 16 }}>
               <div
                 style={{
                   display: 'flex',
@@ -510,16 +584,106 @@ export default function HistoryPage() {
                 </Link>
               </div>
             ) : (
-              filteredQuiz.map((quiz) => {
-                const subject = subjects.find((item) => item.id === quiz.subjectId);
-                const pct = Math.round((quiz.score / quiz.totalQuestions) * 100);
-                const scoreColor = pct >= 70 ? '#16a34a' : pct >= 50 ? '#d97706' : '#dc2626';
-                const scoreBg = pct >= 70 ? '#dcfce7' : pct >= 50 ? '#fef3c7' : '#fee2e2';
-                const isExpanded = expandedQuizId === quiz._id;
+              groupedQuizHistory.map((group, groupIndex) => {
+                const isGroupExpanded =
+                  expandedQuizGroupId === group.id ||
+                  (!expandedQuizGroupId && groupIndex === 0);
+                const latestQuiz = group.items[0];
+                const groupAverage = Math.round(
+                  group.items.reduce((sum, item) => sum + (item.score / item.totalQuestions) * 100, 0) /
+                    group.items.length
+                );
 
-                if (quiz.attemptChain && quiz.attemptChain.length > 1) {
-                  return (
-                    <div key={quiz._id} style={{ ...cardStyle(), padding: 22 }}>
+                return (
+                  <div key={group.id} className="history-group" style={{ ...cardStyle(), padding: 18 }}>
+                    <button
+                      onClick={() =>
+                        setExpandedQuizGroupId(isGroupExpanded ? null : group.id)
+                      }
+                      style={{
+                        width: '100%',
+                        background: 'none',
+                        border: 'none',
+                        cursor: 'pointer',
+                        textAlign: 'left',
+                        padding: 0,
+                      }}
+                    >
+                      <div
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          gap: 16,
+                          flexWrap: 'wrap',
+                        }}
+                      >
+                        <div>
+                          <div
+                            style={{
+                              fontSize: '1rem',
+                              fontWeight: 900,
+                              color: '#111827',
+                            }}
+                          >
+                            {group.label}
+                          </div>
+                          <div
+                            style={{
+                              marginTop: 6,
+                              display: 'flex',
+                              gap: 8,
+                              flexWrap: 'wrap',
+                              color: '#6b7280',
+                              fontSize: '0.78rem',
+                            }}
+                          >
+                            <span>{group.items.length} attempts</span>
+                            <span>Average {groupAverage}%</span>
+                            <span>
+                              Latest {new Date(latestQuiz.timestamp).toLocaleDateString('en-IN')}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
+                          <span
+                            style={{
+                              padding: '6px 10px',
+                              borderRadius: 999,
+                              background: '#eef2ff',
+                              color: '#4f46e5',
+                              fontWeight: 800,
+                              fontSize: '0.74rem',
+                            }}
+                          >
+                            {group.items.filter((item) => (item.attemptChain?.length || 0) > 1).length} adaptive
+                          </span>
+                          <span
+                            style={{
+                              fontSize: '1.05rem',
+                              color: '#a78bfa',
+                              fontWeight: 900,
+                            }}
+                          >
+                            {isGroupExpanded ? '−' : '+'}
+                          </span>
+                        </div>
+                      </div>
+                    </button>
+
+                    {isGroupExpanded && (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginTop: 18 }}>
+                        {group.items.map((quiz) => {
+                          const subject = subjects.find((item) => item.id === quiz.subjectId);
+                          const pct = Math.round((quiz.score / quiz.totalQuestions) * 100);
+                          const scoreColor = pct >= 70 ? '#16a34a' : pct >= 50 ? '#d97706' : '#dc2626';
+                          const scoreBg = pct >= 70 ? '#dcfce7' : pct >= 50 ? '#fef3c7' : '#fee2e2';
+                          const isExpanded = expandedQuizId === quiz._id;
+
+                          if (quiz.attemptChain && quiz.attemptChain.length > 1) {
+                            return (
+                              <div key={quiz._id} style={{ ...cardStyle(), padding: 22 }}>
                       <div
                         style={{
                           display: 'flex',
@@ -642,123 +806,128 @@ export default function HistoryPage() {
                         })}
                       </div>
                     </div>
-                  );
-                }
+                            );
+                          }
 
-                return (
-                  <div
-                    key={quiz._id}
-                    style={{
-                      ...cardStyle(isExpanded ? `${subject?.color || '#8b5cf6'}44` : '#ede9fe'),
-                      overflow: 'hidden',
-                    }}
-                  >
-                    <button
-                      onClick={() => setExpandedQuizId(isExpanded ? null : quiz._id)}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: 16,
-                        padding: '18px 20px',
-                        width: '100%',
-                        background: 'none',
-                        border: 'none',
-                        cursor: 'pointer',
-                        textAlign: 'left',
-                      }}
-                    >
-                      <div
-                        style={{
-                          width: 50,
-                          height: 50,
-                          borderRadius: 15,
-                          background: `${subject?.color || '#8b5cf6'}12`,
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          fontSize: '1.3rem',
-                          border: `1px solid ${subject?.color || '#8b5cf6'}30`,
-                          flexShrink: 0,
-                        }}
-                      >
-                        {subject?.icon || 'Q'}
-                      </div>
-
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4, flexWrap: 'wrap' }}>
-                          <span style={{ fontWeight: 800, color: '#111827', fontSize: '0.96rem' }}>
-                            {subject?.name || quiz.subjectName || quiz.subjectId}
-                          </span>
-                          {quiz.difficulty && (
-                            <span
+                          return (
+                            <div
+                              key={quiz._id}
                               style={{
-                                fontSize: '0.7rem',
-                                background: DIFF_BG[quiz.difficulty] || '#f3f4f6',
-                                color: DIFF_COLOR[quiz.difficulty] || '#6b7280',
-                                padding: '2px 8px',
-                                borderRadius: 999,
-                                fontWeight: 800,
-                                textTransform: 'capitalize',
+                                ...cardStyle(isExpanded ? `${subject?.color || '#8b5cf6'}44` : '#ede9fe'),
+                                overflow: 'hidden',
                               }}
                             >
-                              {quiz.difficulty}
-                            </span>
-                          )}
-                        </div>
-                        <div style={{ fontSize: '0.76rem', color: '#9ca3af' }}>
-                          {new Date(quiz.timestamp).toLocaleDateString('en-IN', {
-                            weekday: 'short',
-                            day: 'numeric',
-                            month: 'short',
-                            year: 'numeric',
-                          })}
-                          {' · '}
-                          {quiz.score}/{quiz.totalQuestions} correct
-                        </div>
-                      </div>
-
-                      <div style={{ textAlign: 'right', flexShrink: 0 }}>
-                        <div
-                          style={{
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            width: 56,
-                            height: 56,
-                            borderRadius: '50%',
-                            background: scoreBg,
-                            border: `2px solid ${scoreColor}40`,
-                          }}
-                        >
-                          <span style={{ fontWeight: 900, fontSize: '1rem', color: scoreColor }}>
-                            {pct}%
-                          </span>
-                        </div>
-                      </div>
-                    </button>
-
-                    {isExpanded && (
-                      <div style={{ padding: '0 20px 20px' }}>
-                        <div style={{ borderTop: '1px solid #f3f4f6', paddingTop: 18 }}>
-                          <div style={{ display: 'flex', gap: 6, marginBottom: 14 }}>
-                            {Array.from({ length: quiz.totalQuestions }).map((_, index) => (
-                              <div
-                                key={index}
+                              <button
+                                onClick={() => setExpandedQuizId(isExpanded ? null : quiz._id)}
                                 style={{
-                                  flex: 1,
-                                  height: 8,
-                                  borderRadius: 999,
-                                  background: index < quiz.score ? subject?.color || '#8b5cf6' : '#ede9fe',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: 16,
+                                  padding: '18px 20px',
+                                  width: '100%',
+                                  background: 'none',
+                                  border: 'none',
+                                  cursor: 'pointer',
+                                  textAlign: 'left',
                                 }}
-                              />
-                            ))}
-                          </div>
-                          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', fontSize: '0.8rem', color: '#6b7280' }}>
-                            <span>Correct {quiz.score}</span>
-                            <span>Incorrect {quiz.totalQuestions - quiz.score}</span>
-                            <span style={{ marginLeft: 'auto' }}>Final score {pct}%</span>
-                          </div>
-                        </div>
+                              >
+                                <div
+                                  style={{
+                                    width: 50,
+                                    height: 50,
+                                    borderRadius: 15,
+                                    background: `${subject?.color || '#8b5cf6'}12`,
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    fontSize: '1.3rem',
+                                    border: `1px solid ${subject?.color || '#8b5cf6'}30`,
+                                    flexShrink: 0,
+                                  }}
+                                >
+                                  {subject?.icon || 'Q'}
+                                </div>
+
+                                <div style={{ flex: 1, minWidth: 0 }}>
+                                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4, flexWrap: 'wrap' }}>
+                                    <span style={{ fontWeight: 800, color: '#111827', fontSize: '0.96rem' }}>
+                                      {subject?.name || quiz.subjectName || quiz.subjectId}
+                                    </span>
+                                    {quiz.difficulty && (
+                                      <span
+                                        style={{
+                                          fontSize: '0.7rem',
+                                          background: DIFF_BG[quiz.difficulty] || '#f3f4f6',
+                                          color: DIFF_COLOR[quiz.difficulty] || '#6b7280',
+                                          padding: '2px 8px',
+                                          borderRadius: 999,
+                                          fontWeight: 800,
+                                          textTransform: 'capitalize',
+                                        }}
+                                      >
+                                        {quiz.difficulty}
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div style={{ fontSize: '0.76rem', color: '#9ca3af' }}>
+                                    {new Date(quiz.timestamp).toLocaleDateString('en-IN', {
+                                      weekday: 'short',
+                                      day: 'numeric',
+                                      month: 'short',
+                                      year: 'numeric',
+                                    })}
+                                    {' · '}
+                                    {quiz.score}/{quiz.totalQuestions} correct
+                                  </div>
+                                </div>
+
+                                <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                                  <div
+                                    style={{
+                                      display: 'inline-flex',
+                                      alignItems: 'center',
+                                      justifyContent: 'center',
+                                      width: 56,
+                                      height: 56,
+                                      borderRadius: '50%',
+                                      background: scoreBg,
+                                      border: `2px solid ${scoreColor}40`,
+                                    }}
+                                  >
+                                    <span style={{ fontWeight: 900, fontSize: '1rem', color: scoreColor }}>
+                                      {pct}%
+                                    </span>
+                                  </div>
+                                </div>
+                              </button>
+
+                              {isExpanded && (
+                                <div style={{ padding: '0 20px 20px' }}>
+                                  <div style={{ borderTop: '1px solid #f3f4f6', paddingTop: 18 }}>
+                                    <div style={{ display: 'flex', gap: 6, marginBottom: 14 }}>
+                                      {Array.from({ length: quiz.totalQuestions }).map((_, index) => (
+                                        <div
+                                          key={index}
+                                          style={{
+                                            flex: 1,
+                                            height: 8,
+                                            borderRadius: 999,
+                                            background: index < quiz.score ? subject?.color || '#8b5cf6' : '#ede9fe',
+                                          }}
+                                        />
+                                      ))}
+                                    </div>
+                                    <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', fontSize: '0.8rem', color: '#6b7280' }}>
+                                      <span>Correct {quiz.score}</span>
+                                      <span>Incorrect {quiz.totalQuestions - quiz.score}</span>
+                                      <span style={{ marginLeft: 'auto' }}>Final score {pct}%</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
                       </div>
                     )}
                   </div>
@@ -772,6 +941,7 @@ export default function HistoryPage() {
       {tab === 'sem' && (
         <div>
           <div
+            className="history-filter"
             style={{
               ...cardStyle(),
               padding: 18,
@@ -866,6 +1036,7 @@ export default function HistoryPage() {
 
                 return (
                   <div
+                    className="history-sem-card"
                     key={entry._id}
                     style={{
                       ...cardStyle(isExpanded ? `${semColor}40` : '#ede9fe'),

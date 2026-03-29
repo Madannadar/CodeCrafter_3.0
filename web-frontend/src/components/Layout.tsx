@@ -13,7 +13,7 @@ const navItems = [
 const S = {
   sidebar: {
     width: 220,
-    background: 'var(--bg-surface)',
+    background: 'linear-gradient(180deg, rgba(255,255,255,0.92), rgba(238,243,255,0.96))',
     borderRight: '1px solid var(--border-subtle)',
     display: 'flex' as const,
     flexDirection: 'column' as const,
@@ -21,11 +21,13 @@ const S = {
     position: 'fixed' as const,
     top: 0, left: 0, bottom: 0,
     zIndex: 50,
+    boxShadow: '18px 0 40px rgba(148, 163, 184, 0.12)',
+    backdropFilter: 'blur(16px)',
   },
   main: {
     marginLeft: 220,
     minHeight: '100vh',
-    background: 'var(--bg-base)',
+    background: 'transparent',
     flex: 1,
   },
 };
@@ -64,10 +66,10 @@ export default function Layout() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '4px 8px', marginBottom: 28 }}>
           <div style={{
             width: 36, height: 36, borderRadius: 10,
-            background: 'linear-gradient(135deg, #8b5cf6, #6d28d9)',
+            background: 'linear-gradient(135deg, var(--purple), #4f46e5)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             color: 'white', fontWeight: 900, fontSize: 16, flexShrink: 0,
-            boxShadow: '0 0 20px rgba(139,92,246,0.4)',
+            boxShadow: '0 14px 26px rgba(109,94,252,0.28)',
           }}>CC</div>
           <div>
             <div style={{ fontWeight: 800, fontSize: '0.95rem', color: 'var(--text-primary)', letterSpacing: '-0.3px' }}>
@@ -85,9 +87,10 @@ export default function Layout() {
                 display: 'flex', alignItems: 'center', gap: 10,
                 padding: '10px 12px', borderRadius: 10, textDecoration: 'none',
                 fontWeight: 600, fontSize: '0.88rem', transition: 'all 0.2s',
-                background: isActive ? 'var(--purple-dim)' : 'transparent',
-                color: isActive ? 'var(--purple-light)' : 'var(--text-muted)',
+                background: isActive ? 'rgba(109, 94, 252, 0.12)' : 'transparent',
+                color: isActive ? 'var(--purple-dark)' : 'var(--text-secondary)',
                 borderLeft: isActive ? '2px solid var(--purple)' : '2px solid transparent',
+                boxShadow: isActive ? '0 12px 24px rgba(109,94,252,0.08)' : 'none',
               })}>
               <span style={{ fontSize: '0.82rem', letterSpacing: '0.05em', opacity: 0.7 }}>{item.icon}</span>
               {item.label}
@@ -100,7 +103,7 @@ export default function Layout() {
 
         {/* User section */}
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 12px', borderRadius: 10, background: 'var(--bg-card)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 12px', borderRadius: 10, background: 'rgba(255,255,255,0.88)', border: '1px solid var(--border-subtle)', boxShadow: '0 10px 24px rgba(148, 163, 184, 0.12)' }}>
             <div style={{
               width: 32, height: 32, borderRadius: '50%',
               background: 'linear-gradient(135deg, var(--purple), #a78bfa)',

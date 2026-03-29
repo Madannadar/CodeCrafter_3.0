@@ -6,13 +6,13 @@ import api from '../services/api';
 import gsap from 'gsap';
 
 // ─── Floating particle ────────────────────────────────────────────────────────
-function Particle({ style }: { style: React.CSSProperties }) {
+function Particle({ style, className }: { style: React.CSSProperties; className?: string }) {
   return (
     <div style={{
       position: 'absolute', borderRadius: '50%',
-      background: 'radial-gradient(circle, rgba(139,92,246,0.6), transparent)',
+      background: 'radial-gradient(circle, rgba(109,94,252,0.28), transparent 72%)',
       filter: 'blur(1px)', pointerEvents: 'none', ...style,
-    }} />
+    }} className={className} />
   );
 }
 
@@ -106,10 +106,11 @@ export default function LoginPage() {
 
   const inputStyle = {
     width: '100%', padding: '13px 16px',
-    background: 'rgba(8,8,20,0.7)',
-    border: '1px solid rgba(139,92,246,0.2)',
-    borderRadius: 12, color: 'var(--text-primary)',
+    background: 'rgba(255,255,255,0.88)',
+    border: '1px solid rgba(109,94,252,0.16)',
+    borderRadius: 14, color: 'var(--text-primary)',
     fontSize: '0.95rem', outline: 'none', transition: 'border-color 0.2s, box-shadow 0.2s',
+    boxShadow: '0 10px 24px rgba(148,163,184,0.08)',
   };
 
   const labelStyle = {

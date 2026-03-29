@@ -7,27 +7,27 @@
 
 /* ─── Dark Theme Variables ─────────────────────────────────────────────────── */
 :root {
-  --bg-base:      #08080f;
-  --bg-surface:   #0f0f1a;
-  --bg-card:      #141421;
-  --bg-elevated:  #1a1a2e;
-  --bg-input:     #0d0d1a;
+  --bg-base:      #f4f7fb;
+  --bg-surface:   #eef3ff;
+  --bg-card:      #ffffff;
+  --bg-elevated:  #f9fbff;
+  --bg-input:     #ffffff;
 
-  --border:       rgba(139, 92, 246, 0.12);
-  --border-hover: rgba(139, 92, 246, 0.45);
-  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border:       rgba(109, 94, 252, 0.18);
+  --border-hover: rgba(109, 94, 252, 0.34);
+  --border-subtle: rgba(15, 23, 42, 0.08);
 
-  --purple:       #8b5cf6;
-  --purple-light: #a78bfa;
-  --purple-dark:  #7c3aed;
-  --purple-dim:   rgba(139, 92, 246, 0.15);
-  --purple-glow:  rgba(139, 92, 246, 0.3);
-  --purple-deep:  rgba(139, 92, 246, 0.08);
+  --purple:       #6d5efc;
+  --purple-light: #8f84ff;
+  --purple-dark:  #5948ef;
+  --purple-dim:   rgba(109, 94, 252, 0.12);
+  --purple-glow:  rgba(109, 94, 252, 0.18);
+  --purple-deep:  rgba(109, 94, 252, 0.06);
 
-  --text-primary: #f0ecfa;
-  --text-secondary: #a89fc2;
-  --text-muted:   #6b6b8a;
-  --text-faint:   #3d3d55;
+  --text-primary: #182235;
+  --text-secondary: #42506a;
+  --text-muted:   #73819a;
+  --text-faint:   #a6b2c4;
 
   --success: #22c55e;
   --warning: #f59e0b;
@@ -57,7 +57,10 @@ html, body, #root {
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--bg-base);
+  background:
+    radial-gradient(circle at top left, rgba(109, 94, 252, 0.08), transparent 28%),
+    radial-gradient(circle at top right, rgba(56, 189, 248, 0.08), transparent 24%),
+    linear-gradient(180deg, #f8fbff 0%, var(--bg-base) 42%, #eef3fb 100%);
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -76,8 +79,8 @@ button, input, textarea, select {
 /* ─── Scrollbar ────────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(139, 92, 246, 0.25); border-radius: 99px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(139, 92, 246, 0.5); }
+::-webkit-scrollbar-thumb { background: rgba(109, 94, 252, 0.22); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(109, 94, 252, 0.4); }
 
 /* ─── Keyframes ────────────────────────────────────────────────────────────── */
 @keyframes spin {
@@ -121,20 +124,22 @@ button, input, textarea, select {
 
 /* ─── Utility Classes ──────────────────────────────────────────────────────── */
 .glass {
-  background: rgba(20, 20, 33, 0.7);
+  background: rgba(255, 255, 255, 0.74);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border);
+  box-shadow: 0 18px 38px rgba(148, 163, 184, 0.12);
 }
 
 .glass-purple {
-  background: rgba(139, 92, 246, 0.06);
+  background: rgba(109, 94, 252, 0.08);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(139, 92, 246, 0.18);
+  border: 1px solid rgba(109, 94, 252, 0.16);
+  box-shadow: 0 18px 40px rgba(109, 94, 252, 0.1);
 }
 
 .purple-glow {
-  box-shadow: 0 0 24px var(--purple-glow), 0 0 48px rgba(139, 92, 246, 0.1);
+  box-shadow: 0 12px 34px var(--purple-glow), 0 20px 48px rgba(109, 94, 252, 0.08);
 }
 
 .text-gradient {
