@@ -63,7 +63,6 @@ class _ChatViewState extends State<ChatView> {
     _scrollToBottom();
 
     try {
-      // We stop sending 'intent' back so the AI can switch between Roadmap/Quiz dynamically
       final response = await _apiService.chat(
         message: userMessage, 
         subject: _currentSubject,
@@ -87,6 +86,17 @@ class _ChatViewState extends State<ChatView> {
         });
         _isLoading = false;
       });
+
+      // AUTO-NAVIGATION: If the AI generated a quiz, open it immediately
+      if (response['quiz_data'] != null && mounted) {
+        final quizData = QuizData.fromJson(response['quiz_data']);
+        Navigator.push(context, MaterialPageRoute(builder: (context) => SubjectQuiz(
+          subjectId: _currentSubject ?? 'gen', 
+          subjectName: _currentSubject ?? 'General', 
+          initialQuizData: quizData,
+          onComplete: () => _addSystemMessage("Great job! Ready for more?"),
+        )));
+      }
 
     } catch (e) {
       setState(() {
@@ -177,7 +187,7 @@ class _ChatViewState extends State<ChatView> {
     List<Widget> buttons = [];
     final String? subjectName = data['subject'] ?? _currentSubject;
 
-    // View Roadmap Button
+    // View Roadmap Button (Purple)
     if (data['prerequisite_data'] != null) {
       buttons.add(_actionButton("View Roadmap", Icons.map_outlined, const Color(0xFF8B5CF6), () {
          final roadmapData = SubjectData.fromJson(data['prerequisite_data']);
@@ -188,23 +198,17 @@ class _ChatViewState extends State<ChatView> {
       }));
     }
 
-    // Take Quiz Button (Aggressive Logic: Show if we have any subject)
+    // Test Me Button (Orange - Navigation to Quiz)
     if (subjectName != null && data['step'] != 'get_subject') {
-      buttons.add(_actionButton("Take Quiz", Icons.quiz_outlined, const Color(0xFF10B981), () {
+      buttons.add(_actionButton("Test Me", Icons.quiz_outlined, Colors.orange, () {
          final quizData = data['quiz_data'] != null ? QuizData.fromJson(data['quiz_data']) : null;
          Navigator.push(context, MaterialPageRoute(builder: (context) => SubjectQuiz(
            subjectId: subjectName, 
            subjectName: subjectName, 
            initialQuizData: quizData,
-           onComplete: () => _addSystemMessage("Great job! Ready for the next topic?"),
+           onComplete: () => _addSystemMessage("Great job! Ready for more?"),
          )));
       }));
-    }
-
-    // Intent Selectors
-    if (data['step'] == 'awaiting_intent') {
-      buttons.add(_actionButton("Roadmap", Icons.auto_awesome, Colors.blue, () => _sendMessage(overrideMessage: "Give me the roadmap")));
-      buttons.add(_actionButton("Test Me", Icons.timer, Colors.orange, () => _sendMessage(overrideMessage: "test")));
     }
 
     if (buttons.isEmpty) return const SizedBox.shrink();

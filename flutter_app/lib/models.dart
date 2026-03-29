@@ -124,23 +124,30 @@ class Question {
     var rawOptions = json['options'];
     if (rawOptions is List && rawOptions.isNotEmpty) {
       optionsList = List<String>.from(rawOptions);
-      index = optionsList.indexOf(correctAns);
     } else if (rawOptions is Map && rawOptions.isNotEmpty) {
+      // Handle A, B, C, D format from FastAPI
       optionsList = [
         rawOptions['A']?.toString() ?? '',
         rawOptions['B']?.toString() ?? '',
         rawOptions['C']?.toString() ?? '',
         rawOptions['D']?.toString() ?? '',
       ];
-      if (correctAns.length == 1 && (correctAns.startsWith('A') || correctAns.startsWith('B') || correctAns.startsWith('C') || correctAns.startsWith('D'))) {
-        index = correctAns.codeUnitAt(0) - 'A'.codeUnitAt(0);
+    }
+
+    // Determine MCQ Answer Index
+    if (optionsList.isNotEmpty) {
+      if (correctAns.length == 1 && "ABCD".contains(correctAns.toUpperCase())) {
+        index = "ABCD".indexOf(correctAns.toUpperCase());
       } else {
         index = optionsList.indexOf(correctAns);
       }
     }
 
-    // If no options are provided, treat it as a text-based question
-    QuestionType type = optionsList.isEmpty ? QuestionType.text : QuestionType.mcq;
+    // TYPE DETECTION: If 'type' is theory/text OR options are empty, it's a text question
+    final String rawType = (json['type'] ?? '').toString().toLowerCase();
+    QuestionType type = (rawType == 'theory' || rawType == 'text' || optionsList.isEmpty) 
+        ? QuestionType.text 
+        : QuestionType.mcq;
 
     return Question(
       id: json['id']?.toString() ?? '',
