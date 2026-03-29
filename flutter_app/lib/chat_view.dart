@@ -208,20 +208,6 @@ class _ChatViewState extends State<ChatView> {
       }));
     }
 
-    // Test Me Button (Orange - Navigation to Quiz)
-    if (subjectName != null && data['step'] != 'get_subject') {
-      buttons.add(_actionButton('Test Me', Icons.quiz_outlined, Colors.orange, () {
-         debugPrint('[ChatView] Test Me clicked for $subjectName');
-         final quizData = data['quiz_data'] != null ? QuizData.fromJson(data['quiz_data']) : null;
-         Navigator.push(context, MaterialPageRoute(builder: (context) => SubjectQuiz(
-           subjectId: subjectName, 
-           subjectName: subjectName, 
-           initialQuizData: quizData,
-           onComplete: () => _addSystemMessage("Great job! Ready for more?"),
-         )));
-      }));
-    }
-
     if (buttons.isEmpty) return const SizedBox.shrink();
     return Padding(padding: const EdgeInsets.only(top: 12), child: Wrap(spacing: 8, runSpacing: 8, children: buttons));
   }

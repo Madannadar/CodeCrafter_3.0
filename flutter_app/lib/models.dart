@@ -130,22 +130,29 @@ class Question {
         rawOptions['C']?.toString() ?? '',
         rawOptions['D']?.toString() ?? '',
       ];
+      // Filter out empty options
+      optionsList = optionsList.where((o) => o.isNotEmpty).toList();
     }
 
     // Determine MCQ Answer Index
     if (optionsList.isNotEmpty) {
       if (correctAns.length == 1 && "ABCD".contains(correctAns.toUpperCase())) {
         index = "ABCD".indexOf(correctAns.toUpperCase());
+        // Cap index to available options
+        if (index >= optionsList.length) index = 0;
       } else {
         index = optionsList.indexOf(correctAns);
       }
     }
 
-    // TYPE DETECTION: If 'type' is theory/text OR options are empty, it's a text question
+    // TYPE DETECTION: If answer is a single letter (A-D), it's always MCQ regardless of type field
     final String rawType = (json['type'] ?? '').toString().toLowerCase();
-    QuestionType type = (rawType == 'theory' || rawType == 'text' || optionsList.isEmpty) 
-        ? QuestionType.text 
-        : QuestionType.mcq;
+    bool isLetterAnswer = correctAns.length == 1 && "ABCD".contains(correctAns.toUpperCase());
+    QuestionType type = isLetterAnswer 
+        ? QuestionType.mcq 
+        : (rawType == 'theory' || rawType == 'text' || optionsList.isEmpty) 
+          ? QuestionType.text 
+          : QuestionType.mcq;
 
     return Question(
       id: json['id']?.toString() ?? '',
