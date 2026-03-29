@@ -84,7 +84,7 @@ export default function LoginPage() {
         login(res.data.user, res.data.token);
       }
       // Slide out animation before navigate
-      gsap.to(cardRef.current, { x: 40, opacity: 0, duration: 0.3, ease: 'power2.in', onComplete: () => navigate('/dashboard') });
+      gsap.to(cardRef.current, { x: 40, opacity: 0, duration: 0.3, ease: 'power2.in', onComplete: () => { navigate('/dashboard'); } });
     } catch (err: any) {
       gsap.from(cardRef.current, { x: -4, duration: 0.15, repeat: 3, yoyo: true, ease: 'power1.inOut' });
       setError(err.response?.data?.msg || 'Authentication failed');
@@ -128,14 +128,14 @@ export default function LoginPage() {
   return (
     <div style={{
       minHeight: '100vh', display: 'flex',
-      background: 'var(--bg-base)',
+      background: 'transparent',
       overflow: 'hidden', position: 'relative',
     }}>
       {/* ── Background aurora ─────────────────────────────────────────────── */}
       <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' }}>
-        <div style={{ position: 'absolute', top: '-10%', left: '-5%', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle, rgba(139,92,246,0.12) 0%, transparent 70%)', animation: 'float 8s ease-in-out infinite' }} />
-        <div style={{ position: 'absolute', bottom: '-15%', right: '-5%', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(109,40,217,0.1) 0%, transparent 70%)', animation: 'float 10s ease-in-out infinite reverse' }} />
-        <div style={{ position: 'absolute', top: '50%', left: '35%', width: 300, height: 300, borderRadius: '50%', background: 'radial-gradient(circle, rgba(167,139,250,0.06) 0%, transparent 70%)', animation: 'float 6s ease-in-out infinite 2s' }} />
+        <div style={{ position: 'absolute', top: '-10%', left: '-5%', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle, rgba(109,94,252,0.14) 0%, transparent 70%)', animation: 'float 8s ease-in-out infinite' }} />
+        <div style={{ position: 'absolute', bottom: '-15%', right: '-5%', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(14,165,233,0.12) 0%, transparent 70%)', animation: 'float 10s ease-in-out infinite reverse' }} />
+        <div style={{ position: 'absolute', top: '50%', left: '35%', width: 300, height: 300, borderRadius: '50%', background: 'radial-gradient(circle, rgba(167,139,250,0.08) 0%, transparent 70%)', animation: 'float 6s ease-in-out infinite 2s' }} />
       </div>
 
       {/* ── Floating particles ────────────────────────────────────────────── */}
@@ -152,18 +152,18 @@ export default function LoginPage() {
       {/* ── Left Panel — Branding ─────────────────────────────────────────── */}
       <div ref={leftRef} style={{
         width: '45%', display: 'flex', flexDirection: 'column', justifyContent: 'center',
-        padding: '60px 56px', background: 'rgba(10,10,24,0.5)',
-        borderRight: '1px solid var(--border)',
+        padding: '60px 56px', background: 'linear-gradient(180deg, rgba(255,255,255,0.7), rgba(238,243,255,0.58))',
+        borderRight: '1px solid var(--border-subtle)',
         position: 'relative',
       }}>
         {/* Logo mark */}
         <div className="login-brand" style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 48 }}>
           <div style={{
             width: 52, height: 52, borderRadius: 16,
-            background: 'linear-gradient(135deg, #8b5cf6, #4c1d95)',
+            background: 'linear-gradient(135deg, var(--purple), #4f46e5)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             color: 'white', fontWeight: 900, fontSize: 20,
-            boxShadow: '0 0 32px rgba(139,92,246,0.5)',
+            boxShadow: '0 20px 36px rgba(109,94,252,0.24)',
           }}>CC</div>
           <div>
             <div style={{ fontWeight: 900, fontSize: '1.4rem', color: 'var(--text-primary)', letterSpacing: '-0.5px' }}>
@@ -180,7 +180,7 @@ export default function LoginPage() {
         }}>
           Find exactly what<br />
           <span style={{
-            background: 'linear-gradient(135deg, #a78bfa 0%, #8b5cf6 60%, #7c3aed 100%)',
+            background: 'linear-gradient(135deg, #8f84ff 0%, #6d5efc 60%, #4f46e5 100%)',
             WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
           }}>you don't know.</span>
         </h1>
@@ -195,8 +195,9 @@ export default function LoginPage() {
             <div key={i} className="login-feature" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
               <div style={{
                 width: 36, height: 36, borderRadius: 10, flexShrink: 0,
-                background: 'var(--purple-dim)',
+                background: 'rgba(255,255,255,0.82)',
                 border: '1px solid var(--border)',
+                boxShadow: '0 12px 24px rgba(148,163,184,0.12)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1rem',
               }}>{f.icon}</div>
               <span style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>{f.text}</span>
@@ -205,7 +206,7 @@ export default function LoginPage() {
         </div>
 
         {/* Bottom quote */}
-        <div style={{ marginTop: 56, padding: '16px 20px', borderRadius: 14, background: 'var(--purple-deep)', border: '1px solid var(--border)' }}>
+        <div style={{ marginTop: 56, padding: '16px 20px', borderRadius: 18, background: 'rgba(255,255,255,0.76)', border: '1px solid var(--border)', boxShadow: '0 18px 36px rgba(148,163,184,0.12)' }}>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.82rem', fontStyle: 'italic', lineHeight: 1.6 }}>
             "The first step to mastery is knowing where you're lost."
           </p>
@@ -219,13 +220,17 @@ export default function LoginPage() {
       }}>
         <div ref={cardRef} style={{
           width: '100%', maxWidth: 420,
-          background: 'var(--bg-card)',
+          background: 'rgba(255,255,255,0.84)',
           border: '1px solid var(--border)',
-          borderRadius: 24, padding: '40px 36px',
-          boxShadow: '0 32px 64px rgba(0,0,0,0.4), 0 0 0 1px rgba(139,92,246,0.08)',
+          borderRadius: 28, padding: '40px 36px',
+          boxShadow: '0 32px 70px rgba(148,163,184,0.22), 0 0 0 1px rgba(109,94,252,0.06)',
+          backdropFilter: 'blur(22px)',
         }}>
 
           <div style={{ marginBottom: 32 }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 12px', borderRadius: 999, background: 'rgba(109,94,252,0.08)', color: 'var(--purple-dark)', fontSize: '0.74rem', fontWeight: 700, letterSpacing: '0.04em', marginBottom: 14 }}>
+              {isLoginView ? 'SIGN IN' : 'REGISTER'}
+            </div>
             <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: 6, letterSpacing: '-0.4px' }}>
               {isLoginView ? 'Welcome back' : 'Create account'}
             </h2>
@@ -241,7 +246,7 @@ export default function LoginPage() {
                 <input type="text" required style={inputStyle} placeholder="John Doe"
                   value={name} onChange={e => setName(e.target.value)}
                   onFocus={e => { e.currentTarget.style.borderColor = 'var(--purple)'; e.currentTarget.style.boxShadow = '0 0 0 3px var(--purple-glow)'; }}
-                  onBlur={e => { e.currentTarget.style.borderColor = 'rgba(139,92,246,0.2)'; e.currentTarget.style.boxShadow = 'none'; }} />
+                  onBlur={e => { e.currentTarget.style.borderColor = 'rgba(109,94,252,0.16)'; e.currentTarget.style.boxShadow = '0 10px 24px rgba(148,163,184,0.08)'; }} />
               </div>
             )}
 
@@ -250,7 +255,7 @@ export default function LoginPage() {
               <input type="email" required style={inputStyle} placeholder="you@example.com"
                 value={email} onChange={e => setEmail(e.target.value)}
                 onFocus={e => { e.currentTarget.style.borderColor = 'var(--purple)'; e.currentTarget.style.boxShadow = '0 0 0 3px var(--purple-glow)'; }}
-                onBlur={e => { e.currentTarget.style.borderColor = 'rgba(139,92,246,0.2)'; e.currentTarget.style.boxShadow = 'none'; }} />
+                onBlur={e => { e.currentTarget.style.borderColor = 'rgba(109,94,252,0.16)'; e.currentTarget.style.boxShadow = '0 10px 24px rgba(148,163,184,0.08)'; }} />
             </div>
 
             <div className="form-field">
@@ -258,11 +263,11 @@ export default function LoginPage() {
               <input type="password" required style={inputStyle} placeholder="••••••••"
                 value={password} onChange={e => setPassword(e.target.value)}
                 onFocus={e => { e.currentTarget.style.borderColor = 'var(--purple)'; e.currentTarget.style.boxShadow = '0 0 0 3px var(--purple-glow)'; }}
-                onBlur={e => { e.currentTarget.style.borderColor = 'rgba(139,92,246,0.2)'; e.currentTarget.style.boxShadow = 'none'; }} />
+                onBlur={e => { e.currentTarget.style.borderColor = 'rgba(109,94,252,0.16)'; e.currentTarget.style.boxShadow = '0 10px 24px rgba(148,163,184,0.08)'; }} />
             </div>
 
             {error && (
-              <div className="form-field" style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.3)', borderRadius: 10, padding: '10px 14px', color: '#fca5a5', fontSize: '0.85rem' }}>
+              <div className="form-field" style={{ background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.22)', borderRadius: 14, padding: '10px 14px', color: '#b91c1c', fontSize: '0.85rem' }}>
                 ⚠️ {error}
               </div>
             )}
@@ -270,13 +275,13 @@ export default function LoginPage() {
             <button type="submit" disabled={loading} className="form-field"
               style={{
                 width: '100%', padding: '14px', borderRadius: 12, border: 'none',
-                background: loading ? '#3d2585' : 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
+                background: loading ? '#5948ef' : 'linear-gradient(135deg, var(--purple), #4f46e5)',
                 color: 'white', fontWeight: 700, fontSize: '1rem', cursor: loading ? 'not-allowed' : 'pointer',
                 transition: 'all 0.2s', marginTop: 4,
-                boxShadow: loading ? 'none' : '0 4px 24px rgba(139,92,246,0.4)',
+                boxShadow: loading ? 'none' : '0 18px 34px rgba(109,94,252,0.28)',
               }}
-              onMouseEnter={e => !loading && ((e.currentTarget as HTMLElement).style.boxShadow = '0 8px 32px rgba(139,92,246,0.6)')}
-              onMouseLeave={e => !loading && ((e.currentTarget as HTMLElement).style.boxShadow = '0 4px 24px rgba(139,92,246,0.4)')}>
+              onMouseEnter={e => !loading && ((e.currentTarget as HTMLElement).style.boxShadow = '0 22px 38px rgba(109,94,252,0.34)')}
+              onMouseLeave={e => !loading && ((e.currentTarget as HTMLElement).style.boxShadow = '0 18px 34px rgba(109,94,252,0.28)')}>
               {loading ? (
                 <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
                   <span style={{ width: 16, height: 16, border: '2px solid rgba(255,255,255,0.3)', borderTopColor: 'white', borderRadius: '50%', animation: 'spin 0.7s linear infinite' }} />
@@ -302,7 +307,7 @@ export default function LoginPage() {
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <GoogleLogin onSuccess={handleGoogleSuccess} onError={() => setError('Google Login Failed')} theme="filled_black" shape="pill" />
+            <GoogleLogin onSuccess={(credentialResponse) => { void handleGoogleSuccess(credentialResponse); }} onError={() => setError('Google Login Failed')} theme="outline" shape="pill" />
           </div>
         </div>
       </div>
