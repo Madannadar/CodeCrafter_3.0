@@ -1,0 +1,411 @@
+{
+  "subject": "Engineering Chemistry-II",
+  "questions": [
+    {
+      "id": "ec2-q1",
+      "type": "mcq",
+      "difficulty": "easy",
+      "concept": "Corrosion",
+      "question": "Which of the following metals undergoes 'sacrificial protection' to prevent the rusting of iron?",
+      "options": [
+        "A) Copper",
+        "B) Silver",
+        "C) Zinc",
+        "D) Gold"
+      ],
+      "answer": "C",
+      "explanation": "Zinc is more electropositive than iron; it acts as an anode and corrodes itself to protect the iron (Galvanization)."
+    },
+    {
+      "id": "ec2-q2",
+      "type": "mcq",
+      "difficulty": "easy",
+      "concept": "Polymers",
+      "question": "Thermoplastic polymers can be reshaped upon heating.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "True",
+      "explanation": "Thermoplastics soften on heating and harden on cooling, allowing them to be molded repeatedly."
+    },
+    {
+      "id": "ec2-q3",
+      "type": "mcq",
+      "difficulty": "easy",
+      "concept": "Fuels",
+      "question": "What is the main constituent of Natural Gas?",
+      "options": [
+        "A) Methane",
+        "B) Ethane",
+        "C) Propane",
+        "D) Butane"
+      ],
+      "answer": "A",
+      "explanation": "Methane (CH4) typically makes up 70-90% of natural gas."
+    },
+    {
+      "id": "ec2-q4",
+      "type": "q&a",
+      "difficulty": "easy",
+      "concept": "Water Technology",
+      "question": "Which units are commonly used to express the hardness of water?",
+      "options": null,
+      "answer": "ppm or mg/L",
+      "explanation": "Hardness is usually expressed in parts per million (ppm) or milligrams per liter (mg/L) as CaCO3 equivalent."
+    },
+    {
+      "id": "ec2-q5",
+      "type": "mcq",
+      "difficulty": "easy",
+      "concept": "Electrochemistry",
+      "question": "In a Galvanic cell, at which electrode does oxidation occur?",
+      "options": [
+        "A) Anode",
+        "B) Cathode",
+        "C) Salt Bridge",
+        "D) Electrolyte"
+      ],
+      "answer": "A",
+      "explanation": "Oxidation (loss of electrons) always occurs at the anode in an electrochemical cell."
+    },
+    {
+      "id": "ec2-q6",
+      "type": "mcq",
+      "difficulty": "easy",
+      "concept": "Lubricants",
+      "question": "The primary function of a lubricant is to increase friction between moving parts.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "False",
+      "explanation": "The primary function of a lubricant is to reduce friction and wear between moving surfaces."
+    },
+    {
+      "id": "ec2-q7",
+      "type": "mcq",
+      "difficulty": "easy",
+      "concept": "Phase Rule",
+      "question": "How many phases are present in a mixture of ice, liquid water, and water vapor?",
+      "options": [
+        "A) 1",
+        "B) 2",
+        "C) 3",
+        "D) 0"
+      ],
+      "answer": "C",
+      "explanation": "Ice (solid), water (liquid), and vapor (gas) represent three distinct physical phases."
+    },
+    {
+      "id": "ec2-q8",
+      "type": "q&a",
+      "difficulty": "easy",
+      "concept": "Batteries",
+      "question": "What type of battery is a Lead-acid battery?",
+      "options": null,
+      "answer": "Secondary Battery",
+      "explanation": "Secondary batteries are rechargeable because the chemical reactions are reversible."
+    },
+    {
+      "id": "ec2-q9",
+      "type": "mcq",
+      "difficulty": "easy",
+      "concept": "Polymers",
+      "question": "Buna-S is an example of which type of polymer?",
+      "options": [
+        "A) Fiber",
+        "B) Thermoset",
+        "C) Elastomer",
+        "D) Plastic"
+      ],
+      "answer": "C",
+      "explanation": "Buna-S is a synthetic rubber, which falls under the category of elastomers."
+    },
+    {
+      "id": "ec2-q10",
+      "type": "mcq",
+      "difficulty": "easy",
+      "concept": "Refractories",
+      "question": "Refractories are materials that can withstand very high temperatures without softening.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "True",
+      "explanation": "Refractories maintain structural integrity at high temperatures, often used in furnace linings."
+    },
+    {
+      "id": "ec2-q11",
+      "type": "mcq",
+      "difficulty": "medium",
+      "concept": "Electrochemistry",
+      "question": "What is the relationship between Standard Free Energy (ΔG°) and Cell Potential (E°)?",
+      "options": [
+        "A) ΔG° = nFE°",
+        "B) ΔG° = -nFE°",
+        "C) ΔG° = RT log E°",
+        "D) ΔG° = E° / nF"
+      ],
+      "answer": "B",
+      "explanation": "The negative sign indicates that a positive cell potential results in a spontaneous reaction (negative free energy)."
+    },
+    {
+      "id": "ec2-q12",
+      "type": "mcq",
+      "difficulty": "medium",
+      "concept": "Corrosion",
+      "question": "Pitting corrosion is an example of which type of corrosion?",
+      "options": [
+        "A) Uniform",
+        "B) Galvanic",
+        "C) Localized",
+        "D) Stress"
+      ],
+      "answer": "C",
+      "explanation": "Pitting is highly localized corrosion that leads to the creation of small holes in the metal."
+    },
+    {
+      "id": "ec2-q13",
+      "type": "q&a",
+      "difficulty": "medium",
+      "concept": "Fuels",
+      "question": "Define 'Octane Number' of a fuel.",
+      "options": null,
+      "answer": "Resistance to knocking",
+      "explanation": "The Octane Number measures a fuel's ability to resist 'knocking' or 'pinging' during combustion in an engine."
+    },
+    {
+      "id": "ec2-q14",
+      "type": "mcq",
+      "difficulty": "medium",
+      "concept": "Phase Rule",
+      "question": "In a one-component system, what is the maximum number of degrees of freedom?",
+      "options": [
+        "A) 0",
+        "B) 1",
+        "C) 2",
+        "D) 3"
+      ],
+      "answer": "C",
+      "explanation": "Using F = C - P + 2, for C=1 and P=1 (single phase), F = 1 - 1 + 2 = 2."
+    },
+    {
+      "id": "ec2-q15",
+      "type": "mcq",
+      "difficulty": "medium",
+      "concept": "Lubricants",
+      "question": "Viscosity of a lubricant generally increases with an increase in temperature.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "False",
+      "explanation": "Viscosity usually decreases as temperature increases, making the lubricant 'thinner'."
+    },
+    {
+      "id": "ec2-q16",
+      "type": "mcq",
+      "difficulty": "medium",
+      "concept": "Water Technology",
+      "question": "Which method is used for the complete removal of all ions (cationic and anionic) from water?",
+      "options": [
+        "A) Zeolite process",
+        "B) Lime-Soda process",
+        "C) Ion-Exchange process",
+        "D) Boiling"
+      ],
+      "answer": "C",
+      "explanation": "Ion-Exchange resins can remove both cations and anions, producing demineralized water."
+    },
+    {
+      "id": "ec2-q17",
+      "type": "q&a",
+      "difficulty": "medium",
+      "concept": "Polymers",
+      "question": "What is the monomer of PVC (Polyvinyl Chloride)?",
+      "options": null,
+      "answer": "Vinyl Chloride",
+      "explanation": "PVC is formed by the polymerization of Vinyl Chloride (CH2=CHCl) monomers."
+    },
+    {
+      "id": "ec2-q18",
+      "type": "mcq",
+      "difficulty": "medium",
+      "concept": "Batteries",
+      "question": "In a Hydrogen-Oxygen fuel cell, what is the byproduct of the reaction?",
+      "options": [
+        "A) CO2",
+        "B) NO2",
+        "C) H2O",
+        "D) SO2"
+      ],
+      "answer": "C",
+      "explanation": "Fuel cells are eco-friendly because they produce water as the only exhaust product."
+    },
+    {
+      "id": "ec2-q19",
+      "type": "mcq",
+      "difficulty": "medium",
+      "concept": "Corrosion",
+      "question": "Anodic coatings protect the base metal even if the coating is scratched.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "True",
+      "explanation": "This is due to cathodic protection; the anodic coating continues to corrode preferentially to the base metal."
+    },
+    {
+      "id": "ec2-q20",
+      "type": "mcq",
+      "difficulty": "medium",
+      "concept": "Spectroscopy",
+      "question": "Beer-Lambert's law relates the absorption of light to which property of a solution?",
+      "options": [
+        "A) Temperature",
+        "B) Viscosity",
+        "C) Concentration",
+        "D) Volume"
+      ],
+      "answer": "C",
+      "explanation": "The law states that absorbance is directly proportional to the concentration and the path length."
+    },
+    {
+      "id": "ec2-q21",
+      "type": "mcq",
+      "difficulty": "hard",
+      "concept": "Electrochemistry",
+      "question": "According to the Nernst equation, what happens to the electrode potential as the concentration of ions increases at 298K?",
+      "options": [
+        "A) Decreases",
+        "B) Increases",
+        "C) Remains constant",
+        "D) Becomes zero"
+      ],
+      "answer": "B",
+      "explanation": "For a reduction reaction, E = E° + (0.0591/n) log [M^n+]. Increasing concentration increases the log term."
+    },
+    {
+      "id": "ec2-q22",
+      "type": "q&a",
+      "difficulty": "hard",
+      "concept": "Fuels",
+      "question": "Calculate the GCV (Gross Calorific Value) if NCV is 9000 kcal/kg and hydrogen content is 5%. (Latent heat of steam = 587 kcal/kg)",
+      "options": null,
+      "answer": "9264.15 kcal/kg",
+      "explanation": "NCV = GCV - (0.09 * H * 587). So, GCV = 9000 + (0.09 * 5 * 587) = 9000 + 264.15."
+    },
+    {
+      "id": "ec2-q23",
+      "type": "mcq",
+      "difficulty": "hard",
+      "concept": "Phase Rule",
+      "question": "What is the degree of freedom at the triple point of a water system?",
+      "options": [
+        "A) 0",
+        "B) 1",
+        "C) 2",
+        "D) 3"
+      ],
+      "answer": "A",
+      "explanation": "At the triple point, 3 phases coexist (P=3). F = 1 - 3 + 2 = 0 (Invariant point)."
+    },
+    {
+      "id": "ec2-q24",
+      "type": "mcq",
+      "difficulty": "hard",
+      "concept": "Corrosion",
+      "question": "In differential aeration corrosion, which part of the metal acts as the anode?",
+      "options": [
+        "A) Less oxygenated area",
+        "B) Highly oxygenated area",
+        "C) Exposed area",
+        "D) The whole surface"
+      ],
+      "answer": "A",
+      "explanation": "The area with lower oxygen concentration becomes anodic and undergoes corrosion."
+    },
+    {
+      "id": "ec2-q25",
+      "type": "mcq",
+      "difficulty": "hard",
+      "concept": "Nanotechnology",
+      "question": "The surface-to-volume ratio decreases as the particle size reaches the nanoscale.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "False",
+      "explanation": "The surface-to-volume ratio increases significantly at the nanoscale, leading to unique chemical properties."
+    },
+    {
+      "id": "ec2-q26",
+      "type": "mcq",
+      "difficulty": "hard",
+      "concept": "Water Technology",
+      "question": "In the EDTA method, why is an ammonia-ammonium chloride buffer used?",
+      "options": [
+        "A) To speed up the reaction",
+        "B) To maintain pH at 10",
+        "C) To precipitate Magnesium",
+        "D) To color the solution"
+      ],
+      "answer": "B",
+      "explanation": "The EDTA-Metal complex formation is stable and the indicator works best at a pH of approximately 10."
+    },
+    {
+      "id": "ec2-q27",
+      "type": "q&a",
+      "difficulty": "hard",
+      "concept": "Polymers",
+      "question": "What is the difference between addition and condensation polymerization regarding byproducts?",
+      "options": null,
+      "answer": "Addition has no byproducts; Condensation produces small molecules like H2O.",
+      "explanation": "Addition polymerization involves restructuring bonds; condensation involves the loss of small molecules like water or HCl."
+    },
+    {
+      "id": "ec2-q28",
+      "type": "mcq",
+      "difficulty": "hard",
+      "concept": "Spectroscopy",
+      "question": "Which region of the electromagnetic spectrum is used in IR spectroscopy to identify functional groups?",
+      "options": [
+        "A) 200-400 nm",
+        "B) 400-800 nm",
+        "C) 2.5-15 micrometers",
+        "D) 0.1-10 nm"
+      ],
+      "answer": "C",
+      "explanation": "The mid-infrared region (approx 4000 to 400 cm^-1) is used for vibration analysis of functional groups."
+    },
+    {
+      "id": "ec2-q29",
+      "type": "mcq",
+      "difficulty": "hard",
+      "concept": "Fuels",
+      "question": "Aniline is added to gasoline to increase its knocking tendency.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "False",
+      "explanation": "Aniline acts as an anti-knocking agent, meaning it *decreases* the knocking tendency."
+    },
+    {
+      "id": "ec2-q30",
+      "type": "mcq",
+      "difficulty": "hard",
+      "concept": "Refractories",
+      "question": "Which of these is a neutral refractory?",
+      "options": [
+        "A) Silica",
+        "B) Magnesite",
+        "C) Chromite",
+        "D) Dolomite"
+      ],
+      "answer": "C",
+      "explanation": "Chromite and graphite are examples of neutral refractories as they don't react easily with acidic or basic slags."
+    }
+  ]
+}

@@ -446,7 +446,7 @@ class _SubjectQuizState extends State<SubjectQuiz> {
               setState(() {
                 selectedIndex = index;
                 isAnswered = true;
-                if (isCorrect) score++;
+                if (question.isMultipleChoice && isCorrect) score++;
               });
             },
       child: AnimatedContainer(

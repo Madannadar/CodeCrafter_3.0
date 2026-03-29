@@ -1,0 +1,411 @@
+{
+  "subject": "Microprocessor",
+  "questions": [
+    {
+      "id": "mp-q1",
+      "type": "mcq",
+      "difficulty": "easy",
+      "concept": "Architecture",
+      "question": "The 8085 microprocessor is a/an ________ bit microprocessor.",
+      "options": [
+        "A) 4",
+        "B) 8",
+        "C) 16",
+        "D) 32"
+      ],
+      "answer": "B",
+      "explanation": "The 8085 is an 8-bit microprocessor because it has an 8-bit data bus and can process 8 bits of data at a time."
+    },
+    {
+      "id": "mp-q2",
+      "type": "mcq",
+      "difficulty": "easy",
+      "concept": "Buses",
+      "question": "The address bus in an 8085 microprocessor is bidirectional.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "False",
+      "explanation": "The address bus is unidirectional (from the microprocessor to peripheral devices), whereas the data bus is bidirectional."
+    },
+    {
+      "id": "mp-q3",
+      "type": "mcq",
+      "difficulty": "easy",
+      "concept": "Registers",
+      "question": "Which register is used to keep track of the address of the next instruction to be fetched?",
+      "options": [
+        "A) Accumulator",
+        "B) Stack Pointer",
+        "C) Program Counter",
+        "D) Instruction Register"
+      ],
+      "answer": "C",
+      "explanation": "The Program Counter (PC) always holds the memory address of the next instruction to be executed."
+    },
+    {
+      "id": "mp-q4",
+      "type": "q&a",
+      "difficulty": "easy",
+      "concept": "Interrupts",
+      "question": "Which is the highest priority hardware interrupt in 8085?",
+      "options": null,
+      "answer": "TRAP",
+      "explanation": "TRAP is a non-maskable interrupt with the highest priority among all 8085 interrupts."
+    },
+    {
+      "id": "mp-q5",
+      "type": "mcq",
+      "difficulty": "easy",
+      "concept": "Memory",
+      "question": "How much memory can an 8085 microprocessor address?",
+      "options": [
+        "A) 16 KB",
+        "B) 32 KB",
+        "C) 64 KB",
+        "D) 128 KB"
+      ],
+      "answer": "C",
+      "explanation": "The 8085 has a 16-bit address bus, allowing it to address 2^16 = 65,536 bytes (64 KB)."
+    },
+    {
+      "id": "mp-q6",
+      "type": "mcq",
+      "difficulty": "easy",
+      "concept": "Arithmetic",
+      "question": "The Accumulator is an 8-bit register involved in most arithmetic and logical operations.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "True",
+      "explanation": "In 8085, the result of almost all ALU operations is stored back in the Accumulator (Register A)."
+    },
+    {
+      "id": "mp-q7",
+      "type": "mcq",
+      "difficulty": "easy",
+      "concept": "Instructions",
+      "question": "The instruction 'MOV A, B' is an example of which addressing mode?",
+      "options": [
+        "A) Immediate",
+        "B) Direct",
+        "C) Register",
+        "D) Implicit"
+      ],
+      "answer": "C",
+      "explanation": "Data is moved directly from one CPU register (B) to another (A)."
+    },
+    {
+      "id": "mp-q8",
+      "type": "q&a",
+      "difficulty": "easy",
+      "concept": "8086 Architecture",
+      "question": "What is the size of the address bus in an 8086 microprocessor?",
+      "options": null,
+      "answer": "20 bits",
+      "explanation": "The 8086 has a 20-bit address bus, which allows it to address up to 1 MB of memory."
+    },
+    {
+      "id": "mp-q9",
+      "type": "mcq",
+      "difficulty": "easy",
+      "concept": "Flags",
+      "question": "If the result of an operation is zero, which flag is set to 1?",
+      "options": [
+        "A) Sign Flag",
+        "B) Parity Flag",
+        "C) Zero Flag",
+        "D) Carry Flag"
+      ],
+      "answer": "C",
+      "explanation": "The Zero Flag (Z) is set to 1 if the ALU result is zero, and reset to 0 otherwise."
+    },
+    {
+      "id": "mp-q10",
+      "type": "mcq",
+      "difficulty": "easy",
+      "concept": "Stack",
+      "question": "The Stack Pointer (SP) points to the bottom of the stack.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "False",
+      "explanation": "The Stack Pointer always points to the top of the stack (the last item pushed)."
+    },
+    {
+      "id": "mp-q11",
+      "type": "mcq",
+      "difficulty": "medium",
+      "concept": "Machine Cycles",
+      "question": "How many T-states are required for the Opcode Fetch cycle in 8085?",
+      "options": [
+        "A) 2",
+        "B) 3",
+        "C) 4",
+        "D) 6"
+      ],
+      "answer": "C",
+      "explanation": "Most opcode fetch machine cycles take 4 T-states, though some complex ones may take 6."
+    },
+    {
+      "id": "mp-q12",
+      "type": "mcq",
+      "difficulty": "medium",
+      "concept": "Instructions",
+      "question": "What is the function of the 'HLT' instruction?",
+      "options": [
+        "A) Halt the execution and wait for an interrupt",
+        "B) Clear the accumulator",
+        "C) Jump to address 0000H",
+        "D) Decrement the stack pointer"
+      ],
+      "answer": "A",
+      "explanation": "HLT stops the CPU from executing further instructions until a hardware interrupt or reset occurs."
+    },
+    {
+      "id": "mp-q13",
+      "type": "q&a",
+      "difficulty": "medium",
+      "concept": "Direct Memory Access",
+      "question": "Which pins are used by the 8257 DMA controller to take control of the buses from the CPU?",
+      "options": null,
+      "answer": "HOLD and HLDA",
+      "explanation": "The DMA sends a HOLD signal to the CPU, and the CPU responds with HLDA (Hold Acknowledge) when the buses are released."
+    },
+    {
+      "id": "mp-q14",
+      "type": "mcq",
+      "difficulty": "medium",
+      "concept": "8086 Segmentation",
+      "question": "In 8086, which register is used to access the code segment?",
+      "options": [
+        "A) DS",
+        "B) SS",
+        "C) CS",
+        "D) ES"
+      ],
+      "answer": "C",
+      "explanation": "The CS (Code Segment) register stores the starting address of the current code segment."
+    },
+    {
+      "id": "mp-q15",
+      "type": "mcq",
+      "difficulty": "medium",
+      "concept": "Interfacing",
+      "question": "The 8255 Programmable Peripheral Interface (PPI) has 3 ports.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "True",
+      "explanation": "The 8255 has Port A, Port B, and Port C (which can be split into two 4-bit ports)."
+    },
+    {
+      "id": "mp-q16",
+      "type": "mcq",
+      "difficulty": "medium",
+      "concept": "Machine Cycle",
+      "question": "During an 'I/O Read' cycle in 8085, the status signals IO/M', S1, and S0 are:",
+      "options": [
+        "A) 0, 0, 1",
+        "B) 1, 1, 0",
+        "C) 1, 0, 1",
+        "D) 0, 1, 1"
+      ],
+      "answer": "B",
+      "explanation": "For I/O Read: IO/M' = 1 (I/O operation), S1 = 1, and S0 = 0."
+    },
+    {
+      "id": "mp-q17",
+      "type": "q&a",
+      "difficulty": "medium",
+      "concept": "8086 Pipeline",
+      "question": "What is the purpose of the Instruction Queue in the 8086?",
+      "options": null,
+      "answer": "To implement pipelining by pre-fetching instructions.",
+      "explanation": "The Bus Interface Unit (BIU) fetches instructions while the Execution Unit (EU) is busy, saving time."
+    },
+    {
+      "id": "mp-q18",
+      "type": "mcq",
+      "difficulty": "medium",
+      "concept": "Arithmetic",
+      "question": "Which instruction in 8085 is used to perform 16-bit addition?",
+      "options": [
+        "A) ADD",
+        "B) ADC",
+        "C) DAD",
+        "D) ADI"
+      ],
+      "answer": "C",
+      "explanation": "DAD (Double Add) adds a 16-bit register pair to the HL register pair."
+    },
+    {
+      "id": "mp-q19",
+      "type": "mcq",
+      "difficulty": "medium",
+      "concept": "Timing",
+      "question": "The ALE (Address Latch Enable) signal is used to demultiplex the address/data bus.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "True",
+      "explanation": "ALE stays high during the first T-state of a machine cycle to latch the lower 8 bits of the address."
+    },
+    {
+      "id": "mp-q20",
+      "type": "mcq",
+      "difficulty": "medium",
+      "concept": "Logical Operations",
+      "question": "The 'XRA B' instruction performs which operation?",
+      "options": [
+        "A) A = A AND B",
+        "B) A = A OR B",
+        "C) A = A XOR B",
+        "D) A = NOT B"
+      ],
+      "answer": "C",
+      "explanation": "XRA stands for Exclusive OR with Accumulator."
+    },
+    {
+      "id": "mp-q21",
+      "type": "mcq",
+      "difficulty": "hard",
+      "concept": "Addressing Modes",
+      "question": "In 8086, 'MOV AX, [BX+SI+05H]' is an example of which addressing mode?",
+      "options": [
+        "A) Based Indexed",
+        "B) Relative Based Indexed",
+        "C) Indexed",
+        "D) Direct"
+      ],
+      "answer": "B",
+      "explanation": "It uses a base register (BX), an index register (SI), and a displacement (05H)."
+    },
+    {
+      "id": "mp-q22",
+      "type": "q&a",
+      "difficulty": "hard",
+      "concept": "Memory Addressing",
+      "question": "If the CS register is 1000H and IP is 2000H, what is the 20-bit physical address in 8086?",
+      "options": null,
+      "answer": "12000H",
+      "explanation": "Physical Address = (Segment * 10H) + Offset = (10000H) + 2000H = 12000H."
+    },
+    {
+      "id": "mp-q23",
+      "type": "mcq",
+      "difficulty": "hard",
+      "concept": "Instructions",
+      "question": "After the 'DAA' instruction, the value in the accumulator is adjusted to:",
+      "options": [
+        "A) Binary",
+        "B) Hexadecimal",
+        "C) Packed BCD",
+        "D) 2's complement"
+      ],
+      "answer": "C",
+      "explanation": "DAA (Decimal Adjust Accumulator) corrects the result of addition into a valid BCD number."
+    },
+    {
+      "id": "mp-q24",
+      "type": "mcq",
+      "difficulty": "hard",
+      "concept": "8086 Architecture",
+      "question": "Which signal in 8086 is used to differentiate between memory and I/O access?",
+      "options": [
+        "A) M/IO'",
+        "B) ALE",
+        "C) DEN'",
+        "D) DT/R'"
+      ],
+      "answer": "A",
+      "explanation": "M/IO' is high for memory access and low for I/O access."
+    },
+    {
+      "id": "mp-q25",
+      "type": "mcq",
+      "difficulty": "hard",
+      "concept": "Interrupts",
+      "question": "RIM and SIM instructions are used only for handling serial I/O in 8085.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "False",
+      "explanation": "While they are used for serial I/O (SID/SOD), they are also used for masking and checking the status of RST 7.5, 6.5, and 5.5 interrupts."
+    },
+    {
+      "id": "mp-q26",
+      "type": "mcq",
+      "difficulty": "hard",
+      "concept": "Timing",
+      "question": "How many T-states are required for the 'CALL' instruction in 8085?",
+      "options": [
+        "A) 12",
+        "B) 14",
+        "C) 18",
+        "D) 9"
+      ],
+      "answer": "C",
+      "explanation": "CALL involves Fetch (4), two Memory Reads (3+3), and two Stack Writes (3+3), plus internal operations, totaling 18 T-states."
+    },
+    {
+      "id": "mp-q27",
+      "type": "q&a",
+      "difficulty": "hard",
+      "concept": "Interfacing",
+      "question": "What is the function of the 'Mode 2' in 8255 PPI?",
+      "options": null,
+      "answer": "Bidirectional Bus I/O",
+      "explanation": "Mode 2 allows Port A to act as a bidirectional data bus with handshaking signals from Port C."
+    },
+    {
+      "id": "mp-q28",
+      "type": "mcq",
+      "difficulty": "hard",
+      "concept": "8086 Registers",
+      "question": "Which register is implicitly used as a counter for string and loop instructions in 8086?",
+      "options": [
+        "A) AX",
+        "B) BX",
+        "C) CX",
+        "D) DX"
+      ],
+      "answer": "C",
+      "explanation": "The CX (Count Register) is used by instructions like LOOP, REP, and string operations as a decrementing counter."
+    },
+    {
+      "id": "mp-q29",
+      "type": "mcq",
+      "difficulty": "hard",
+      "concept": "Arithmetic",
+      "question": "In 8086, the 'MUL' instruction can be used for both signed and unsigned multiplication.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "False",
+      "explanation": "MUL is for unsigned multiplication; IMUL is used for signed multiplication."
+    },
+    {
+      "id": "mp-q30",
+      "type": "mcq",
+      "difficulty": "hard",
+      "concept": "DMA",
+      "question": "The 'Cycle Stealing' mode in DMA refers to:",
+      "options": [
+        "A) CPU stealing cycles from DMA",
+        "B) DMA taking control of the bus for one machine cycle at a time",
+        "C) DMA stopping the clock",
+        "D) Overclocking the bus"
+      ],
+      "answer": "B",
+      "explanation": "In cycle stealing, the DMA controller transfers one byte and then gives control back to the CPU, allowing for interleaved processing."
+    }
+  ]
+}

@@ -1,0 +1,383 @@
+{
+  "subject": "Engineering Mathematics II",
+  "questions": [
+    {
+      "id": "math2_q01",
+      "concept": "Exact Differential Equation",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "A differential equation M(x,y)dx + N(x,y)dy = 0 is exact if:",
+      "options": [
+        "∂M/∂x = ∂N/∂y",
+        "∂M/∂y = ∂N/∂x",
+        "M = N",
+        "M + N = 0"
+      ],
+      "answer": "∂M/∂y = ∂N/∂x",
+      "explanation": "Exact differential equations satisfy the condition ∂M/∂y = ∂N/∂x."
+    },
+    {
+      "id": "math2_q02",
+      "concept": "Exact Differential Equation",
+      "difficulty": "medium",
+      "type": "short",
+      "question": "Define an exact differential equation.",
+      "answer": "An equation Mdx + Ndy = 0 is exact if ∂M/∂y = ∂N/∂x.",
+      "explanation": "This ensures the equation represents the total differential of some function."
+    },
+    {
+      "id": "math2_q03",
+      "concept": "Integrating Factor",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "An integrating factor is used to:",
+      "options": [
+        "Solve algebraic equations",
+        "Convert a non-exact differential equation into an exact one",
+        "Differentiate functions",
+        "Solve matrices"
+      ],
+      "answer": "Convert a non-exact differential equation into an exact one",
+      "explanation": "Multiplying by an integrating factor makes the equation exact."
+    },
+    {
+      "id": "math2_q04",
+      "concept": "Linear Differential Equation",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "The standard form of a first order linear differential equation is:",
+      "options": [
+        "dy/dx + Py = Q",
+        "dy/dx = Py + Qx",
+        "dy/dx + Px = Qy",
+        "dy/dx = x + y"
+      ],
+      "answer": "dy/dx + Py = Q",
+      "explanation": "This is the standard linear differential equation form."
+    },
+    {
+      "id": "math2_q05",
+      "concept": "Bernoulli Equation",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Bernoulli’s equation has the general form:",
+      "options": [
+        "dy/dx + Py = Qyⁿ",
+        "dy/dx = x + y",
+        "dy/dx + Px = Q",
+        "dy/dx = y²"
+      ],
+      "answer": "dy/dx + Py = Qyⁿ",
+      "explanation": "Bernoulli equations are nonlinear but reducible to linear form."
+    },
+    {
+      "id": "math2_q06",
+      "concept": "Bernoulli Equation",
+      "difficulty": "medium",
+      "type": "short",
+      "question": "How is Bernoulli’s equation converted into linear form?",
+      "answer": "Using substitution v = y^(1-n).",
+      "explanation": "This substitution converts the equation into linear form."
+    },
+    {
+      "id": "math2_q07",
+      "concept": "Complementary Function",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "The complementary function of a differential equation corresponds to:",
+      "options": [
+        "Homogeneous solution",
+        "Particular solution",
+        "General solution",
+        "Numerical solution"
+      ],
+      "answer": "Homogeneous solution",
+      "explanation": "Complementary function is obtained from the homogeneous equation."
+    },
+    {
+      "id": "math2_q08",
+      "concept": "Particular Integral",
+      "difficulty": "medium",
+      "type": "short",
+      "question": "What is a particular integral in differential equations?",
+      "answer": "A specific solution satisfying the non-homogeneous equation.",
+      "explanation": "It complements the complementary function."
+    },
+    {
+      "id": "math2_q09",
+      "concept": "Variation of Parameters",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Variation of parameters is used to find:",
+      "options": [
+        "Complementary function",
+        "Particular integral",
+        "Exact solution",
+        "Laplace transform"
+      ],
+      "answer": "Particular integral",
+      "explanation": "It is a method to determine particular solutions."
+    },
+    {
+      "id": "math2_q10",
+      "concept": "Gamma Function",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "Gamma function Γ(n) for positive integer n equals:",
+      "options": [
+        "(n-1)!",
+        "n!",
+        "n²",
+        "1/n"
+      ],
+      "answer": "(n-1)!",
+      "explanation": "Gamma function generalizes factorial."
+    },
+    {
+      "id": "math2_q11",
+      "concept": "Beta Function",
+      "difficulty": "medium",
+      "type": "short",
+      "question": "Write the relation between Beta and Gamma functions.",
+      "answer": "B(m,n) = Γ(m)Γ(n) / Γ(m+n)",
+      "explanation": "This is a fundamental property."
+    },
+    {
+      "id": "math2_q12",
+      "concept": "Differentiation Under Integral Sign",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Differentiation under the integral sign is also known as:",
+      "options": [
+        "Leibniz rule",
+        "Gauss rule",
+        "Euler rule",
+        "Taylor rule"
+      ],
+      "answer": "Leibniz rule",
+      "explanation": "Leibniz rule allows differentiation inside integrals."
+    },
+    {
+      "id": "math2_q13",
+      "concept": "Rectification of Curves",
+      "difficulty": "medium",
+      "type": "short",
+      "question": "What is rectification of a curve?",
+      "answer": "Finding the length of a curve.",
+      "explanation": "It involves calculating arc length."
+    },
+    {
+      "id": "math2_q14",
+      "concept": "Double Integration",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "Double integration is mainly used to compute:",
+      "options": [
+        "Area",
+        "Velocity",
+        "Current",
+        "Force"
+      ],
+      "answer": "Area",
+      "explanation": "Double integrals commonly calculate area."
+    },
+    {
+      "id": "math2_q15",
+      "concept": "Double Integration",
+      "difficulty": "medium",
+      "type": "short",
+      "question": "What is the purpose of changing the order of integration?",
+      "answer": "To simplify evaluation of the integral.",
+      "explanation": "Changing order may make limits easier."
+    },
+    {
+      "id": "math2_q16",
+      "concept": "Polar Double Integration",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "In polar coordinates, the area element is:",
+      "options": [
+        "r dr dθ",
+        "dr dθ",
+        "r² dr",
+        "θ dr"
+      ],
+      "answer": "r dr dθ",
+      "explanation": "Jacobian transformation introduces r."
+    },
+    {
+      "id": "math2_q17",
+      "concept": "Triple Integration",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "Triple integration is used to compute:",
+      "options": [
+        "Volume",
+        "Area",
+        "Length",
+        "Time"
+      ],
+      "answer": "Volume",
+      "explanation": "Triple integrals extend integration to 3D space."
+    },
+    {
+      "id": "math2_q18",
+      "concept": "Triple Integration",
+      "difficulty": "medium",
+      "type": "short",
+      "question": "Name three coordinate systems used for triple integration.",
+      "answer": "Cartesian, Cylindrical, Spherical",
+      "explanation": "These coordinate systems simplify volume calculations."
+    },
+    {
+      "id": "math2_q19",
+      "concept": "Euler Method",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "Euler’s method is used for:",
+      "options": [
+        "Numerical solution of differential equations",
+        "Integration",
+        "Matrix multiplication",
+        "Probability"
+      ],
+      "answer": "Numerical solution of differential equations",
+      "explanation": "It approximates solutions step by step."
+    },
+    {
+      "id": "math2_q20",
+      "concept": "Euler Method",
+      "difficulty": "medium",
+      "type": "short",
+      "question": "What is the main limitation of Euler’s method?",
+      "answer": "Low accuracy for large step sizes.",
+      "explanation": "Error accumulates quickly."
+    },
+    {
+      "id": "math2_q21",
+      "concept": "Modified Euler Method",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Modified Euler method improves accuracy by:",
+      "options": [
+        "Averaging slopes",
+        "Reducing steps",
+        "Increasing iterations",
+        "Ignoring error"
+      ],
+      "answer": "Averaging slopes",
+      "explanation": "It averages predicted and corrected slopes."
+    },
+    {
+      "id": "math2_q22",
+      "concept": "Runge Kutta Method",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "The most commonly used Runge-Kutta method is:",
+      "options": [
+        "Fourth order",
+        "Second order",
+        "First order",
+        "Third order"
+      ],
+      "answer": "Fourth order",
+      "explanation": "RK4 provides high accuracy."
+    },
+    {
+      "id": "math2_q23",
+      "concept": "Runge Kutta Method",
+      "difficulty": "hard",
+      "type": "short",
+      "question": "Why is RK4 preferred over Euler’s method?",
+      "answer": "Higher accuracy with manageable computational effort.",
+      "explanation": "RK4 reduces truncation error significantly."
+    },
+    {
+      "id": "math2_q24",
+      "concept": "Trapezoidal Rule",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "The trapezoidal rule approximates area using:",
+      "options": [
+        "Trapezoids",
+        "Triangles",
+        "Rectangles",
+        "Circles"
+      ],
+      "answer": "Trapezoids",
+      "explanation": "Area under curve approximated by trapezoids."
+    },
+    {
+      "id": "math2_q25",
+      "concept": "Simpson Rule",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Simpson’s 1/3 rule approximates curves using:",
+      "options": [
+        "Parabolas",
+        "Straight lines",
+        "Circles",
+        "Ellipses"
+      ],
+      "answer": "Parabolas",
+      "explanation": "Simpson rule fits quadratic curves."
+    },
+    {
+      "id": "math2_q26",
+      "concept": "Simpson Rule",
+      "difficulty": "medium",
+      "type": "short",
+      "question": "What is the requirement for Simpson’s 1/3 rule?",
+      "answer": "Number of intervals must be even.",
+      "explanation": "Simpson’s rule requires even subdivisions."
+    },
+    {
+      "id": "math2_q27",
+      "concept": "Simpson 3/8 Rule",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Simpson’s 3/8 rule requires intervals to be:",
+      "options": [
+        "Multiple of 3",
+        "Even",
+        "Odd",
+        "Prime"
+      ],
+      "answer": "Multiple of 3",
+      "explanation": "The rule divides interval into groups of three."
+    },
+    {
+      "id": "math2_q28",
+      "concept": "Numerical Integration",
+      "difficulty": "easy",
+      "type": "short",
+      "question": "Why is numerical integration used?",
+      "answer": "When analytical integration is difficult or impossible.",
+      "explanation": "Numerical methods approximate integral values."
+    },
+    {
+      "id": "math2_q29",
+      "concept": "Engineering Application",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Differential equations are widely used in:",
+      "options": [
+        "Engineering systems",
+        "Painting",
+        "Music",
+        "Literature"
+      ],
+      "answer": "Engineering systems",
+      "explanation": "They model dynamic systems."
+    },
+    {
+      "id": "math2_q30",
+      "concept": "Engineering Application",
+      "difficulty": "medium",
+      "type": "short",
+      "question": "Give one engineering application of differential equations.",
+      "answer": "Electrical circuits (RL, RC circuits).",
+      "explanation": "Differential equations model current and voltage behavior."
+    }
+  ]
+}

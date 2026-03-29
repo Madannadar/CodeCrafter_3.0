@@ -1,0 +1,275 @@
+{
+  "subject": "Engineering Physics 1",
+  "questions": [
+    {
+      "id": "phy1_q1",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "concept": "De Broglie Hypothesis",
+      "question": "State the de Broglie hypothesis.",
+      "answer": "Every moving particle is associated with a wave called matter wave with wavelength λ = h/p.",
+      "explanation": "Louis de Broglie proposed that particles such as electrons exhibit wave properties."
+    },
+    {
+      "id": "phy1_q2",
+      "type": "numerical",
+      "difficulty": "medium",
+      "concept": "De Broglie Wavelength",
+      "question": "Write the formula for de Broglie wavelength.",
+      "answer": "λ = h/p = h/mv",
+      "explanation": "It relates wavelength with momentum of a particle."
+    },
+    {
+      "id": "phy1_q3",
+      "type": "conceptual",
+      "difficulty": "medium",
+      "concept": "Matter Waves",
+      "question": "List two properties of matter waves.",
+      "answer": "They are associated with moving particles and exhibit diffraction and interference.",
+      "explanation": "Matter waves show wave-like behavior similar to light."
+    },
+    {
+      "id": "phy1_q4",
+      "type": "conceptual",
+      "difficulty": "medium",
+      "concept": "Wave Packet",
+      "question": "What is a wave packet?",
+      "answer": "A superposition of waves that represents a localized particle.",
+      "explanation": "Used to describe a particle with definite position."
+    },
+    {
+      "id": "phy1_q5",
+      "type": "conceptual",
+      "difficulty": "medium",
+      "concept": "Group Velocity",
+      "question": "Define group velocity.",
+      "answer": "Velocity with which the wave packet propagates.",
+      "explanation": "It corresponds to particle velocity."
+    },
+    {
+      "id": "phy1_q6",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "concept": "Wave Function",
+      "question": "What does a wave function represent?",
+      "answer": "Probability amplitude of finding a particle.",
+      "explanation": "The square of wave function gives probability density."
+    },
+    {
+      "id": "phy1_q7",
+      "type": "conceptual",
+      "difficulty": "medium",
+      "concept": "Probability Density",
+      "question": "What does |ψ|² represent?",
+      "answer": "Probability density of finding a particle.",
+      "explanation": "Physical interpretation of wave function."
+    },
+    {
+      "id": "phy1_q8",
+      "type": "conceptual",
+      "difficulty": "medium",
+      "concept": "Heisenberg Uncertainty Principle",
+      "question": "State Heisenberg uncertainty principle.",
+      "answer": "Δx Δp ≥ h/4π",
+      "explanation": "Position and momentum cannot both be known exactly."
+    },
+    {
+      "id": "phy1_q9",
+      "type": "conceptual",
+      "difficulty": "medium",
+      "concept": "Electron in Nucleus",
+      "question": "Why can't electrons exist inside nucleus?",
+      "answer": "Due to uncertainty principle the required momentum would be extremely large.",
+      "explanation": "Confining electron in nucleus violates uncertainty relation."
+    },
+    {
+      "id": "phy1_q10",
+      "type": "conceptual",
+      "difficulty": "medium",
+      "concept": "Schrodinger Equation",
+      "question": "What is the time dependent Schrodinger equation?",
+      "answer": "iħ ∂ψ/∂t = Hψ",
+      "explanation": "Describes evolution of quantum state."
+    },
+    {
+      "id": "phy1_q11",
+      "type": "conceptual",
+      "difficulty": "medium",
+      "concept": "Time Independent Schrodinger Equation",
+      "question": "Write the time independent Schrodinger equation.",
+      "answer": "−ħ²/2m ∇²ψ + Vψ = Eψ",
+      "explanation": "Used for stationary states."
+    },
+    {
+      "id": "phy1_q12",
+      "type": "conceptual",
+      "difficulty": "medium",
+      "concept": "Particle in Infinite Potential Well",
+      "question": "What is the boundary condition for particle in infinite potential well?",
+      "answer": "Wave function ψ = 0 at boundaries.",
+      "explanation": "Particle cannot exist outside the well."
+    },
+    {
+      "id": "phy1_q13",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "concept": "Quantum Computing",
+      "question": "What is the basic unit of quantum computing?",
+      "answer": "Qubit",
+      "explanation": "Quantum bit can exist in superposition."
+    },
+    {
+      "id": "phy1_q14",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "concept": "Miller Indices",
+      "question": "What do Miller indices represent?",
+      "answer": "Orientation of crystal planes.",
+      "explanation": "Used in crystallography."
+    },
+    {
+      "id": "phy1_q15",
+      "type": "numerical",
+      "difficulty": "medium",
+      "concept": "Interplanar Spacing",
+      "question": "What does interplanar spacing represent?",
+      "answer": "Distance between parallel crystal planes.",
+      "explanation": "Important in X-ray diffraction."
+    },
+    {
+      "id": "phy1_q16",
+      "type": "conceptual",
+      "difficulty": "medium",
+      "concept": "Bragg Law",
+      "question": "State Bragg's law.",
+      "answer": "2d sinθ = nλ",
+      "explanation": "Condition for constructive interference of X-rays."
+    },
+    {
+      "id": "phy1_q17",
+      "type": "conceptual",
+      "difficulty": "medium",
+      "concept": "X-ray Diffraction",
+      "question": "What is X-ray diffraction used for?",
+      "answer": "Determining crystal structure.",
+      "explanation": "Based on scattering of X-rays by atoms."
+    },
+    {
+      "id": "phy1_q18",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "concept": "Fermi Level",
+      "question": "Define Fermi level.",
+      "answer": "Energy level where probability of electron occupancy is 50%.",
+      "explanation": "Important in semiconductor physics."
+    },
+    {
+      "id": "phy1_q19",
+      "type": "conceptual",
+      "difficulty": "medium",
+      "concept": "Fermi Dirac Distribution",
+      "question": "What does Fermi-Dirac distribution describe?",
+      "answer": "Probability of electron occupancy in energy states.",
+      "explanation": "Used in quantum statistics."
+    },
+    {
+      "id": "phy1_q20",
+      "type": "conceptual",
+      "difficulty": "medium",
+      "concept": "Hall Effect",
+      "question": "What is Hall effect used for?",
+      "answer": "Determining type and density of charge carriers.",
+      "explanation": "Voltage generated perpendicular to current."
+    },
+    {
+      "id": "phy1_q21",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "concept": "LED",
+      "question": "What principle does LED work on?",
+      "answer": "Electroluminescence.",
+      "explanation": "Light emitted when electrons recombine with holes."
+    },
+    {
+      "id": "phy1_q22",
+      "type": "conceptual",
+      "difficulty": "medium",
+      "concept": "Zener Diode",
+      "question": "What is the main use of Zener diode?",
+      "answer": "Voltage regulation.",
+      "explanation": "Operates in reverse breakdown region."
+    },
+    {
+      "id": "phy1_q23",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "concept": "Thin Film Interference",
+      "question": "What causes colours in soap bubbles?",
+      "answer": "Interference of light in thin films.",
+      "explanation": "Different wavelengths interfere constructively."
+    },
+    {
+      "id": "phy1_q24",
+      "type": "conceptual",
+      "difficulty": "medium",
+      "concept": "Newton Rings",
+      "question": "What are Newton's rings?",
+      "answer": "Circular interference fringes formed between lens and glass plate.",
+      "explanation": "Due to thin film interference."
+    },
+    {
+      "id": "phy1_q25",
+      "type": "conceptual",
+      "difficulty": "medium",
+      "concept": "Superconductors",
+      "question": "Define critical temperature.",
+      "answer": "Temperature below which a material becomes superconducting.",
+      "explanation": "Resistance becomes zero."
+    },
+    {
+      "id": "phy1_q26",
+      "type": "conceptual",
+      "difficulty": "medium",
+      "concept": "Meissner Effect",
+      "question": "What is Meissner effect?",
+      "answer": "Expulsion of magnetic field from superconductor.",
+      "explanation": "Occurs below critical temperature."
+    },
+    {
+      "id": "phy1_q27",
+      "type": "conceptual",
+      "difficulty": "medium",
+      "concept": "Supercapacitors",
+      "question": "What is the advantage of supercapacitors?",
+      "answer": "High power density and fast charging.",
+      "explanation": "Used in energy storage."
+    },
+    {
+      "id": "phy1_q28",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "concept": "Liquid Crystals",
+      "question": "Name three phases of liquid crystals.",
+      "answer": "Nematic, Smectic, Cholesteric.",
+      "explanation": "Different molecular arrangements."
+    },
+    {
+      "id": "phy1_q29",
+      "type": "conceptual",
+      "difficulty": "medium",
+      "concept": "Magnetoresistance",
+      "question": "What is magnetoresistance?",
+      "answer": "Change in electrical resistance due to magnetic field.",
+      "explanation": "Used in sensors and storage devices."
+    },
+    {
+      "id": "phy1_q30",
+      "type": "conceptual",
+      "difficulty": "medium",
+      "concept": "Spintronics",
+      "question": "What does spintronics utilize?",
+      "answer": "Electron spin along with charge.",
+      "explanation": "Used in advanced memory devices."
+    }
+  ]
+}

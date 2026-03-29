@@ -14,6 +14,7 @@ mongoose.connect(process.env.MONGO_URI)
 
 // Define Routes
 app.use('/api/auth', require('./routes/auth'));
+app.use('/api/quiz', require('./routes/quiz'));
 app.use('/api', require('./routes/api'));
 
 // Test Route

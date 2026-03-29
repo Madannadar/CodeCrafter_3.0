@@ -1,0 +1,215 @@
+{
+  "subject": "Computer Programming",
+  "questions": [
+    {
+      "id": "cp_q1",
+      "unit": "Introduction",
+      "question": "Explain the basic components of a computer system.",
+      "type": "conceptual",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q2",
+      "unit": "Introduction",
+      "question": "Define an algorithm and explain its characteristics.",
+      "type": "conceptual",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q3",
+      "unit": "Introduction",
+      "question": "Draw a flowchart to find the sum of two numbers.",
+      "type": "problem",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q4",
+      "unit": "Fundamentals of C Programming",
+      "question": "Explain keywords, identifiers, constants, and variables in C.",
+      "type": "conceptual",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q5",
+      "unit": "Fundamentals of C Programming",
+      "question": "Explain different data types in C with examples.",
+      "type": "conceptual",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q6",
+      "unit": "Fundamentals of C Programming",
+      "question": "Explain different operators in C programming.",
+      "type": "conceptual",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q7",
+      "unit": "Fundamentals of C Programming",
+      "question": "Write a C program to perform addition of two numbers using basic input and output operations.",
+      "type": "program",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q8",
+      "unit": "Fundamentals of C Programming",
+      "question": "Explain expressions and precedence of operators in C.",
+      "type": "conceptual",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q9",
+      "unit": "Fundamentals of C Programming",
+      "question": "Explain commonly used in-built functions in C.",
+      "type": "conceptual",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q10",
+      "unit": "Control Structures",
+      "question": "Explain the concept of control structures in C programming.",
+      "type": "conceptual",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q11",
+      "unit": "Control Structures",
+      "question": "Write a C program using if statement to check whether a number is positive or negative.",
+      "type": "program",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q12",
+      "unit": "Control Structures",
+      "question": "Write a C program using if-else to find the larger of two numbers.",
+      "type": "program",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q13",
+      "unit": "Control Structures",
+      "question": "Write a C program using nested if-else to find the largest of three numbers.",
+      "type": "program",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q14",
+      "unit": "Control Structures",
+      "question": "Write a C program using else-if ladder to determine grade based on marks.",
+      "type": "program",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q15",
+      "unit": "Control Structures",
+      "question": "Explain switch statement with an example program.",
+      "type": "program",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q16",
+      "unit": "Control Structures",
+      "question": "Write a C program to print numbers from 1 to 10 using a for loop.",
+      "type": "program",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q17",
+      "unit": "Control Structures",
+      "question": "Write a C program to calculate factorial using while loop.",
+      "type": "program",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q18",
+      "unit": "Control Structures",
+      "question": "Write a C program demonstrating do-while loop.",
+      "type": "program",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q19",
+      "unit": "Control Structures",
+      "question": "Explain the use of break and continue statements with examples.",
+      "type": "conceptual",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q20",
+      "unit": "Functions",
+      "question": "Explain the concept of functions in C programming.",
+      "type": "conceptual",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q21",
+      "unit": "Functions",
+      "question": "Explain function prototype, definition, and function call with example.",
+      "type": "conceptual",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q22",
+      "unit": "Functions",
+      "question": "Write a C program to find the sum of two numbers using a user-defined function.",
+      "type": "program",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q23",
+      "unit": "Functions",
+      "question": "Write a C program to calculate factorial using recursion.",
+      "type": "program",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q24",
+      "unit": "Arrays and Strings",
+      "question": "Explain the concept of arrays in C programming.",
+      "type": "conceptual",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q25",
+      "unit": "Arrays and Strings",
+      "question": "Write a C program to find the largest element in a one-dimensional array.",
+      "type": "program",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q26",
+      "unit": "Arrays and Strings",
+      "question": "Write a C program to perform addition of two matrices using two-dimensional arrays.",
+      "type": "program",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q27",
+      "unit": "Arrays and Strings",
+      "question": "Explain string declaration and initialization in C.",
+      "type": "conceptual",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q28",
+      "unit": "Arrays and Strings",
+      "question": "Write a C program to demonstrate string functions such as strlen and strcpy.",
+      "type": "program",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q29",
+      "unit": "Structure and Union",
+      "question": "Explain the concept of structures and unions in C with examples.",
+      "type": "conceptual",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cp_q30",
+      "unit": "Pointers",
+      "question": "Explain pointers, pointer declaration, initialization, dereferencing, and dynamic memory allocation in C.",
+      "type": "conceptual",
+      "difficulty": "medium"
+    }
+  ]
+}

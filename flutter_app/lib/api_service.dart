@@ -4,13 +4,16 @@ import 'package:flutter/foundation.dart';
 
 class ApiService {
   final Dio _dio = Dio();
-  final String _baseUrl = "http://10.0.2.2:8000";
+  /// Node/Express API (quiz + auth). Android emulator: 10.0.2.2 → host loopback.
+  final String _expressBase = "http://10.0.2.2:5000/api";
+  /// Python FastAPI (chat, prerequisite graph).
+  final String _fastApiBase = "http://10.0.2.2:8000";
 
   // Fetches SubjectData for the graph using POST /json as per spec
   Future<SubjectData> fetchSubjectData(String subject) async {
     try {
       final response = await _dio.post(
-        '$_baseUrl/json',
+        '$_fastApiBase/json',
         data: {'subject': subject},
       );
       if (response.statusCode == 200) {
@@ -38,7 +41,7 @@ class ApiService {
   Future<dynamic> chat(String? message, String? subject) async {
     try {
       final response = await _dio.post(
-        '$_baseUrl/chat',
+        '$_fastApiBase/chat',
         data: {
           'message': message,
           'subject': subject,
@@ -56,10 +59,10 @@ class ApiService {
     }
   }
 
-  // Fetches QuizData for a specific subject
+  /// Quiz JSON for one subject (same dataset as the web app).
   Future<QuizData> fetchQuizData(String subjectId) async {
     try {
-      final response = await _dio.get('$_baseUrl/quiz/$subjectId');
+      final response = await _dio.get('$_expressBase/quiz/subjects/$subjectId');
       if (response.statusCode == 200) {
         return QuizData.fromJson(response.data);
       } else {

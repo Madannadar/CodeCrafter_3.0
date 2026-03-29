@@ -1,5 +1,5 @@
-// Additional questions loaded into subjects at runtime
-import { subjects, type Question } from './quizData';
+// Additional questions merged into subjects after API load (when a subject has no questions yet)
+import type { Question, Subject } from './quizData';
 
 const phy1Questions: Question[] = [
   { id:'phy1_q1', type:'conceptual', difficulty:'easy', concept:'De Broglie Hypothesis', question:'State the de Broglie hypothesis.', answer:'Every moving particle is associated with a wave called matter wave with wavelength λ = h/p.', explanation:'Louis de Broglie proposed that particles exhibit wave properties.' },
@@ -67,8 +67,7 @@ const phy12Questions: Question[] = [
   { id:'PHY_30', type:'short', difficulty:'medium', concept:'de Broglie Wavelength', question:'de Broglie wavelength decreases when particle velocity increases.', answer:'True', explanation:'Since lambda = h/mv, wavelength decreases with velocity.' },
 ];
 
-// Load questions into subjects
-export function loadAllQuestions() {
+export function applyExtraQuestions(subjects: Subject[]) {
   const phy1 = subjects.find(s => s.id === 'phy1');
   if (phy1 && phy1.questions.length === 0) phy1.questions = phy1Questions;
 
@@ -432,7 +431,3 @@ export const cpQuestions: Question[] = [
   { id: 'cp_q29', type: 'theory', difficulty: 'medium', concept: 'Structure and Union', question: 'Explain the concept of structures and unions in C with examples.', answer: 'Refer to course materials.', explanation: 'Detailed explanation is covered in the standard engineering syllabus.' },
   { id: 'cp_q30', type: 'theory', difficulty: 'medium', concept: 'Pointers', question: 'Explain pointers, pointer declaration, initialization, dereferencing, and dynamic memory allocation in C.', answer: 'Refer to course materials.', explanation: 'Detailed explanation is covered in the standard engineering syllabus.' },
 ];
-
-
-// Initialize
-loadAllQuestions();
