@@ -19,7 +19,12 @@
     "moduleDetection": "force",
     "noEmit": true,
     "jsx": "react-jsx",
-    /* Linting - ADD THESE TWO LINES */
+    /* Add these lines to fix the new errors */
+    "types": [
+      "vite/client"
+    ],
+    "allowArbitraryExtensions": true,
+    /* Your previous fixes */
     "strict": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
