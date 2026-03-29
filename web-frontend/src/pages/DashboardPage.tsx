@@ -289,6 +289,7 @@ export default function DashboardPage() {
   const headerRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const chatEndRef = useRef<HTMLDivElement>(null);
+  const hasInitializedRef = useRef(false);
 
   const appendMessage = useCallback((role: MessageRole, content: string) => {
     if (!content) return;
@@ -423,12 +424,15 @@ export default function DashboardPage() {
   }, [messages]);
 
   useEffect(() => {
+    if (hasInitializedRef.current) return;
     if (messages.length === 0 && chatState.step === 'start' && !isSending) {
+      hasInitializedRef.current = true;
       void initializeConversation();
     }
   }, [messages.length, chatState.step, isSending, initializeConversation]);
 
   const resetConversation = useCallback(() => {
+    hasInitializedRef.current = false;
     sessionStorage.removeItem(CHAT_MESSAGES_KEY);
     sessionStorage.removeItem(CHAT_STATE_KEY);
     sessionStorage.removeItem(QUIZ_RESULT_KEY);
