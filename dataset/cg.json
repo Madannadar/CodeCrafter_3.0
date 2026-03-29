@@ -1,0 +1,411 @@
+{
+    "subject": "Computer Graphics",
+    "questions": [
+        {
+            "id": "cg-q1",
+            "type": "MCQ",
+            "difficulty": "Easy",
+            "concept": "Display Devices",
+            "question": "Which of the following is the smallest addressable unit on a computer screen?",
+            "options": [
+                "A) Resolution",
+                "B) Pixel",
+                "C) Bit",
+                "D) Point"
+            ],
+            "answer": "B",
+            "explanation": "A pixel (picture element) is the smallest physical point in a raster image or on a display device."
+        },
+        {
+            "id": "cg-q2",
+            "type": "True/False",
+            "difficulty": "Easy",
+            "concept": "Color Models",
+            "question": "The RGB color model is an additive color model.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": "True",
+            "explanation": "In RGB, red, green, and blue light are added together in various ways to reproduce a broad array of colors."
+        },
+        {
+            "id": "cg-q3",
+            "type": "MCQ",
+            "difficulty": "Easy",
+            "concept": "Scan Conversion",
+            "question": "Which algorithm is commonly used for drawing a line using integer arithmetic only?",
+            "options": [
+                "A) DDA Algorithm",
+                "B) Bresenham's Algorithm",
+                "C) Midpoint Circle Algorithm",
+                "D) Painter's Algorithm"
+            ],
+            "answer": "B",
+            "explanation": "Bresenham's algorithm is efficient because it uses only integer addition, subtraction, and bit shifting."
+        },
+        {
+            "id": "cg-q4",
+            "type": "Q&A",
+            "difficulty": "Easy",
+            "concept": "Aspect Ratio",
+            "question": "What is the definition of Aspect Ratio?",
+            "options": null,
+            "answer": "The ratio of the width of an image to its height.",
+            "explanation": "For example, an aspect ratio of 16:9 means the width is 16 units for every 9 units of height."
+        },
+        {
+            "id": "cg-q5",
+            "type": "MCQ",
+            "difficulty": "Easy",
+            "concept": "Transformations",
+            "question": "Moving an object from one position to another is called:",
+            "options": [
+                "A) Rotation",
+                "B) Scaling",
+                "C) Translation",
+                "D) Shearing"
+            ],
+            "answer": "C",
+            "explanation": "Translation moves every point of a figure or a space by the same distance in a given direction."
+        },
+        {
+            "id": "cg-q6",
+            "type": "True/False",
+            "difficulty": "Easy",
+            "concept": "Clipping",
+            "question": "Clipping is the process of removing parts of a scene that are outside the viewing window.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": "True",
+            "explanation": "Clipping ensures that only the relevant portion of the graphics data is processed for the display."
+        },
+        {
+            "id": "cg-q7",
+            "type": "MCQ",
+            "difficulty": "Easy",
+            "concept": "Graphics Software",
+            "question": "What does API stand for in the context of Graphics libraries like OpenGL?",
+            "options": [
+                "A) Applied Processing Interface",
+                "B) Application Programming Interface",
+                "C) Array Programming Information",
+                "D) Automatic Picture Interconnection"
+            ],
+            "answer": "B",
+            "explanation": "An API is a set of functions and procedures allowing the creation of applications that access features of an operating system or service."
+        },
+        {
+            "id": "cg-q8",
+            "type": "Q&A",
+            "difficulty": "Easy",
+            "concept": "Rendering",
+            "question": "What is 'Frame Buffer'?",
+            "options": null,
+            "answer": "A dedicated memory area that stores the intensity values for all screen pixels.",
+            "explanation": "The video controller reads this buffer to refresh the screen."
+        },
+        {
+            "id": "cg-q9",
+            "type": "MCQ",
+            "difficulty": "Easy",
+            "concept": "2D Transformations",
+            "question": "Scaling an object by a factor of 1 results in:",
+            "options": [
+                "A) Double size",
+                "B) Half size",
+                "C) No change",
+                "D) Moving the object"
+            ],
+            "answer": "C",
+            "explanation": "A scaling factor of 1 (Sx=1, Sy=1) maintains the original dimensions of the object."
+        },
+        {
+            "id": "cg-q10",
+            "type": "True/False",
+            "difficulty": "Easy",
+            "concept": "Hidden Surfaces",
+            "question": "The Z-buffer algorithm is used for detecting visible surfaces.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": "True",
+            "explanation": "It compares the depth of pixels to determine which one is closer to the viewer."
+        },
+        {
+            "id": "cg-q11",
+            "type": "MCQ",
+            "difficulty": "Medium",
+            "concept": "Scan Conversion",
+            "question": "In the DDA line drawing algorithm, what is the main disadvantage?",
+            "options": [
+                "A) It uses only integers",
+                "B) It involves floating-point additions and rounding",
+                "C) It is too slow for lines",
+                "D) It cannot draw vertical lines"
+            ],
+            "answer": "B",
+            "explanation": "The accumulation of floating-point values requires rounding at each step, which is computationally expensive compared to Bresenham's."
+        },
+        {
+            "id": "cg-q12",
+            "type": "MCQ",
+            "difficulty": "Medium",
+            "concept": "Transformations",
+            "question": "To rotate an object about an arbitrary point (x, y), the sequence of basic transformations is:",
+            "options": [
+                "A) Rotate, Translate",
+                "B) Translate to Origin, Rotate, Translate back",
+                "C) Scale, Rotate, Translate",
+                "D) Translation only"
+            ],
+            "answer": "B",
+            "explanation": "Standard rotation matrices are defined around the origin. Thus, you must move the pivot point to (0,0), rotate, then move it back."
+        },
+        {
+            "id": "cg-q13",
+            "type": "Q&A",
+            "difficulty": "Medium",
+            "concept": "Clipping",
+            "question": "What is the 4-bit region code for a point inside the window in Cohen-Sutherland clipping?",
+            "options": null,
+            "answer": "0000",
+            "explanation": "Each bit represents Top, Bottom, Right, Left. If all are zero, the point is within all boundaries."
+        },
+        {
+            "id": "cg-q14",
+            "type": "MCQ",
+            "difficulty": "Medium",
+            "concept": "Projections",
+            "question": "Which projection does not preserve the parallel nature of lines?",
+            "options": [
+                "A) Orthographic",
+                "B) Isometric",
+                "C) Perspective",
+                "D) Oblique"
+            ],
+            "answer": "C",
+            "explanation": "In perspective projection, parallel lines converge at a vanishing point to mimic human vision."
+        },
+        {
+            "id": "cg-q15",
+            "type": "True/False",
+            "difficulty": "Medium",
+            "concept": "Antialiasing",
+            "question": "Antialiasing techniques are used to reduce 'jaggies' on a screen.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": "True",
+            "explanation": "Antialiasing smooths the appearance of stair-step edges by blending pixel colors."
+        },
+        {
+            "id": "cg-q16",
+            "type": "MCQ",
+            "difficulty": "Medium",
+            "concept": "Shading",
+            "question": "Which shading method interpolates the surface normal across the polygon?",
+            "options": [
+                "A) Flat Shading",
+                "B) Gouraud Shading",
+                "C) Phong Shading",
+                "D) Constant Shading"
+            ],
+            "answer": "C",
+            "explanation": "Phong shading interpolates normals to calculate intensity at each pixel, providing better highlights than Gouraud shading (which interpolates colors)."
+        },
+        {
+            "id": "cg-q17",
+            "type": "Q&A",
+            "difficulty": "Medium",
+            "concept": "3D Graphics",
+            "question": "What is 'Back-Face Culling'?",
+            "options": null,
+            "answer": "A process that removes polygons that are facing away from the viewer.",
+            "explanation": "It reduces the number of polygons that need to be rendered by identifying surfaces whose normals point away from the camera."
+        },
+        {
+            "id": "cg-q18",
+            "type": "MCQ",
+            "difficulty": "Medium",
+            "concept": "Curves",
+            "question": "A Bezier curve of degree 'n' is defined by how many control points?",
+            "options": [
+                "A) n",
+                "B) n - 1",
+                "C) n + 1",
+                "D) 2n"
+            ],
+            "answer": "C",
+            "explanation": "A Bezier curve with n+1 control points results in a polynomial of degree n."
+        },
+        {
+            "id": "cg-q19",
+            "type": "True/False",
+            "difficulty": "Medium",
+            "concept": "Color Models",
+            "question": "The CMYK model is used primarily for digital displays.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": "False",
+            "explanation": "CMYK (Cyan, Magenta, Yellow, Black) is a subtractive model used for printing; RGB is used for displays."
+        },
+        {
+            "id": "cg-q20",
+            "type": "MCQ",
+            "difficulty": "Medium",
+            "concept": "Illumination",
+            "question": "Specular reflection is responsible for which visual effect?",
+            "options": [
+                "A) General brightness",
+                "B) Rough surface appearance",
+                "C) Shiny highlights",
+                "D) Shadows"
+            ],
+            "answer": "C",
+            "explanation": "Specular reflection is the mirror-like reflection of light from a surface, creating 'hot spots'."
+        },
+        {
+            "id": "cg-q21",
+            "type": "MCQ",
+            "difficulty": "Hard",
+            "concept": "Homogeneous Coordinates",
+            "question": "Why are 3x3 matrices used for 2D transformations instead of 2x2?",
+            "options": [
+                "A) For better resolution",
+                "B) To include translation in matrix multiplication",
+                "C) To handle 3D objects",
+                "D) To avoid rounding errors"
+            ],
+            "answer": "B",
+            "explanation": "Translation is an additive operation. By using homogeneous coordinates (3x3), translation can be represented as a matrix multiplication, allowing for composition."
+        },
+        {
+            "id": "cg-q22",
+            "type": "Q&A",
+            "difficulty": "Hard",
+            "concept": "Clipping",
+            "question": "Explain the Sutherland-Hodgman algorithm.",
+            "options": null,
+            "answer": "An algorithm used for clipping polygons against a rectangular window.",
+            "explanation": "It processes the polygon by clipping it sequentially against each edge of the window (Left, Right, Top, Bottom)."
+        },
+        {
+            "id": "cg-q23",
+            "type": "MCQ",
+            "difficulty": "Hard",
+            "concept": "Curves",
+            "question": "Which property of B-spline curves makes them superior to Bezier curves for complex modeling?",
+            "options": [
+                "A) Global control",
+                "B) Local control",
+                "C) They always pass through all points",
+                "D) Lower degree"
+            ],
+            "answer": "B",
+            "explanation": "B-splines offer local control; moving one control point only affects a small segment of the curve, whereas in Bezier curves, it affects the whole curve."
+        },
+        {
+            "id": "cg-q24",
+            "type": "MCQ",
+            "difficulty": "Hard",
+            "concept": "Visible Surface Detection",
+            "question": "The A-buffer method is an extension of which algorithm to handle transparency?",
+            "options": [
+                "A) Scan-line",
+                "B) Z-buffer",
+                "C) Ray Tracing",
+                "D) Warnock's"
+            ],
+            "answer": "B",
+            "explanation": "The A-buffer (anti-aliased, area-averaged, accumulation buffer) improves on Z-buffer by storing a list of surfaces per pixel to handle transparency and antialiasing."
+        },
+        {
+            "id": "cg-q25",
+            "type": "True/False",
+            "difficulty": "Hard",
+            "concept": "Ray Tracing",
+            "question": "Ray tracing is a recursive algorithm used to handle reflections and refractions.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": "True",
+            "explanation": "Rays are traced from the eye through pixels; when they hit a surface, new 'secondary' rays are spawned for reflection and refraction."
+        },
+        {
+            "id": "cg-q26",
+            "type": "MCQ",
+            "difficulty": "Hard",
+            "concept": "Fractals",
+            "question": "In fractal geometry, what is 'Self-Similarity'?",
+            "options": [
+                "A) The object is symmetrical",
+                "B) Parts of the object look like the whole object",
+                "C) The object is smooth",
+                "D) The object has integer dimension"
+            ],
+            "answer": "B",
+            "explanation": "Self-similarity means that a small part of the structure, when magnified, looks identical or similar to the larger structure."
+        },
+        {
+            "id": "cg-q27",
+            "type": "Q&A",
+            "difficulty": "Hard",
+            "concept": "Projections",
+            "question": "What is the difference between Parallel and Perspective projection matrices?",
+            "options": null,
+            "answer": "Parallel projection has a constant z-value projection; Perspective uses a 1/z factor for scaling.",
+            "explanation": "In perspective, the projected x and y coordinates are divided by z to create the foreshortening effect."
+        },
+        {
+            "id": "cg-q28",
+            "type": "MCQ",
+            "difficulty": "Hard",
+            "concept": "Hidden Surfaces",
+            "question": "The Painter's Algorithm fails in which situation?",
+            "options": [
+                "A) When polygons are far apart",
+                "B) When polygons are parallel to the screen",
+                "C) When polygons are cyclically overlapping",
+                "D) When there is only one polygon"
+            ],
+            "answer": "C",
+            "explanation": "If polygon A is in front of B, B is in front of C, and C is in front of A, the algorithm cannot determine a valid sorting order."
+        },
+        {
+            "id": "cg-q29",
+            "type": "True/False",
+            "difficulty": "Hard",
+            "concept": "Halftoning",
+            "question": "Halftoning is a process used to simulate continuous tones using only dots of black and white.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": "True",
+            "explanation": "By varying the density or size of dots, it creates the illusion of gray levels on printers or limited-color displays."
+        },
+        {
+            "id": "cg-q30",
+            "type": "MCQ",
+            "difficulty": "Hard",
+            "concept": "Volume Rendering",
+            "question": "Marching Cubes is an algorithm used for:",
+            "options": [
+                "A) Drawing 3D lines",
+                "B) Clipping 3D objects",
+                "C) Extracting a polygonal mesh from a scalar field",
+                "D) Compressing video files"
+            ],
+            "answer": "C",
+            "explanation": "Marching cubes is used in medical imaging (CT/MRI) to create 3D surface models from volumetric data."
+        }
+    ]
+}

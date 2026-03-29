@@ -1,0 +1,411 @@
+{
+    "subject": "Engineering Mathematics-IV",
+    "questions": [
+        {
+            "id": "em4-q1",
+            "type": "MCQ",
+            "difficulty": "Easy",
+            "concept": "Probability",
+            "question": "For a standard normal distribution, what are the values of mean (μ) and standard deviation (σ)?",
+            "options": [
+                "A) μ=1, σ=0",
+                "B) μ=0, σ=1",
+                "C) μ=0, σ=0",
+                "D) μ=1, σ=1"
+            ],
+            "answer": "B",
+            "explanation": "A standard normal distribution (Z-distribution) is defined with a mean of 0 and a standard deviation of 1."
+        },
+        {
+            "id": "em4-q2",
+            "type": "True/False",
+            "difficulty": "Easy",
+            "concept": "Matrix Algebra",
+            "question": "Two matrices are similar if they have the same eigenvalues.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": "True",
+            "explanation": "Similar matrices share the same characteristic polynomial, and thus the same eigenvalues."
+        },
+        {
+            "id": "em4-q3",
+            "type": "MCQ",
+            "difficulty": "Easy",
+            "concept": "Sampling Theory",
+            "question": "The process of selecting a subset from a population to estimate its characteristics is called:",
+            "options": [
+                "A) Integration",
+                "B) Differentiation",
+                "C) Sampling",
+                "D) Correlation"
+            ],
+            "answer": "C",
+            "explanation": "Sampling allows researchers to infer properties of a large population by studying a smaller, representative group."
+        },
+        {
+            "id": "em4-q4",
+            "type": "Q&A",
+            "difficulty": "Easy",
+            "concept": "Complex Variables",
+            "question": "What is the formula for Cauchy’s Integral Formula for a function f(z) at point a?",
+            "options": null,
+            "answer": "f(a) = (1/2πi) ∮ [f(z)/(z-a)] dz",
+            "explanation": "This formula allows the evaluation of a function at a point inside a contour using its values on the boundary."
+        },
+        {
+            "id": "em4-q5",
+            "type": "MCQ",
+            "difficulty": "Easy",
+            "concept": "Linear Programming",
+            "question": "In an LPP, the function to be maximized or minimized is called the:",
+            "options": [
+                "A) Constraint function",
+                "B) Objective function",
+                "C) Basic function",
+                "D) Optimal function"
+            ],
+            "answer": "B",
+            "explanation": "The objective function defines the goal of the linear programming problem."
+        },
+        {
+            "id": "em4-q6",
+            "type": "True/False",
+            "difficulty": "Easy",
+            "concept": "Probability",
+            "question": "The total area under a probability density function (PDF) curve is always 1.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": "True",
+            "explanation": "By definition, the sum/integral of all possible outcomes in a probability distribution must equal 1."
+        },
+        {
+            "id": "em4-q7",
+            "type": "MCQ",
+            "difficulty": "Easy",
+            "concept": "Vector Spaces",
+            "question": "A set of vectors is linearly dependent if:",
+            "options": [
+                "A) None can be written as a combination of others",
+                "B) At least one can be written as a linear combination of others",
+                "C) They are all orthogonal",
+                "D) Their sum is zero"
+            ],
+            "answer": "B",
+            "explanation": "Linear dependence implies redundancy in the set of vectors."
+        },
+        {
+            "id": "em4-q8",
+            "type": "Q&A",
+            "difficulty": "Easy",
+            "concept": "Complex Variables",
+            "question": "Define a 'Singularity' of a complex function.",
+            "options": null,
+            "answer": "A point where the function fails to be analytic.",
+            "explanation": "At a singular point, the function may go to infinity or be undefined."
+        },
+        {
+            "id": "em4-q9",
+            "type": "MCQ",
+            "difficulty": "Easy",
+            "concept": "Correlation",
+            "question": "If the correlation coefficient (r) is +1, it indicates:",
+            "options": [
+                "A) No correlation",
+                "B) Perfect positive correlation",
+                "C) Perfect negative correlation",
+                "D) Weak correlation"
+            ],
+            "answer": "B",
+            "explanation": "A value of +1 means that as one variable increases, the other increases in a perfectly linear fashion."
+        },
+        {
+            "id": "em4-q10",
+            "type": "True/False",
+            "difficulty": "Easy",
+            "concept": "Numerical Methods",
+            "question": "The Simplex method is used to solve non-linear programming problems.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": "False",
+            "explanation": "The Simplex method is specifically designed for Linear Programming Problems (LPP)."
+        },
+        {
+            "id": "em4-q11",
+            "type": "MCQ",
+            "difficulty": "Medium",
+            "concept": "Complex Variables",
+            "question": "Evaluate ∮ [e^z / (z-2)] dz around a circle |z|=3.",
+            "options": [
+                "A) 2πi",
+                "B) 2πi * e^2",
+                "C) 0",
+                "D) πi"
+            ],
+            "answer": "B",
+            "explanation": "Using Cauchy's Integral Formula, the result is 2πi * f(2). Since f(z)=e^z, f(2)=e^2."
+        },
+        {
+            "id": "em4-q12",
+            "type": "MCQ",
+            "difficulty": "Medium",
+            "concept": "Probability",
+            "question": "If X follows a Binomial distribution with n=10 and p=0.5, what is the variance?",
+            "options": [
+                "A) 5",
+                "B) 2.5",
+                "C) 10",
+                "D) 1.25"
+            ],
+            "answer": "B",
+            "explanation": "Variance for Binomial = npq. Here 10 * 0.5 * 0.5 = 2.5."
+        },
+        {
+            "id": "em4-q13",
+            "type": "Q&A",
+            "difficulty": "Medium",
+            "concept": "Sampling Theory",
+            "question": "What is the Null Hypothesis (H0)?",
+            "options": null,
+            "answer": "A statement of no effect or no difference, which researchers try to disprove.",
+            "explanation": "Statistical tests determine whether to reject H0 in favor of an alternative hypothesis."
+        },
+        {
+            "id": "em4-q14",
+            "type": "MCQ",
+            "difficulty": "Medium",
+            "concept": "Matrix Algebra",
+            "question": "A matrix A is diagonalizable if it has:",
+            "options": [
+                "A) n distinct eigenvalues",
+                "B) No eigenvalues",
+                "C) All zero elements",
+                "D) A determinant of zero"
+            ],
+            "answer": "A",
+            "explanation": "Having 'n' distinct eigenvalues for an n x n matrix is a sufficient condition for diagonalizability."
+        },
+        {
+            "id": "em4-q15",
+            "type": "True/False",
+            "difficulty": "Medium",
+            "concept": "Complex Variables",
+            "question": "The residue of a function at an isolated singularity is the coefficient of (z-a)^{-1} in its Laurent series.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": "True",
+            "explanation": "The coefficient b1 in the Laurent expansion is defined as the residue."
+        },
+        {
+            "id": "em4-q16",
+            "type": "MCQ",
+            "difficulty": "Medium",
+            "concept": "Sampling",
+            "question": "For a large sample (n > 30), which test is generally used to test the significance of the mean?",
+            "options": [
+                "A) t-test",
+                "B) Z-test",
+                "C) Chi-square test",
+                "D) F-test"
+            ],
+            "answer": "B",
+            "explanation": "The Z-test is used for large samples where the population variance is known or can be accurately estimated."
+        },
+        {
+            "id": "em4-q17",
+            "type": "Q&A",
+            "difficulty": "Medium",
+            "concept": "Linear Programming",
+            "question": "What is a 'Slack Variable'?",
+            "options": null,
+            "answer": "A variable added to a 'less than or equal to' constraint to convert it into an equality.",
+            "explanation": "It represents the unused resources in a constraint."
+        },
+        {
+            "id": "em4-q18",
+            "type": "MCQ",
+            "difficulty": "Medium",
+            "concept": "Probability",
+            "question": "In a Poisson distribution, if the mean is 4, what is the standard deviation?",
+            "options": [
+                "A) 4",
+                "B) 16",
+                "C) 2",
+                "D) 1"
+            ],
+            "answer": "C",
+            "explanation": "In Poisson, Variance = Mean. Variance = 4, so SD = √4 = 2."
+        },
+        {
+            "id": "em4-q19",
+            "type": "True/False",
+            "difficulty": "Medium",
+            "concept": "Matrix Algebra",
+            "question": "The sum of the eigenvalues of a matrix is equal to its Trace.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": "True",
+            "explanation": "The trace (sum of diagonal elements) always equals the sum of the eigenvalues."
+        },
+        {
+            "id": "em4-q20",
+            "type": "MCQ",
+            "difficulty": "Medium",
+            "concept": "Curve Fitting",
+            "question": "The method of 'Least Squares' minimizes the sum of squares of the:",
+            "options": [
+                "A) Values",
+                "B) Residuals (errors)",
+                "C) Coefficients",
+                "D) Slopes"
+            ],
+            "answer": "B",
+            "explanation": "It aims to find the line of best fit by minimizing the vertical distance between data points and the line."
+        },
+        {
+            "id": "em4-q21",
+            "type": "MCQ",
+            "difficulty": "Hard",
+            "concept": "Complex Integration",
+            "question": "The value of ∮ [1 / (z^2+1)] dz over the circle |z-i|=1 is:",
+            "options": [
+                "A) 0",
+                "B) π",
+                "C) 2πi",
+                "D) πi"
+            ],
+            "answer": "D",
+            "explanation": "Residue at z=i is 1/(2i). Integral = 2πi * (1/2i) = π."
+        },
+        {
+            "id": "em4-q22",
+            "type": "Q&A",
+            "difficulty": "Hard",
+            "concept": "Probability",
+            "question": "If X is a continuous random variable with PDF f(x) = kx^2 for 0 < x < 2, find k.",
+            "options": null,
+            "answer": "3/8",
+            "explanation": "Integral of kx^2 from 0 to 2 must be 1. [kx^3/3] from 0 to 2 = 8k/3. 8k/3 = 1 => k = 3/8."
+        },
+        {
+            "id": "em4-q23",
+            "type": "MCQ",
+            "difficulty": "Hard",
+            "concept": "Sampling Theory",
+            "question": "A Chi-square test for 'Goodness of Fit' is used to check:",
+            "options": [
+                "A) Relation between two variables",
+                "B) If sample data fits a specific distribution",
+                "C) Difference between two means",
+                "D) Variance ratio"
+            ],
+            "answer": "B",
+            "explanation": "It determines if observed frequencies significantly differ from expected frequencies."
+        },
+        {
+            "id": "em4-q24",
+            "type": "MCQ",
+            "difficulty": "Hard",
+            "concept": "Matrix Algebra",
+            "question": "If A is a 3x3 matrix with eigenvalues 1, 2, and 3, what is the determinant of A?",
+            "options": [
+                "A) 6",
+                "B) 1",
+                "C) 0",
+                "D) 14"
+            ],
+            "answer": "A",
+            "explanation": "The determinant of a matrix is the product of its eigenvalues. 1 * 2 * 3 = 6."
+        },
+        {
+            "id": "em4-q25",
+            "type": "True/False",
+            "difficulty": "Hard",
+            "concept": "Linear Programming",
+            "question": "If an LPP has a feasible region that is unbounded, it must have an infinite number of optimal solutions.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": "False",
+            "explanation": "An unbounded region might result in an unbounded objective function value (no finite optimal solution)."
+        },
+        {
+            "id": "em4-q26",
+            "type": "MCQ",
+            "difficulty": "Hard",
+            "concept": "Complex Variables",
+            "question": "The mapping w = z + (1/z) is known as:",
+            "options": [
+                "A) Bilinear mapping",
+                "B) Joukowski mapping",
+                "C) Conformal mapping",
+                "D) Identity mapping"
+            ],
+            "answer": "B",
+            "explanation": "This mapping is famous in aerodynamics for transforming circles into airfoil shapes."
+        },
+        {
+            "id": "em4-q27",
+            "type": "Q&A",
+            "difficulty": "Hard",
+            "concept": "Sampling Theory",
+            "question": "Define 'Type I Error' in hypothesis testing.",
+            "options": null,
+            "answer": "Rejecting the Null Hypothesis when it is actually true.",
+            "explanation": "It is also known as a 'False Positive' and is denoted by α."
+        },
+        {
+            "id": "em4-q28",
+            "type": "MCQ",
+            "difficulty": "Hard",
+            "concept": "Optimization",
+            "question": "In the Dual of a Linear Programming Problem, the number of variables is equal to:",
+            "options": [
+                "A) Number of constraints in the Primal",
+                "B) Number of variables in the Primal",
+                "C) Always two",
+                "D) Number of slack variables"
+            ],
+            "answer": "A",
+            "explanation": "Every constraint in the Primal problem becomes a variable in the Dual problem."
+        },
+        {
+            "id": "em4-q29",
+            "type": "True/False",
+            "difficulty": "Hard",
+            "concept": "Vector Spaces",
+            "question": "Every set of n+1 vectors in an n-dimensional vector space is linearly dependent.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": "True",
+            "explanation": "The maximum number of linearly independent vectors in a space is equal to its dimension."
+        },
+        {
+            "id": "em4-q30",
+            "type": "MCQ",
+            "difficulty": "Hard",
+            "concept": "Probability",
+            "question": "If X and Y are independent normal variables, their sum X+Y follows which distribution?",
+            "options": [
+                "A) Poisson",
+                "B) Binomial",
+                "C) Normal",
+                "D) Uniform"
+            ],
+            "answer": "C",
+            "explanation": "The sum of independent normal variables is always normally distributed with mean μ1+μ2 and variance σ1²+σ2²."
+        }
+    ]
+}

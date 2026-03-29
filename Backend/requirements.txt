@@ -1,6 +1,5 @@
 fastapi
 uvicorn
-streamlit
 requests
 langchain
 langgraph

@@ -6,6 +6,7 @@ import streamlit as st
 API_URL = "http://127.0.0.1:8000/chat"
 EVALUATE_API_URL = "http://127.0.0.1:8000/evaluate-quiz"
 
+
 st.set_page_config(
     page_title="AI Learning Assistant",
     layout="centered",

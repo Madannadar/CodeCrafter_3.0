@@ -1,0 +1,305 @@
+// {
+// "subject": "Engineering Mathematics-III",
+// "questions":[
+//   {
+//     "id": "em3-q1",
+//     "type": "MCQ",
+//     "difficulty": "Easy",
+//     "concept": "Laplace Transform",
+//     "question": "What is the Laplace transform of the function f(t) = e^{at}?",
+//     "options": ["A) 1/(s+a)", "B) 1/(s-a)", "C) a/s^2", "D) s/(s^2+a^2)"],
+//     "answer": "B",
+//     "explanation": "By definition, the Laplace transform of e^{at} is 1/(s-a) for s > a."
+//   },
+//   {
+//     "id": "em3-q2",
+//     "type": "True/False",
+//     "difficulty": "Easy",
+//     "concept": "Fourier Series",
+//     "question": "A Fourier series can only be defined for periodic functions.",
+//     "options": ["True", "False"],
+//     "answer": "True",
+//     "explanation": "Fourier series represent a periodic function as a sum of sine and cosine functions."
+//   },
+//   {
+//     "id": "em3-q3",
+//     "type": "MCQ",
+//     "difficulty": "Easy",
+//     "concept": "Complex Variables",
+//     "question": "What is the value of the imaginary unit 'i' squared (i^2)?",
+//     "options": ["A) 1", "B) 0", "C) -1", "D) Infinity"],
+//     "answer": "C",
+//     "explanation": "The imaginary unit i is defined such that its square is -1."
+//   },
+//   {
+//     "id": "em3-q4",
+//     "type": "Q&A",
+//     "difficulty": "Easy",
+//     "concept": "Partial Differential Equations",
+//     "question": "Classify the equation: ∂²u/∂t² = c²(∂²u/∂x²).",
+//     "options": null,
+//     "answer": "One-dimensional Wave Equation",
+//     "explanation": "This is the standard second-order PDE representing wave propagation."
+//   },
+//   {
+//     "id": "em3-q5",
+//     "type": "MCQ",
+//     "difficulty": "Easy",
+//     "concept": "Laplace Transform",
+//     "question": "The Laplace transform of sin(at) is:",
+//     "options": ["A) s/(s^2+a^2)", "B) a/(s^2-a^2)", "C) a/(s^2+a^2)", "D) s/(s^2-a^2)"],
+//     "answer": "C",
+//     "explanation": "The standard formula for L{sin(at)} is a/(s^2 + a^2)."
+//   },
+//   {
+//     "id": "em3-q6",
+//     "type": "True/False",
+//     "difficulty": "Easy",
+//     "concept": "Complex Variables",
+//     "question": "A function is said to be analytic if it satisfies the Cauchy-Riemann equations.",
+//     "options": ["True", "False"],
+//     "answer": "True",
+//     "explanation": "Satisfaction of C-R equations and continuity of partial derivatives are necessary and sufficient conditions for analyticity."
+//   },
+//   {
+//     "id": "em3-q7",
+//     "type": "MCQ",
+//     "difficulty": "Easy",
+//     "concept": "Fourier Series",
+//     "question": "If f(x) is an even function, which Fourier coefficient will be zero?",
+//     "options": ["A) a0", "B) an", "C) bn", "D) None"],
+//     "answer": "C",
+//     "explanation": "For an even function, the product f(x)sin(nx) is odd, making the integral for bn over a symmetric interval zero."
+//   },
+//   {
+//     "id": "em3-q8",
+//     "type": "Q&A",
+//     "difficulty": "Easy",
+//     "concept": "Linear Algebra",
+//     "question": "What is the determinant of an identity matrix of any order?",
+//     "options": null,
+//     "answer": "1",
+//     "explanation": "The product of the diagonal elements (all 1s) in an identity matrix is always 1."
+//   },
+//   {
+//     "id": "em3-q9",
+//     "type": "MCQ",
+//     "difficulty": "Easy",
+//     "concept": "Z-Transform",
+//     "question": "The Z-transform is the discrete-time equivalent of which transform?",
+//     "options": ["A) Fourier Transform", "B) Laplace Transform", "C) Wavelet Transform", "D) Hilbert Transform"],
+//     "answer": "B",
+//     "explanation": "The Z-transform plays the same role for discrete-time systems as the Laplace transform does for continuous-time systems."
+//   },
+//   {
+//     "id": "em3-q10",
+//     "type": "True/False",
+//     "difficulty": "Easy",
+//     "concept": "Vector Calculus",
+//     "question": "The divergence of a curl of any vector field is always zero.",
+//     "options": ["True", "False"],
+//     "answer": "True",
+//     "explanation": "This is a standard vector identity: div(curl F) = 0."
+//   },
+//   {
+//     "id": "em3-q11",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "Laplace Transform",
+//     "question": "What is the Inverse Laplace transform of 1/(s^2 + 4)?",
+//     "options": ["A) sin(2t)", "B) 2sin(2t)", "C) (1/2)sin(2t)", "D) cos(2t)"],
+//     "answer": "C",
+//     "explanation": "L^{-1}{a/(s^2+a^2)} = sin(at). Here a=2, so we need to multiply and divide by 2."
+//   },
+//   {
+//     "id": "em3-q12",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "Fourier Series",
+//     "question": "The coefficient a0 in the Fourier series of f(x) on [-π, π] represents the:",
+//     "options": ["A) Peak value", "B) RMS value", "C) Average value over the period", "D) Frequency"],
+//     "answer": "C",
+//     "explanation": "a0 is defined as (1/π) times the integral of the function, which yields twice the mean value."
+//   },
+//   {
+//     "id": "em3-q13",
+//     "type": "Q&A",
+//     "difficulty": "Medium",
+//     "concept": "Complex Integration",
+//     "question": "State Cauchy's Integral Theorem for a function f(z) analytic inside a closed curve C.",
+//     "options": null,
+//     "answer": "∮ f(z) dz = 0",
+//     "explanation": "The line integral of an analytic function around a simple closed contour is zero."
+//   },
+//   {
+//     "id": "em3-q14",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "Partial Differential Equations",
+//     "question": "The general solution of (D - D')z = 0 is:",
+//     "options": ["A) f(y+x)", "B) f(y-x)", "C) f(xy)", "D) f(y/x)"],
+//     "answer": "A",
+//     "explanation": "The auxiliary equation is m - 1 = 0, so m = 1. The solution is z = f(y + mx) = f(y + x)."
+//   },
+//   {
+//     "id": "em3-q15",
+//     "type": "True/False",
+//     "difficulty": "Medium",
+//     "concept": "Complex Variables",
+//     "question": "Every harmonic function can be considered as the real part of an analytic function.",
+//     "options": ["True", "False"],
+//     "answer": "True",
+//     "explanation": "If u is harmonic, we can find a harmonic conjugate v such that f(z) = u + iv is analytic."
+//   },
+//   {
+//     "id": "em3-q16",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "Matrices",
+//     "question": "If λ is an eigenvalue of matrix A, then the eigenvalue of A^2 is:",
+//     "options": ["A) λ", "B) 2λ", "C) λ^2", "D) √λ"],
+//     "answer": "C",
+//     "explanation": "If Av = λv, then A(Av) = A(λv) = λ(Av) = λ(λv) = λ^2v."
+//   },
+//   {
+//     "id": "em3-q17",
+//     "type": "Q&A",
+//     "difficulty": "Medium",
+//     "concept": "Vector Integration",
+//     "question": "What does Green's Theorem relate?",
+//     "options": null,
+//     "answer": "A line integral around a simple closed curve to a double integral over the plane region it encloses.",
+//     "explanation": "It provides the link between a line integral and a surface integral in 2D."
+//   },
+//   {
+//     "id": "em3-q18",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "Numerical Methods",
+//     "question": "Newton-Raphson method is used to find:",
+//     "options": ["A) Area under a curve", "B) Roots of an equation", "C) Derivative of a function", "D) Solution of a PDE"],
+//     "answer": "B",
+//     "explanation": "It is an iterative technique for approximating the zeros of a real-valued function."
+//   },
+//   {
+//     "id": "em3-q19",
+//     "type": "True/False",
+//     "difficulty": "Medium",
+//     "concept": "Laplace Transform",
+//     "question": "The Laplace transform of the derivative f'(t) is sF(s) - f(0).",
+//     "options": ["True", "False"],
+//     "answer": "True",
+//     "explanation": "This is the fundamental property used to solve differential equations using Laplace transforms."
+//   },
+//   {
+//     "id": "em3-q20",
+//     "type": "MCQ",
+//     "difficulty": "Medium",
+//     "concept": "Probability",
+//     "question": "For a Poisson distribution, the Mean and Variance are:",
+//     "options": ["A) Mean = Variance", "B) Mean > Variance", "C) Mean < Variance", "D) Mean = 2 * Variance"],
+//     "answer": "A",
+//     "explanation": "In a Poisson distribution with parameter λ, both the mean and the variance are equal to λ."
+//   },
+//   {
+//     "id": "em3-q21",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Laplace Transform",
+//     "question": "What is the Laplace transform of (sin t)/t?",
+//     "options": ["A) tan^{-1}(s)", "B) cot^{-1}(s)", "C) log(s^2+1)", "D) π/2"],
+//     "answer": "B",
+//     "explanation": "Using the division by t property: L{f(t)/t} = ∫[s to ∞] F(u) du. ∫ 1/(u^2+1) du = [tan^{-1}u] from s to ∞ = π/2 - tan^{-1}s = cot^{-1}s."
+//   },
+//   {
+//     "id": "em3-q22",
+//     "type": "Q&A",
+//     "difficulty": "Hard",
+//     "concept": "Complex Variables",
+//     "question": "Determine the residue of f(z) = 1/(z^2 + a^2) at z = ai.",
+//     "options": null,
+//     "answer": "1/(2ai)",
+//     "explanation": "Residue = lim_{z->ai} (z-ai) * 1/((z-ai)(z+ai)) = 1/(ai+ai) = 1/2ai."
+//   },
+//   {
+//     "id": "em3-q23",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Fourier Series",
+//     "question": "Parseval's Identity for Fourier series relates the average of [f(x)]^2 to:",
+//     "options": ["A) The sum of the squares of Fourier coefficients", "B) The integral of f'(x)", "C) The square root of the period", "D) The frequency spectrum"],
+//     "answer": "A",
+//     "explanation": "It states that the total energy of the signal is equal to the sum of the energies of its individual frequency components."
+//   },
+//   {
+//     "id": "em3-q24",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Partial Differential Equations",
+//     "question": "The solution of ∂u/∂t = α²(∂²u/∂x²) is typically found using:",
+//     "options": ["A) D'Alembert's method", "B) Method of Separation of Variables", "C) Newton's method", "D) Taylor's series"],
+//     "answer": "B",
+//     "explanation": "The Heat equation is standardly solved by assuming u(x,t) = X(x)T(t)."
+//   },
+//   {
+//     "id": "em3-q25",
+//     "type": "True/False",
+//     "difficulty": "Hard",
+//     "concept": "Bilinear Transformation",
+//     "question": "A bilinear transformation maps circles or straight lines in the z-plane into circles or straight lines in the w-plane.",
+//     "options": ["True", "False"],
+//     "answer": "True",
+//     "explanation": "This 'circle-preserving' property is a key characteristic of Mobius transformations."
+//   },
+//   {
+//     "id": "em3-q26",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Linear Algebra",
+//     "question": "According to the Cayley-Hamilton Theorem, every square matrix satisfies its own:",
+//     "options": ["A) Adjoint matrix", "B) Inverse matrix", "C) Characteristic equation", "D) Rank"],
+//     "answer": "C",
+//     "explanation": "The theorem states that if P(λ) is the characteristic polynomial of A, then P(A) is the zero matrix."
+//   },
+//   {
+//     "id": "em3-q27",
+//     "type": "Q&A",
+//     "difficulty": "Hard",
+//     "concept": "Vector Calculus",
+//     "question": "State the physical significance of the Curl of a vector field.",
+//     "options": null,
+//     "answer": "It represents the rotation or angular velocity of the field at a point.",
+//     "explanation": "If Curl is non-zero, the field is 'rotational'; if zero, it is 'irrotational'."
+//   },
+//   {
+//     "id": "em3-q28",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Statistics",
+//     "question": "In a Normal Distribution, what percentage of data falls within two standard deviations of the mean?",
+//     "options": ["A) 68%", "B) 95%", "C) 99.7%", "D) 50%"],
+//     "answer": "B",
+//     "explanation": "The empirical rule states approx 68% for 1σ, 95% for 2σ, and 99.7% for 3σ."
+//   },
+//   {
+//     "id": "em3-q29",
+//     "type": "True/False",
+//     "difficulty": "Hard",
+//     "concept": "Complex Integration",
+//     "question": "The residue at a pole of order 'm' is calculated using the (m-1)-th derivative.",
+//     "options": ["True", "False"],
+//     "answer": "True",
+//     "explanation": "The formula involves lim_{z->a} [1/(m-1)! * d^{m-1}/dz^{m-1} {(z-a)^m f(z)}]."
+//   },
+//   {
+//     "id": "em3-q30",
+//     "type": "MCQ",
+//     "difficulty": "Hard",
+//     "concept": "Calculus of Variations",
+//     "question": "The Euler-Lagrange equation is a condition for an integral to be:",
+//     "options": ["A) Constant", "B) Stationary (Extremum)", "C) Linear", "D) Convergent"],
+//     "answer": "B",
+//     "explanation": "It provides the fundamental differential equation whose solution makes a functional stationary."
+//   }
+// ]
+// }

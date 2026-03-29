@@ -1,6 +1,7 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
+import gsap from 'gsap';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 type SemId = 'sem1' | 'sem2' | 'sem3' | 'sem4';
@@ -67,6 +68,16 @@ const SEM_INFO: Record<SemId, { label: string; subjects: string; color: string; 
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function SemCheckPage() {
   const { user } = useAuth();
+  const pageRef = useRef<HTMLDivElement>(null);
+
+  // GSAP entrance
+  useEffect(() => {
+    if (!pageRef.current) return;
+    gsap.fromTo(pageRef.current, 
+      { y: 14, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.45, ease: 'power2.out' }
+    );
+  }, []);
 
   const [phase, setPhase] = useState<CheckPhase>('idle');
   const [selectedSem, setSelectedSem] = useState<SemId | null>(null);
@@ -226,12 +237,12 @@ export default function SemCheckPage() {
   // ─────────────────────────────────────────────────────────────────────────
   if (phase === 'idle' || !selectedSem) {
     return (
-      <div>
-        <h1 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: 8, display: 'flex', alignItems: 'center', gap: 12 }}>
+      <div ref={pageRef}>
+        <h1 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: 8, display: 'flex', alignItems: 'center', gap: 12, color: 'var(--text-primary)' }}>
           🎯 Semester Subject Check
         </h1>
-        <p style={{ color: '#6b7280', marginBottom: 12 }}>
-          Find your weak subjects in a semester. We'll ask you <strong>4 quick questions</strong> from each subject and rate your performance.
+        <p style={{ color: 'var(--text-secondary)', marginBottom: 12 }}>
+          Find your weak subjects in a semester. We'll ask you <strong style={{ color: 'var(--text-primary)' }}>4 quick questions</strong> from each subject and rate your performance.
         </p>
 
         {/* Rating legend */}
@@ -243,10 +254,10 @@ export default function SemCheckPage() {
             { emoji: '🟠', label: 'Focus More', desc: '1/4' },
             { emoji: '🔴', label: 'Weak Subject', desc: '0/4' },
           ].map((r) => (
-            <div key={r.label} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '6px 14px', background: 'white', borderRadius: 20, border: '1px solid #e5e7eb', fontSize: '0.82rem' }}>
+            <div key={r.label} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '6px 14px', background: 'var(--bg-card)', borderRadius: 20, border: '1px solid var(--border)', fontSize: '0.82rem' }}>
               <span>{r.emoji}</span>
-              <strong style={{ color: '#374151' }}>{r.label}</strong>
-              <span style={{ color: '#9ca3af' }}>{r.desc}</span>
+              <strong style={{ color: 'var(--text-primary)' }}>{r.label}</strong>
+              <span style={{ color: 'var(--text-muted)' }}>{r.desc}</span>
             </div>
           ))}
         </div>
@@ -258,9 +269,9 @@ export default function SemCheckPage() {
             return (
               <button key={semId} onClick={() => startDiagnostic(semId)}
                 style={{
-                  background: 'white', border: '2px solid #e5e7eb', borderRadius: 20, padding: 28,
+                  background: 'var(--bg-card)', border: `1px solid var(--border)`, borderRadius: 20, padding: 28,
                   textAlign: 'left', cursor: 'pointer', transition: 'all 0.3s',
-                  boxShadow: '0 2px 12px rgba(0,0,0,0.04)',
+                  boxShadow: '0 2px 16px rgba(0,0,0,0.2)',
                 }}
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)';
@@ -269,15 +280,15 @@ export default function SemCheckPage() {
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLElement).style.transform = '';
-                  (e.currentTarget as HTMLElement).style.borderColor = '#e5e7eb';
-                  (e.currentTarget as HTMLElement).style.boxShadow = '0 2px 12px rgba(0,0,0,0.04)';
+                  (e.currentTarget as HTMLElement).style.borderColor = 'var(--border)';
+                  (e.currentTarget as HTMLElement).style.boxShadow = '0 2px 16px rgba(0,0,0,0.2)';
                 }}
               >
                 <div style={{ width: 56, height: 56, borderRadius: 16, background: info.gradient, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 800, fontSize: '1.2rem', marginBottom: 16 }}>
                   {semId.replace('sem', 'S')}
                 </div>
-                <h3 style={{ fontWeight: 800, color: '#1f2937', fontSize: '1.2rem', marginBottom: 8 }}>{info.label}</h3>
-                <p style={{ fontSize: '0.82rem', color: '#6b7280', lineHeight: 1.6, marginBottom: 16 }}>{info.subjects}</p>
+                <h3 style={{ fontWeight: 800, color: 'var(--text-primary)', fontSize: '1.2rem', marginBottom: 8 }}>{info.label}</h3>
+                <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: 16 }}>{info.subjects}</p>
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: `${info.color}15`, color: info.color, padding: '6px 16px', borderRadius: 20, fontWeight: 700, fontSize: '0.82rem' }}>
                   Start Diagnostic →
                 </span>
