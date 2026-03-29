@@ -45,7 +45,7 @@ router.get('/user/:id', auth, async (req, res) => {
 // Save a single regular quiz result
 router.post('/history', auth, async (req, res) => {
   try {
-    const { userId, subjectId, score, totalQuestions, answers, difficulty } = req.body;
+    const { userId, subjectId, score, totalQuestions, answers, difficulty, attemptChain } = req.body;
 
     const history = new QuizHistory({
       userId,
@@ -55,6 +55,7 @@ router.post('/history', auth, async (req, res) => {
       answers,
       quizType: 'regular',
       difficulty: difficulty || null,
+      attemptChain: attemptChain || [],
     });
 
     await history.save();

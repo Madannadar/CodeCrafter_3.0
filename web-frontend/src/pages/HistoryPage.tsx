@@ -12,6 +12,7 @@ interface QuizEntry {
   totalQuestions: number;
   timestamp: string;
   difficulty?: string | null;
+  attemptChain?: { subjectId: string; subjectName: string; difficulty: string; score: number; total: number; weakConcepts: string[] }[];
 }
 
 interface SemSubjectResult {
@@ -177,6 +178,54 @@ export default function HistoryPage() {
               const scoreBg = pct >= 70 ? '#dcfce7' : pct >= 50 ? '#fef9c3' : '#fee2e2';
               const isExpanded = expandedQuizId === quiz._id;
 
+              if (quiz.attemptChain && quiz.attemptChain.length > 1) {
+                // VISUAL FLOWCHART UI FOR PREREQ CHAIN (No accordion, fully visible)
+                return (
+                  <div key={quiz._id} style={{ background: 'white', borderRadius: 16, border: '1px solid #e5e7eb', padding: '20px', boxShadow: '0 2px 12px rgba(0,0,0,0.04)', marginBottom: 16 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+                      <div style={{ width: 44, height: 44, borderRadius: 12, background: 'var(--purple)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', fontWeight: 800 }}>
+                        🔗
+                      </div>
+                      <div>
+                        <h3 style={{ fontSize: '1rem', fontWeight: 800, color: '#111827', margin: 0 }}>Root Cause Analysis Path</h3>
+                        <p style={{ fontSize: '0.75rem', color: '#6b7280', margin: '2px 0 0 0' }}>
+                          {new Date(quiz.timestamp).toLocaleDateString()}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 0, paddingLeft: 8 }}>
+                      {quiz.attemptChain.map((att: any, i: number) => {
+                        const isPass = (att.score / att.total) >= 0.7;
+                        return (
+                          <div key={i} style={{ display: 'flex', flexDirection: 'column' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 14, background: isPass ? '#f0fdf4' : '#fef2f2', border: `1px solid ${isPass ? '#bbf7d0' : '#fecaca'}`, padding: '12px 16px', borderRadius: 12 }}>
+                              <div style={{ fontSize: '1.4rem' }}>{isPass ? '🟢' : '🔴'}</div>
+                              <div style={{ flex: 1 }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                                  <span style={{ fontWeight: 700, color: isPass ? '#16a34a' : '#ef4444', fontSize: '0.95rem' }}>{att.subjectName}</span>
+                                  <span style={{ fontSize: '0.65rem', background: isPass ? '#dcfce7' : '#fee2e2', color: isPass ? '#16a34a' : '#ef4444', padding: '2px 8px', borderRadius: 10, fontWeight: 700, textTransform: 'capitalize' }}>
+                                    {att.difficulty === 'medium' ? 'Intermediate' : att.difficulty}
+                                  </span>
+                                </div>
+                                <div style={{ fontSize: '0.8rem', color: isPass ? '#15803d' : '#b91c1c', marginTop: 4 }}>
+                                  Score: <strong>{att.score}/{att.total}</strong>
+                                  {!isPass && att.weakConcepts && att.weakConcepts.length > 0 && <span style={{marginLeft: 8, opacity: 0.9, fontWeight: 600}}>Weak: {att.weakConcepts.join(', ')}</span>}
+                                </div>
+                              </div>
+                            </div>
+                            {i < quiz.attemptChain!.length - 1 && (
+                              <div style={{ width: 2, height: 18, background: '#d1d5db', margin: '0 26px' }} />
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              }
+
+              // NORMAL SINGLE TEST UI (Accordion style)
               return (
                 <div key={quiz._id} style={{ background: 'white', borderRadius: 16, border: `1px solid ${isExpanded ? (subj?.color || '#8b5cf6') + '40' : '#f0f0f5'}`, overflow: 'hidden', boxShadow: '0 2px 12px rgba(0,0,0,0.04)', transition: 'all 0.2s' }}>
                   <button onClick={() => setExpandedQuizId(isExpanded ? null : quiz._id)}
@@ -210,7 +259,7 @@ export default function HistoryPage() {
                     <span style={{ color: '#d1d5db', fontSize: '1rem', marginLeft: 4 }}>{isExpanded ? '▲' : '▼'}</span>
                   </button>
 
-                  {/* Expanded — progress bar */}
+                  {/* Expanded — progress bar or chain view */}
                   {isExpanded && (
                     <div style={{ padding: '0 20px 20px' }}>
                       <div style={{ display: 'flex', gap: 6, marginBottom: 14 }}>
