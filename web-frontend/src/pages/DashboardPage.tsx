@@ -14,11 +14,13 @@ interface ChatMessage {
   id: string;
   role: 'ai' | 'user';
   content: string;
-  type: 'text' | 'chips' | 'subject_grid' | 'diff_buttons' | 'launch';
+  type: 'text' | 'chips' | 'subject_grid' | 'diff_buttons' | 'launch' | 'quiz_report_graph' | 'learning_path_chain';
   chips?: { label: string; icon: string; value: string }[];
   subjects?: any[];
   selectedSubject?: any;
   difficulty?: DifficultyChoice;
+  quizReport?: { subjectId: string; subjectName: string; prereqId: string | null; prereqName: string | null; score: number; total: number; weakConcepts: string[] };
+  attemptChain?: { subjectId: string; subjectName: string; difficulty: string; score: number; total: number; weakConcepts: string[] }[];
 }
 
 // ─── Sem column colors ────────────────────────────────────────────────────────
@@ -29,21 +31,32 @@ const EDGE_COLORS: Record<string, string> = {
 };
 
 // ─── Subject Knowledge Graph SVG ────────────────────────────────────────────
-function SubjectGraph({ onNodeClick, highlightId }: { onNodeClick: (id: string) => void; highlightId?: string | null }) {
+function SubjectGraph({ onNodeClick, highlightPath }: { onNodeClick: (id: string) => void; highlightPath?: string[] | null }) {
   const [hovered, setHovered] = useState<string | null>(null);
   const [tooltip, setTooltip] = useState<{ x: number; y: number; text: string; subtext: string } | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
     if (!svgRef.current) return;
-    gsap.fromTo(svgRef.current.querySelectorAll('.graph-node'), 
-      { scale: 0, opacity: 0 },
-      { scale: 1, opacity: 1, duration: 0.6, stagger: 0.04, ease: 'back.out(1.7)', transformOrigin: '50% 50%' }
-    );
-    gsap.fromTo(svgRef.current.querySelectorAll('.graph-edge'), 
-      { opacity: 0 },
-      { opacity: 0.6, duration: 0.8, stagger: 0.03, delay: 0.5, ease: 'power2.out' }
-    );
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.graph-node', 
+        { scale: 0, opacity: 0 },
+        { 
+          scale: 1, opacity: 1, duration: 0.6, stagger: 0.04, ease: 'back.out(1.7)', transformOrigin: '50% 50%',
+          onComplete: () => {
+            gsap.to('.graph-node', {
+              y: "+=2", x: "+=1", rotation: "random(-1.5, 1.5)", duration: "random(1.5, 2.5)",
+              repeat: -1, yoyo: true, ease: "sine.inOut", stagger: { each: 0.1, from: "random" }
+            });
+          }
+        }
+      );
+      gsap.fromTo('.graph-edge', 
+        { opacity: 0 },
+        { opacity: 0.6, duration: 0.8, stagger: 0.03, delay: 0.5, ease: 'power2.out' }
+      );
+    }, svgRef);
+    return () => ctx.revert();
   }, []);
 
   const W = 900, H = 560;
@@ -74,7 +87,7 @@ function SubjectGraph({ onNodeClick, highlightId }: { onNodeClick: (id: string) 
         </div>
       )}
 
-      <svg ref={svgRef} viewBox={`0 0 ${W} ${H}`} style={{ width: '100%', height: '100%' }}>
+      <svg ref={svgRef} viewBox={`140 10 700 520`} style={{ width: '100%', height: '100%' }}>
         <defs>
           {/* Arrow marker */}
           <marker id="arrow-prereq" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
@@ -119,15 +132,16 @@ function SubjectGraph({ onNodeClick, highlightId }: { onNodeClick: (id: string) 
           const to = GRAPH_NODES.find(n => n.id === edge.to);
           if (!from || !to) return null;
           const end = arrowEndpoint(from.x, from.y, to.x, to.y, 16);
-          const active = hovered === from.id || hovered === to.id || highlightId === from.id || highlightId === to.id;
+          const active = hovered === from.id || hovered === to.id || highlightPath?.includes(from.id) || highlightPath?.includes(to.id);
+          const activeEdge = highlightPath?.includes(from.id) && highlightPath?.includes(to.id);
           const color = EDGE_COLORS[edge.type];
 
           return (
             <line key={i} className="graph-edge"
               x1={from.x} y1={from.y} x2={end.x} y2={end.y}
-              stroke={color} strokeWidth={active ? 1.5 : 0.8}
+              stroke={color} strokeWidth={activeEdge || active ? 2 : 0.8}
               strokeDasharray={edge.type === 'uses' ? '4 3' : 'none'}
-              opacity={active ? 0.75 : 0.25}
+              opacity={activeEdge ? 1 : active ? 0.75 : 0.25}
               markerEnd={`url(#arrow-${edge.type === 'uses' ? 'uses' : 'prereq'})`}
               style={{ transition: 'opacity 0.3s, stroke-width 0.3s' }}
             />
@@ -137,7 +151,7 @@ function SubjectGraph({ onNodeClick, highlightId }: { onNodeClick: (id: string) 
         {/* Nodes */}
         {GRAPH_NODES.map(node => {
           const isHovered = hovered === node.id;
-          const isHighlighted = highlightId === node.id;
+          const isHighlighted = highlightPath?.includes(node.id);
           const r = isHovered || isHighlighted ? 20 : 16;
 
           return (
@@ -289,6 +303,76 @@ function Bubble({ msg, onChipClick }: { msg: ChatMessage; onChipClick?: (value: 
             </button>
           </div>
         )}
+        {msg.type === 'quiz_report_graph' && msg.quizReport && (
+          <div style={{ padding: '16px 20px', borderRadius: '4px 14px 14px 14px', background: 'var(--bg-card)', border: '1px solid var(--border)', maxWidth: 480 }}>
+            <p style={{ marginBottom: 16, color: 'var(--text-primary)', fontSize: '0.9rem', lineHeight: 1.6 }}>{msg.content}</p>
+            
+            <div style={{ background: 'var(--bg-elevated)', borderRadius: 12, padding: 20, border: '1px solid var(--border)', marginBottom: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16 }}>
+              {msg.quizReport.prereqName && (
+                <>
+                  <div style={{ padding: '10px 16px', background: 'rgba(139,92,246,0.1)', color: '#8b5cf6', borderRadius: 8, fontWeight: 700, fontSize: '0.85rem', border: '1px solid rgba(139,92,246,0.3)' }}>
+                    {msg.quizReport.prereqName}
+                  </div>
+                  <div style={{ color: '#6b7280', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <span style={{ fontSize: '0.7rem', fontWeight: 600 }}>Prerequisite</span>
+                    <span>→</span>
+                  </div>
+                </>
+              )}
+              <div style={{ padding: '10px 16px', background: 'rgba(239,68,68,0.1)', color: '#ef4444', borderRadius: 8, fontWeight: 700, fontSize: '0.85rem', border: '1px solid rgba(239,68,68,0.3)', boxShadow: '0 0 12px rgba(239,68,68,0.2)' }}>
+                {msg.quizReport.subjectName}
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+              {msg.chips?.map(chip => (
+                <button key={chip.value} onClick={() => onChipClick?.(chip.value)}
+                  style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '8px 14px', borderRadius: 20, border: '1px solid var(--purple)', background: 'var(--purple)', color: 'white', fontWeight: 600, fontSize: '0.83rem', cursor: 'pointer', transition: 'all 0.2s' }}>
+                  {chip.icon} {chip.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+        {msg.type === 'learning_path_chain' && msg.attemptChain && (
+          <div style={{ padding: '16px 20px', borderRadius: '4px 14px 14px 14px', background: 'var(--bg-card)', border: '1px solid var(--border)', maxWidth: 480 }}>
+            <p style={{ marginBottom: 16, color: 'var(--text-primary)', fontSize: '0.9rem', lineHeight: 1.6 }}>{msg.content}</p>
+            
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 0, marginBottom: 16 }}>
+              {msg.attemptChain.map((att, i) => {
+                const isPass = (att.score / att.total) >= 0.7;
+                return (
+                  <div key={i} style={{ display: 'flex', flexDirection: 'column' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 12, background: isPass ? 'rgba(34,197,94,0.08)' : 'rgba(239,68,68,0.08)', border: `1px solid ${isPass ? 'rgba(34,197,94,0.3)' : 'rgba(239,68,68,0.3)'}`, padding: '12px 16px', borderRadius: 12 }}>
+                      <div style={{ fontSize: '1.4rem' }}>{isPass ? '🟢' : '🔴'}</div>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontWeight: 700, color: isPass ? '#16a34a' : '#ef4444', fontSize: '0.95rem' }}>{att.subjectName} <span style={{fontSize: '0.7rem', opacity: 0.8, fontWeight: 500}}>({att.difficulty})</span></div>
+                        <div style={{ fontSize: '0.75rem', color: isPass ? '#15803d' : '#b91c1c', marginTop: 2 }}>Score: {att.score}/{att.total}</div>
+                        {!isPass && att.weakConcepts && att.weakConcepts.length > 0 && (
+                          <div style={{ fontSize: '0.7rem', color: '#991b1b', marginTop: 4 }}>
+                            <span style={{fontWeight: 700}}>Weak:</span> {att.weakConcepts.join(', ')}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    {i < msg.attemptChain!.length - 1 && (
+                      <div style={{ width: 2, height: 16, background: 'var(--border)', margin: '0 auto' }} />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+              {msg.chips?.map(chip => (
+                <button key={chip.value} onClick={() => onChipClick?.(chip.value)}
+                  style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '8px 14px', borderRadius: 20, border: '1px solid var(--purple)', background: 'var(--purple)', color: 'white', fontWeight: 600, fontSize: '0.83rem', cursor: 'pointer', transition: 'all 0.2s' }}>
+                  {chip.icon} {chip.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -302,19 +386,25 @@ export default function DashboardPage() {
   const { mainSubjects } = useQuizData();
 
   // Chat state
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [messages, setMessages] = useState<ChatMessage[]>(() => {
+    try {
+      const saved = sessionStorage.getItem('dashboard_chat');
+      if (saved) return JSON.parse(saved);
+    } catch(e) { }
+    return [];
+  });
   const [step, setStep] = useState<FlowStep>('greeting');
   const [selectedSubject, setSelectedSubject] = useState<any>(null);
   const [selectedDiff, setSelectedDiff] = useState<DifficultyChoice | null>(null);
   const [inputVal, setInputVal] = useState('');
-  const [graphHighlight, setGraphHighlight] = useState<string | null>(null);
+  const [graphHighlightArray, setGraphHighlightArray] = useState<string[]>([]);
   const [quizStats, setQuizStats] = useState({ total: 0, avgScore: 0, weak: 0 });
 
   const chatEndRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const graphRef = useRef<HTMLDivElement>(null);
   const msgIdRef = useRef(0);
-  const nextId = () => `msg-${++msgIdRef.current}`;
+  const nextId = () => `msg-${++msgIdRef.current}-${Date.now()}`;
 
   // ── Load stats ────────────────────────────────────────────────────────────
   useEffect(() => {
@@ -344,42 +434,117 @@ export default function DashboardPage() {
     setTimeout(() => {
       // If we just returned from a quiz
       if (report) {
-        const { subjectName, difficulty, score, total, weakConcepts } = report;
-        const pct = score / total;
-        let summary = `Welcome back, ${firstName}! I've been reviewing your test results for **${subjectName}** (${difficulty} mode).\n\n`;
+        const attemptChain = location.state?.attemptChain || [];
         
-        if (pct === 1) summary += `🏆 Flawless! Perfect score (${score}/${total}). You've clearly mastered this tier. `;
-        else if (pct >= 0.7) summary += `🔥 Great job! You scored ${score}/${total}. Your understanding is solid. `;
-        else if (pct >= 0.5) summary += `📈 You scored ${score}/${total}. You're getting there, but a bit more review would help. `;
-        else summary += `💪 You scored ${score}/${total}. Don't worry, struggling is part of the learning process! `;
-        
-        if (weakConcepts && weakConcepts.length > 0) {
-          summary += `\n\n📌 **AI Recommendation:** Based on your incorrect answers, I highly recommend reviewing these concepts: *${weakConcepts.join(', ')}*.`;
+        // ── CHAIN ANALYSIS (length > 1) ──
+        if (attemptChain.length > 1) {
+          const rootAttempt = attemptChain[attemptChain.length - 1];
+          const initialAttempt = attemptChain[0];
+          const isRootPass = (rootAttempt.score / rootAttempt.total) >= 0.7;
+          
+          let summary = `Welcome back, ${firstName}! I've traced your entire learning path.\n\n`;
+          summary += `You initially struggled with **${initialAttempt.subjectName}**. By tracing the prerequisites downwards, we identified that your root gap lies at **${rootAttempt.subjectName}**.\n\n`;
+          
+          if (isRootPass) summary += `Since you passed the fundamental quiz for ${rootAttempt.subjectName}, you have the foundation to work your way back up! ✅`;
+          else summary += `You also struggled with ${rootAttempt.subjectName}, which means we need to review extreme core basics before returning to ${initialAttempt.subjectName}.`;
+
+          // Highlight ALL nodes in graph
+          setGraphHighlightArray(attemptChain.map((a: any) => a.subjectId));
+
+          addAiMessage({
+            content: summary,
+            type: 'learning_path_chain',
+            attemptChain: attemptChain,
+            chips: [
+              { label: 'Review Full Dashboard', icon: '📊', value: 'progress' }
+            ],
+          });
+          
+          window.history.replaceState({}, document.title);
+          setStep('choosing_action');
+          return;
         }
 
-        addAiMessage({
-          content: summary,
-          type: 'chips',
-          chips: [
-            { label: 'Take another Quiz', icon: '📝', value: 'quiz' },
-            { label: 'Sem Diagnostic', icon: '🎯', value: 'sem' },
-            { label: 'My Progress', icon: '📊', value: 'progress' },
-          ],
-        });
+        // ── SINGLE QUIZ ANALYSIS (length = 1) ──
+        const { subjectId, subjectName, difficulty, score, total, weakConcepts } = report;
+        const pct = score / total;
+        
+        // Find prerequisite
+        const subjData = mainSubjects.find(s => s.id === subjectId);
+        const prereqId = subjData?.prerequisiteId || null;
+        const prereqData = prereqId ? mainSubjects.find(s => s.id === prereqId) : null;
+        
+        let summary = `Welcome back, ${firstName}! I've analyzed your test results for **${subjectName}** (${difficulty} mode).\n\n`;
+        
+        if (pct === 1) {
+          summary += `🏆 Flawless! Perfect score (${score}/${total}). You've clearly mastered this tier. `;
+          addAiMessage({
+            content: summary,
+            type: 'chips',
+            chips: [
+              { label: 'Take another Quiz', icon: '📝', value: 'quiz' },
+              { label: 'Sem Diagnostic', icon: '🎯', value: 'sem' }
+            ],
+          });
+        } else if (pct >= 0.7) {
+          summary += `🔥 Great job! You scored ${score}/${total}. Your understanding is solid. `;
+           addAiMessage({
+            content: summary,
+            type: 'chips',
+            chips: [
+              { label: 'Take another Quiz', icon: '📝', value: 'quiz' },
+              { label: 'Sem Diagnostic', icon: '🎯', value: 'sem' }
+            ],
+          });
+        } else {
+          // Failure case -> show visual graph msg
+          summary += `You scored ${score}/${total}. Based on your performance, the root cause appears to be weak foundational concepts. `;
+          if (prereqData) {
+            summary += `Before retrying **${subjectName}**, I highly recommend reviewing its prerequisite: **${prereqData.shortName}**.`;
+          } else {
+            summary += `I recommend reviewing the core basics for this subject.`;
+          }
+          if (weakConcepts && weakConcepts.length > 0) {
+            summary += `\nFocus closely on: *${weakConcepts.join(', ')}*.`;
+          }
+
+          // Highlight failed + prereq on the big graph!
+          if (prereqId) setGraphHighlightArray([subjectId, prereqId]);
+          else setGraphHighlightArray([subjectId]);
+
+          addAiMessage({
+            content: summary,
+            type: 'quiz_report_graph',
+            quizReport: {
+               subjectId, subjectName,
+               prereqId, prereqName: prereqData?.shortName || null,
+               score, total, weakConcepts
+            },
+            chips: [
+              ...(prereqData ? [{ label: `Take ${prereqData.shortName} Quiz`, icon: '🔗', value: 'prereq_link' }] : []),
+              { label: 'Review Dashboard', icon: '📊', value: 'progress' },
+            ],
+          });
+        }
         
         // Clear state so refresh doesn't duplicate the summary
         window.history.replaceState({}, document.title);
         setStep('choosing_action');
       } else {
         // Standard greeting
-        addAiMessage({
-          content: `Hey ${firstName}! 👋 I'm your CodeCrafters study companion. What would you like to do today?`,
-          type: 'chips',
-          chips: [
-            { label: 'Quiz me', icon: '📝', value: 'quiz' },
-            { label: 'Sem Diagnostic', icon: '🎯', value: 'sem' },
-            { label: 'My Progress', icon: '📊', value: 'progress' },
-          ],
+        setMessages(prev => {
+          if (prev.length > 0) return prev; // Do not replay default greeting if chat history exists
+          return [...prev, {
+            id: nextId(),
+            role: 'ai',
+            content: `Hey ${firstName}! 👋 I'm your CodeCrafters study companion. What would you like to do today?`,
+            type: 'chips',
+            chips: [
+              { label: 'Quiz me', icon: '📝', value: 'quiz' },
+              { label: 'Sem Diagnostic', icon: '🎯', value: 'sem' },
+              { label: 'My Progress', icon: '📊', value: 'progress' },
+            ],
+          }];
         });
         setStep('choosing_action');
       }
@@ -387,8 +552,9 @@ export default function DashboardPage() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
-  // ── Auto-scroll ───────────────────────────────────────────────────────────
+  // ── Auto-scroll & Save ────────────────────────────────────────────────────
   useEffect(() => {
+    sessionStorage.setItem('dashboard_chat', JSON.stringify(messages));
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
@@ -443,7 +609,7 @@ export default function DashboardPage() {
       const subj = mainSubjects.find(s => s.id === value);
       if (!subj) return;
       setSelectedSubject(subj);
-      setGraphHighlight(value);
+      setGraphHighlightArray([value]);
       addUserMessage(`${subj.icon} ${subj.shortName}`);
       setStep('choosing_difficulty');
       setTimeout(() => addAiMessage({
@@ -501,7 +667,7 @@ export default function DashboardPage() {
   };
 
   // ── Graph node click → start quiz via chat ────────────────────────────────
-  const handleGraphClick = useCallback((nodeId: string) => {
+  const handleGraphNodeClick = useCallback((nodeId: string) => {
     const subj = mainSubjects.find(s => s.id === nodeId);
     if (!subj) return;
     if (subj.questions.length === 0) {
@@ -509,7 +675,7 @@ export default function DashboardPage() {
       return;
     }
     setSelectedSubject(subj);
-    setGraphHighlight(nodeId);
+    setGraphHighlightArray([nodeId]);
     addUserMessage(`${subj.icon} ${subj.shortName} (from graph)`);
     setStep('choosing_difficulty');
     setTimeout(() => addAiMessage({
@@ -608,8 +774,8 @@ export default function DashboardPage() {
               <span style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.88rem' }}>
                 🔗 Subject Knowledge Network
               </span>
-              {graphHighlight && (
-                <button onClick={() => setGraphHighlight(null)} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', fontSize: '0.75rem', cursor: 'pointer' }}>
+              {graphHighlightArray.length > 0 && (
+                <button onClick={() => setGraphHighlightArray([])} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', fontSize: '0.75rem', cursor: 'pointer' }}>
                   Clear ×
                 </button>
               )}
@@ -625,7 +791,7 @@ export default function DashboardPage() {
 
           {/* Graph SVG */}
           <div style={{ flex: 1, padding: '8px 4px 8px 4px', overflow: 'hidden' }}>
-            <SubjectGraph onNodeClick={handleGraphClick} highlightId={graphHighlight} />
+            <SubjectGraph onNodeClick={handleGraphNodeClick} highlightPath={graphHighlightArray} />
           </div>
 
           {/* Graph tip */}

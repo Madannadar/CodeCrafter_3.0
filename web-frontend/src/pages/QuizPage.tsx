@@ -197,37 +197,53 @@ export default function QuizPage() {
     }
   }, [answers, quizQuestions, currentSubject, selectedDifficulty, attemptChain, usedFallback]);
 
-  // ── Save to history ────────────────────────────────────────────────────────
-  const saveToHistory = useCallback(async (attempt: QuizAttempt) => {
-    if (!user) return;
+  // ── Save to history (Triggered only on Exit to Dashboard) ─────────────────
+  const handleExitToDashboard = async () => {
+    if (!attemptChain.length && !finalReport) {
+      navigate('/dashboard');
+      return;
+    }
+    const mainAttempt = attemptChain[0] || finalReport;
+    
     try {
-      const formatAnswers = attempt.questions.map((q, i) => ({
-        questionId: q.id,
-        selectedAnswer: attempt.answers[i] || 'Skipped',
-        isCorrect: attempt.correct[i],
-      }));
-      await api.post('/history', {
-        userId: user.id,
-        subjectId: attempt.subjectId,
-        score: attempt.score,
-        totalQuestions: attempt.total,
-        answers: formatAnswers,
-        difficulty: attempt.difficulty,
-      });
-      const ratio = attempt.score / attempt.total;
-      if (ratio < 0.7 && !user.weak_subjects.includes(attempt.subjectId)) {
-        updateUser({ ...user, weak_subjects: [...user.weak_subjects, attempt.subjectId] });
+      if (user && mainAttempt) {
+        // Map chain for DB
+        const mappedChain = attemptChain.map(att => ({
+           subjectId: att.subjectId,
+           subjectName: att.subjectName,
+           difficulty: att.difficulty,
+           score: att.score,
+           total: att.total,
+           weakConcepts: att.weakConcepts || []
+        }));
+        
+        const formatAnswers = mainAttempt.questions.map((q, i) => ({
+          questionId: q.id,
+          selectedAnswer: mainAttempt.answers[i] || 'Skipped',
+          isCorrect: mainAttempt.correct[i],
+        }));
+
+        await api.post('/history', {
+          userId: user.id,
+          subjectId: mainAttempt.subjectId,
+          score: mainAttempt.score,
+          totalQuestions: mainAttempt.total,
+          answers: formatAnswers,
+          difficulty: mainAttempt.difficulty,
+          attemptChain: mappedChain
+        });
+
+        const ratio = mainAttempt.score / mainAttempt.total;
+        if (ratio < 0.7 && !user.weak_subjects.includes(mainAttempt.subjectId)) {
+          updateUser({ ...user, weak_subjects: [...user.weak_subjects, mainAttempt.subjectId] });
+        }
       }
     } catch (err) {
       console.error('Failed to save quiz history:', err);
     }
-  }, [user, updateUser]);
 
-  useEffect(() => {
-    if ((phase === 'report' || phase === 'suggestion') && finalReport) {
-      saveToHistory(finalReport);
-    }
-  }, [phase, finalReport]);
+    navigate('/dashboard', { state: { attemptChain, quizReport: finalReport } });
+  };
 
   // ── Reset ──────────────────────────────────────────────────────────────────
   // Removed unused resetAll function
@@ -588,7 +604,7 @@ export default function QuizPage() {
                 Take {prereq.shortName} Quiz →
               </button>
             )}
-            <button onClick={() => navigate('/dashboard', { state: { quizReport: finalReport } })}
+            <button onClick={handleExitToDashboard}
               style={{ background: 'linear-gradient(135deg, #8b5cf6, #6d28d9)', color: 'white', border: 'none', padding: '12px 24px', borderRadius: 12, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8 }}>
               ⬡ Dashboard & AI Summary
             </button>
@@ -709,7 +725,7 @@ export default function QuizPage() {
           ))}
         </div>
 
-        <button onClick={() => navigate('/dashboard', { state: { quizReport: finalReport } })}
+        <button onClick={handleExitToDashboard}
           style={{ background: 'linear-gradient(135deg, #8b5cf6, #6d28d9)', color: 'white', border: 'none', padding: '14px 32px', borderRadius: 12, fontWeight: 700, cursor: 'pointer', fontSize: '1rem', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
           ⬡ Return to Dashboard for AI Summary
         </button>

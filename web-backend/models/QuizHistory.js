@@ -40,9 +40,20 @@ const quizHistorySchema = new mongoose.Schema({
   // Difficulty level chosen by the user (only for regular quizzes)
   difficulty: {
     type: String,
-    enum: ['easy', 'medium', 'hard', null],
+    enum: ['easy', 'intermediate', 'hard', null],
     default: null,
   },
+  // Stores the entire fallback prerequisite learning path
+  attemptChain: [
+    {
+      subjectId: String,
+      subjectName: String,
+      difficulty: String,
+      score: Number,
+      total: Number,
+      weakConcepts: [String],
+    }
+  ],
   timestamp: {
     type: Date,
     default: Date.now,
