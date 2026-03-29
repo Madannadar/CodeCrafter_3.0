@@ -21,7 +21,7 @@ class SubjectQuiz extends StatefulWidget {
 }
 
 class _SubjectQuizState extends State<SubjectQuiz> {
-  final ApiService _apiService = ApiService();
+  // final ApiService _apiService = ApiService(); // Commented out to fix unused warning while mocking
   QuizData? _quizData;
   bool _isLoading = true;
 
@@ -297,9 +297,9 @@ class _SubjectQuizState extends State<SubjectQuiz> {
                         padding: const EdgeInsets.all(16),
                         margin: const EdgeInsets.only(bottom: 20),
                         decoration: BoxDecoration(
-                          color: theme.colorScheme.secondaryContainer.withOpacity(0.4),
+                          color: theme.colorScheme.secondaryContainer.withValues(alpha: 0.4),
                           borderRadius: BorderRadius.circular(12),
-                          border: Border.all(color: theme.colorScheme.secondary.withOpacity(0.2)),
+                          border: Border.all(color: theme.colorScheme.secondary.withValues(alpha: 0.2)),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -446,7 +446,7 @@ class _SubjectQuizState extends State<SubjectQuiz> {
               setState(() {
                 selectedIndex = index;
                 isAnswered = true;
-                if (question.isMultipleChoice && isCorrect) score++;
+                if (isCorrect) score++;
               });
             },
       child: AnimatedContainer(
