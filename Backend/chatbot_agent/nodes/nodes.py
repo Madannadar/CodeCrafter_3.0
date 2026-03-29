@@ -39,16 +39,57 @@ def router_node(state):
 
     llm = get_llm()
     subject = state.get("subject")
-    message = state.get("message")
+    message = state.get("message") or ""  # Handle None case
+    message = message.strip()
     intent = state.get("intent")
+    message_lower = message.lower()
 
+    # 1. If no subject yet
     if not subject:
-        return {
-            "response": "📘 What subject would you like to learn?",
-            "step": "get_subject"
-        }
+        # If user provided a message, validate if it's a subject using LLM
+        if message:
+            validation_prompt = f"""
+Determine if the following input is a valid academic subject, course, or learning topic.
+Valid examples: "Machine Learning", "Python Programming", "Data Structures", "Mathematics", "Physics", "History", "Web Development"
+Invalid examples: "hello", "how are you", "what is this", "prerequisites", "test me", "graph"
 
-    if subject and not intent and message == subject:
+Input: "{message}"
+
+Is this a valid subject? Reply with ONLY "yes" or "no".
+"""
+            is_subject = llm.invoke(validation_prompt).content.strip().lower()
+            print(f"🧠 Subject validation: '{message}' → {is_subject}")
+
+            if is_subject == "yes":
+                return {
+                    "response": f"""
+Great! You chose **{message}**.
+
+Do you want:
+📊 View prerequisite graph (JSON with subjects & dependencies)
+📝 Take a practice test  
+
+Just tell me naturally 🙂
+(e.g., "show prerequisites", "graph", "dependencies", "quiz me")
+""",
+                    "step": "awaiting_intent",
+                    "subject": message  # Store the validated subject!
+                }
+            else:
+                return {
+                    "response": f"⚠️ '{message}' doesn't seem to be a valid subject. Please enter a valid subject name (e.g., 'Machine Learning', 'Python', 'Data Structures').",
+                    "step": "get_subject",
+                    "subject": None
+                }
+        else:
+            # No message provided, ask for subject
+            return {
+                "response": "📘 What subject would you like to learn?",
+                "step": "get_subject"
+            }
+
+    # 2. If subject exists and message matches subject (confirmation step)
+    if subject and not intent and message_lower == subject.lower():
         return {
             "response": f"""
 Great! You chose **{subject}**.
@@ -60,11 +101,33 @@ Do you want:
 Just tell me naturally 🙂
 (e.g., "show prerequisites", "graph", "dependencies", "quiz me")
 """,
-            "step": "awaiting_intent"
+            "step": "awaiting_intent",
+            "subject": subject
         }
 
+    # 3. If subject exists and user sent a new message (intent classification)
     if subject and not intent:
-        prompt = f"""
+        # KEYWORD-BASED ROUTING (Fast path)
+        flowchart_keywords = ["prerequisite", "prerequisites", "flowchart", "graph", 
+                             "dependencies", "roadmap", "structure", "path", "flow chart"]
+        test_keywords = ["test", "quiz", "question", "questions", "exam", "practice", 
+                        "assessment", "mock test"]
+        
+        detected_intent = None
+        
+        # Check for flowchart keywords
+        if any(keyword in message_lower for keyword in flowchart_keywords):
+            detected_intent = "flowchart"
+            print(f"🎯 Keyword match: '{message}' → flowchart")
+        
+        # Check for test keywords  
+        elif any(keyword in message_lower for keyword in test_keywords):
+            detected_intent = "test"
+            print(f"🎯 Keyword match: '{message}' → test")
+        
+        # If no keyword match, use LLM classifier
+        if not detected_intent:
+            prompt = f"""
 You are an intent classifier.
 
 User message:
@@ -76,12 +139,13 @@ Classify into:
 
 Return ONLY one word.
 """
-        result = llm.invoke(prompt).content.strip().lower()
-        print("🧠 LLM Intent:", result)
+            result = llm.invoke(prompt).content.strip().lower()
+            print("🧠 LLM Intent:", result)
+            detected_intent = result
 
         return {
             "subject": subject,
-            "intent": result,
+            "intent": detected_intent,
             "step": "intent_classified"
         }
 
