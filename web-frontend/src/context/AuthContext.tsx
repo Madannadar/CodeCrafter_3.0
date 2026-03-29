@@ -54,7 +54,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   return (
     <AuthContext.Provider value={{ user, isAuthenticated: !!user, loading, login, logout, updateUser }}>
-      {!loading && children}
+      {loading ? (
+        <div style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          height: '100vh', width: '100vw', background: '#08080f',
+          flexDirection: 'column', gap: 16,
+        }}>
+          <div style={{
+            width: 44, height: 44, border: '3px solid rgba(139,92,246,0.2)',
+            borderTop: '3px solid #8b5cf6', borderRadius: '50%',
+            animation: 'spin 0.8s linear infinite',
+          }} />
+          <span style={{ color: 'rgba(139,92,246,0.7)', fontSize: '0.85rem', letterSpacing: 2 }}>LOADING</span>
+          <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+        </div>
+      ) : children}
     </AuthContext.Provider>
   );
 }

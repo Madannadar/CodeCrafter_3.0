@@ -1,86 +1,129 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
 
 const navItems = [
-  { to: '/dashboard', icon: '📊', label: 'Dashboard' },
-  { to: '/quiz', icon: '📝', label: 'Quiz' },
-  { to: '/sem-check', icon: '🎯', label: 'Sem Check' },
-  { to: '/graph', icon: '🔗', label: 'Concept Graph' },
-  { to: '/history', icon: '📋', label: 'History' },
+  { to: '/dashboard', icon: '⬡', label: 'Dashboard', emoji: '⬡' },
+  { to: '/quiz', icon: '◈', label: 'Quiz' },
+  { to: '/sem-check', icon: '◎', label: 'Sem Check' },
+  { to: '/history', icon: '◷', label: 'History' },
 ];
+
+const S = {
+  sidebar: {
+    width: 220,
+    background: 'var(--bg-surface)',
+    borderRight: '1px solid var(--border-subtle)',
+    display: 'flex' as const,
+    flexDirection: 'column' as const,
+    padding: '20px 12px',
+    position: 'fixed' as const,
+    top: 0, left: 0, bottom: 0,
+    zIndex: 50,
+  },
+  main: {
+    marginLeft: 220,
+    minHeight: '100vh',
+    background: 'var(--bg-base)',
+    flex: 1,
+  },
+};
 
 export default function Layout() {
   const { user, logout } = useAuth();
+  const location = useLocation();
+  const sidebarRef = useRef<HTMLElement>(null);
+  const mainRef = useRef<HTMLElement>(null);
+
+  // Sidebar entrance
+  useEffect(() => {
+    if (!sidebarRef.current) return;
+    gsap.fromTo(sidebarRef.current, 
+      { x: -30, opacity: 0 },
+      { x: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }
+    );
+  }, []);
+
+  // Page transition on route change
+  useEffect(() => {
+    if (!mainRef.current) return;
+    gsap.fromTo(mainRef.current, 
+      { opacity: 0, y: 12 },
+      { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }
+    );
+  }, [location.pathname]);
+
+  const isDashboard = location.pathname === '/dashboard';
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', background: '#f8f9fc' }}>
-      {/* Sidebar */}
-      <aside style={{
-        width: 260, background: 'white', borderRight: '1px solid #e5e7eb',
-        display: 'flex', flexDirection: 'column', padding: '24px 16px',
-        position: 'fixed', top: 0, left: 0, bottom: 0, zIndex: 10,
-        boxShadow: '2px 0 12px rgba(0,0,0,0.03)',
-      }}>
+    <div style={{ display: 'flex', minHeight: '100vh', background: 'var(--bg-base)' }}>
+      {/* ── Sidebar ──────────────────────────────────────────────────────── */}
+      <aside ref={sidebarRef} style={S.sidebar}>
         {/* Logo */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '0 8px', marginBottom: 32 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '4px 8px', marginBottom: 28 }}>
           <div style={{
-            width: 40, height: 40, borderRadius: 12,
-            background: 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
+            width: 36, height: 36, borderRadius: 10,
+            background: 'linear-gradient(135deg, #8b5cf6, #6d28d9)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            color: 'white', fontWeight: 800, fontSize: 18,
-          }}>C</div>
+            color: 'white', fontWeight: 900, fontSize: 16, flexShrink: 0,
+            boxShadow: '0 0 20px rgba(139,92,246,0.4)',
+          }}>CC</div>
           <div>
-            <div style={{ fontWeight: 800, fontSize: '1.05rem', color: '#1f2937' }}>
-              Code<span style={{ color: '#8b5cf6' }}>Crafters</span>
+            <div style={{ fontWeight: 800, fontSize: '0.95rem', color: 'var(--text-primary)', letterSpacing: '-0.3px' }}>
+              Code<span style={{ color: 'var(--purple)' }}>Crafters</span>
             </div>
-            <div style={{ fontSize: '0.7rem', color: '#9ca3af' }}>Learning Gap Analyzer</div>
+            <div style={{ fontSize: '0.64rem', color: 'var(--text-muted)', marginTop: 1 }}>Learning Gap Analyzer</div>
           </div>
         </div>
 
-        {/* Nav Items */}
-        <nav style={{ display: 'flex', flexDirection: 'column', gap: 4, flex: 1 }}>
+        {/* Nav */}
+        <nav style={{ display: 'flex', flexDirection: 'column', gap: 2, flex: 1 }}>
           {navItems.map(item => (
             <NavLink key={item.to} to={item.to}
               style={({ isActive }) => ({
-                display: 'flex', alignItems: 'center', gap: 12,
-                padding: '12px 16px', borderRadius: 12, textDecoration: 'none',
-                fontWeight: 600, fontSize: '0.95rem', transition: 'all 0.2s',
-                background: isActive ? '#f3e8ff' : 'transparent',
-                color: isActive ? '#7c3aed' : '#6b7280',
-                border: isActive ? '1px solid #e9d5ff' : '1px solid transparent',
-              })}
-            >
-              <span style={{ fontSize: 18 }}>{item.icon}</span>
+                display: 'flex', alignItems: 'center', gap: 10,
+                padding: '10px 12px', borderRadius: 10, textDecoration: 'none',
+                fontWeight: 600, fontSize: '0.88rem', transition: 'all 0.2s',
+                background: isActive ? 'var(--purple-dim)' : 'transparent',
+                color: isActive ? 'var(--purple-light)' : 'var(--text-muted)',
+                borderLeft: isActive ? '2px solid var(--purple)' : '2px solid transparent',
+              })}>
+              <span style={{ fontSize: '0.82rem', letterSpacing: '0.05em', opacity: 0.7 }}>{item.icon}</span>
               {item.label}
             </NavLink>
           ))}
         </nav>
 
-        {/* User */}
-        <div style={{ borderTop: '1px solid #f3f4f6', paddingTop: 16 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px' }}>
+        {/* Divider */}
+        <div style={{ height: 1, background: 'var(--border-subtle)', margin: '12px 0' }} />
+
+        {/* User section */}
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 12px', borderRadius: 10, background: 'var(--bg-card)' }}>
             <div style={{
-              width: 36, height: 36, borderRadius: '50%',
-              background: 'linear-gradient(135deg, #8b5cf6, #a78bfa)',
+              width: 32, height: 32, borderRadius: '50%',
+              background: 'linear-gradient(135deg, var(--purple), #a78bfa)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              color: 'white', fontWeight: 700, fontSize: '0.85rem',
-            }}>{user?.name?.charAt(0) || 'U'}</div>
+              color: 'white', fontWeight: 700, fontSize: '0.8rem', flexShrink: 0,
+              boxShadow: '0 0 12px var(--purple-glow)',
+            }}>{user?.name?.charAt(0)?.toUpperCase() || 'U'}</div>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontWeight: 600, fontSize: '0.85rem', color: '#1f2937', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{user?.name}</div>
-              <div style={{ fontSize: '0.72rem', color: '#9ca3af', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{user?.email}</div>
+              <div style={{ fontWeight: 600, fontSize: '0.8rem', color: 'var(--text-primary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{user?.name || 'Student'}</div>
+              <div style={{ fontSize: '0.66rem', color: 'var(--text-muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{user?.email}</div>
             </div>
           </div>
           <button onClick={logout}
-            style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 12px', border: 'none', background: 'transparent', color: '#ef4444', cursor: 'pointer', fontWeight: 600, fontSize: '0.85rem', borderRadius: 8, width: '100%', marginTop: 4 }}
-            onMouseEnter={e => (e.currentTarget.style.background = '#fef2f2')}
-            onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}>
-            🚪 Sign Out
+            style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 12px', border: 'none', background: 'transparent', color: 'var(--text-muted)', cursor: 'pointer', fontWeight: 500, fontSize: '0.8rem', borderRadius: 8, width: '100%', marginTop: 4, transition: 'all 0.2s' }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = '#ef4444'; (e.currentTarget as HTMLElement).style.background = 'rgba(239,68,68,0.08)'; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'var(--text-muted)'; (e.currentTarget as HTMLElement).style.background = 'transparent'; }}>
+            ↩ Sign Out
           </button>
         </div>
       </aside>
 
-      {/* Main Content */}
-      <main style={{ flex: 1, marginLeft: 260, padding: '32px 40px', minHeight: '100vh' }}>
+      {/* ── Main ─────────────────────────────────────────────────────────── */}
+      <main ref={mainRef} style={{ ...S.main, padding: isDashboard ? 0 : '32px 40px' }}>
         <Outlet />
       </main>
     </div>

@@ -1,1 +1,411 @@
-{     "subject": "Engineering chemistry 1", "questions": [{"id":"CHEM_001","topic":"Atomic Orbitals","concept":"Orbital Shapes","difficulty":"easy","type":"theory","question":"Describe the shapes of s, p, d and f orbitals."},{"id":"CHEM_002","topic":"Atomic Orbitals","concept":"Orbital Orientation","difficulty":"easy","type":"theory","question":"Explain the orientation of p orbitals in space."},{"id":"CHEM_003","topic":"Electronic Configuration","concept":"Aufbau Principle","difficulty":"medium","type":"theory","question":"Write the electronic configuration of Iron (Fe) and explain using the Aufbau principle."},{"id":"CHEM_004","topic":"Electronic Configuration","concept":"Hund's Rule","difficulty":"easy","type":"theory","question":"State Hund's rule and explain its significance."},{"id":"CHEM_005","topic":"Electronic Configuration","concept":"Pauli Exclusion Principle","difficulty":"easy","type":"theory","question":"State and explain the Pauli Exclusion Principle."},{"id":"CHEM_006","topic":"Molecular Orbital Theory","concept":"Bonding Orbitals","difficulty":"medium","type":"theory","question":"Define bonding orbitals and explain how they are formed."},{"id":"CHEM_007","topic":"Molecular Orbital Theory","concept":"Antibonding Orbitals","difficulty":"medium","type":"theory","question":"What are antibonding orbitals? Explain their properties."},{"id":"CHEM_008","topic":"Molecular Orbital Theory","concept":"Bond Order","difficulty":"medium","type":"numerical","question":"Calculate the bond order of O2 using molecular orbital theory."},{"id":"CHEM_009","topic":"Molecular Orbital Theory","concept":"Magnetic Properties","difficulty":"medium","type":"conceptual","question":"Explain why O2 is paramagnetic using molecular orbital theory."},{"id":"CHEM_010","topic":"Molecular Orbital Theory","concept":"MO Diagram","difficulty":"hard","type":"diagram","question":"Draw the molecular orbital diagram of Be2 and calculate its bond order."},{"id":"CHEM_011","topic":"Molecular Orbital Theory","concept":"MO Diagram","difficulty":"hard","type":"diagram","question":"Construct the molecular orbital diagram of CO and determine its bond order."},{"id":"CHEM_012","topic":"Molecular Orbital Theory","concept":"MO Diagram","difficulty":"hard","type":"diagram","question":"Explain the molecular orbital diagram of NO and its magnetic properties."},{"id":"CHEM_013","topic":"Aromatic Systems","concept":"Aromaticity","difficulty":"easy","type":"theory","question":"Define aromaticity."},{"id":"CHEM_014","topic":"Aromatic Systems","concept":"Huckel Rule","difficulty":"medium","type":"conceptual","question":"Explain Huckel's rule for aromatic compounds."},{"id":"CHEM_015","topic":"Aromatic Systems","concept":"Structure of Benzene","difficulty":"medium","type":"theory","question":"Explain the structure and bonding in benzene."},{"id":"CHEM_016","topic":"Aromatic Systems","concept":"Pyrrole Structure","difficulty":"medium","type":"theory","question":"Describe the structure and aromatic nature of pyrrole."},{"id":"CHEM_017","topic":"Intermolecular Forces","concept":"Ionic Interactions","difficulty":"easy","type":"theory","question":"Explain ionic interactions with examples."},{"id":"CHEM_018","topic":"Intermolecular Forces","concept":"Dipole Interactions","difficulty":"easy","type":"theory","question":"What are dipole-dipole interactions?"},{"id":"CHEM_019","topic":"Intermolecular Forces","concept":"Van der Waals Forces","difficulty":"medium","type":"theory","question":"Explain Van der Waals forces."},{"id":"CHEM_020","topic":"Critical Phenomena","concept":"Real Gas Equation","difficulty":"medium","type":"theory","question":"Explain the equations of state for real gases."},{"id":"CHEM_021","topic":"Phase Rule","concept":"Gibbs Phase Rule","difficulty":"easy","type":"theory","question":"State Gibbs Phase Rule."},{"id":"CHEM_022","topic":"Phase Rule","concept":"Terms in Phase Rule","difficulty":"medium","type":"theory","question":"Explain the terms phase, component and degree of freedom."},{"id":"CHEM_023","topic":"Phase Rule","concept":"One Component System","difficulty":"medium","type":"conceptual","question":"Explain the phase diagram of water as a one component system."},{"id":"CHEM_024","topic":"Phase Rule","concept":"Two Component System","difficulty":"hard","type":"conceptual","question":"Explain the Pb-Ag system with phase diagram."},{"id":"CHEM_025","topic":"Polymers","concept":"Polymer Definition","difficulty":"easy","type":"theory","question":"Define polymer and polymerization."},{"id":"CHEM_026","topic":"Polymers","concept":"Molecular Weight","difficulty":"medium","type":"numerical","question":"Explain number average and weight average molecular weight of polymers."},{"id":"CHEM_027","topic":"Polymers","concept":"Glass Transition Temperature","difficulty":"medium","type":"theory","question":"What is glass transition temperature in polymers?"},{"id":"CHEM_028","topic":"Water Chemistry","concept":"Hardness of Water","difficulty":"medium","type":"numerical","question":"Explain temporary and permanent hardness of water."},{"id":"CHEM_029","topic":"Water Chemistry","concept":"EDTA Method","difficulty":"hard","type":"numerical","question":"Explain the determination of hardness of water using EDTA method."},{"id":"CHEM_030","topic":"Water Chemistry","concept":"BOD COD","difficulty":"medium","type":"theory","question":"Define BOD and COD and explain their significance."}]}
+{
+    "subject": "Engineering Chemistry-I",
+    "questions": [
+        {
+            "id": "ec1-q1",
+            "type": "MCQ",
+            "difficulty": "Easy",
+            "concept": "Water Technology",
+            "question": "Which chemical is commonly used in the 'Alum' form for the coagulation of water?",
+            "options": [
+                "A) Aluminium Sulphate",
+                "B) Sodium Chloride",
+                "C) Calcium Carbonate",
+                "D) Magnesium Sulphate"
+            ],
+            "answer": "A",
+            "explanation": "Alum (Aluminium Sulphate) reacts with alkalinity in water to form a gelatinous precipitate of Al(OH)3 which helps in settling suspended impurities."
+        },
+        {
+            "id": "ec1-q2",
+            "type": "True/False",
+            "difficulty": "Easy",
+            "concept": "Polymers",
+            "question": "Natural rubber is a polymer of isoprene.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": "True",
+            "explanation": "Natural rubber is chemically known as cis-1,4-polyisoprene."
+        },
+        {
+            "id": "ec1-q3",
+            "type": "MCQ",
+            "difficulty": "Easy",
+            "concept": "Lubricants",
+            "question": "Which of the following is an example of a solid lubricant?",
+            "options": [
+                "A) Castor oil",
+                "B) Grease",
+                "C) Graphite",
+                "D) Mineral oil"
+            ],
+            "answer": "C",
+            "explanation": "Graphite has a layered structure with weak Van der Waals forces between layers, making it an excellent solid lubricant."
+        },
+        {
+            "id": "ec1-q4",
+            "type": "Q&A",
+            "difficulty": "Easy",
+            "concept": "Atomic Structure",
+            "question": "State the Pauli Exclusion Principle.",
+            "options": null,
+            "answer": "No two electrons in an atom can have the same set of four quantum numbers.",
+            "explanation": "This principle limits the number of electrons in an orbital to two, with opposite spins."
+        },
+        {
+            "id": "ec1-q5",
+            "type": "MCQ",
+            "difficulty": "Easy",
+            "concept": "Hardness of Water",
+            "question": "Temporary hardness of water is caused by the presence of:",
+            "options": [
+                "A) Chlorides of Calcium",
+                "B) Sulphates of Magnesium",
+                "C) Bicarbonates of Calcium and Magnesium",
+                "D) Nitrates of Sodium"
+            ],
+            "answer": "C",
+            "explanation": "Bicarbonates of Ca and Mg cause temporary hardness because they can be removed by simple boiling."
+        },
+        {
+            "id": "ec1-q6",
+            "type": "True/False",
+            "difficulty": "Easy",
+            "concept": "Thermodynamics",
+            "question": "An exothermic reaction releases heat to the surroundings.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": "True",
+            "explanation": "In exothermic reactions, the enthalpy of products is less than the enthalpy of reactants, resulting in a release of heat."
+        },
+        {
+            "id": "ec1-q7",
+            "type": "MCQ",
+            "difficulty": "Easy",
+            "concept": "Electrochemistry",
+            "question": "The flow of electrons in a Daniel cell is from:",
+            "options": [
+                "A) Copper to Zinc",
+                "B) Zinc to Copper",
+                "C) Salt bridge to Anode",
+                "D) Cathode to Anode"
+            ],
+            "answer": "B",
+            "explanation": "Electrons flow from the anode (Zinc) where oxidation occurs to the cathode (Copper) where reduction occurs."
+        },
+        {
+            "id": "ec1-q8",
+            "type": "Q&A",
+            "difficulty": "Easy",
+            "concept": "Periodic Table",
+            "question": "Which element has the highest electronegativity in the periodic table?",
+            "options": null,
+            "answer": "Fluorine",
+            "explanation": "Fluorine is the most electronegative element with a value of 4.0 on the Pauling scale."
+        },
+        {
+            "id": "ec1-q9",
+            "type": "MCQ",
+            "difficulty": "Easy",
+            "concept": "Chemical Bonding",
+            "question": "What type of bond is formed by the complete transfer of electrons?",
+            "options": [
+                "A) Covalent",
+                "B) Metallic",
+                "C) Ionic",
+                "D) Hydrogen"
+            ],
+            "answer": "C",
+            "explanation": "Ionic bonds are formed through the electrostatic attraction between oppositely charged ions created by electron transfer."
+        },
+        {
+            "id": "ec1-q10",
+            "type": "True/False",
+            "difficulty": "Easy",
+            "concept": "Catalysis",
+            "question": "A catalyst increases the rate of reaction by increasing the activation energy.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": "False",
+            "explanation": "A catalyst increases the rate of reaction by providing an alternative pathway with *lower* activation energy."
+        },
+        {
+            "id": "ec1-q11",
+            "type": "MCQ",
+            "difficulty": "Medium",
+            "concept": "Water Softening",
+            "question": "In the Zeolite process, the exhausted Zeolite is regenerated using:",
+            "options": [
+                "A) 10% NaCl solution",
+                "B) HCl",
+                "C) NaOH",
+                "D) H2SO4"
+            ],
+            "answer": "A",
+            "explanation": "Exhausted Zeolite (CaZ/MgZ) is treated with brine (NaCl) to displace the Ca/Mg ions and restore the Na2Z form."
+        },
+        {
+            "id": "ec1-q12",
+            "type": "MCQ",
+            "difficulty": "Medium",
+            "concept": "Spectroscopy",
+            "question": "Which electronic transition requires the highest energy?",
+            "options": [
+                "A) n to π*",
+                "B) π to π*",
+                "C) σ to σ*",
+                "D) n to σ*"
+            ],
+            "answer": "C",
+            "explanation": "Sigma to Sigma star transitions occur in the far UV region and require the most energy compared to other transitions."
+        },
+        {
+            "id": "ec1-q13",
+            "type": "Q&A",
+            "difficulty": "Medium",
+            "concept": "Phase Rule",
+            "question": "Define 'Component' in the context of Gibbs Phase Rule.",
+            "options": null,
+            "answer": "The minimum number of independent chemical constituents required to express the composition of each phase.",
+            "explanation": "For example, in the water system (ice-liquid-vapor), the component C is 1 (H2O)."
+        },
+        {
+            "id": "ec1-q14",
+            "type": "MCQ",
+            "difficulty": "Medium",
+            "concept": "Fuels",
+            "question": "The calorific value of a fuel is expressed in which units?",
+            "options": [
+                "A) J/K",
+                "B) cal/g",
+                "C) kg/m",
+                "D) N/m^2"
+            ],
+            "answer": "B",
+            "explanation": "Calorific value is the amount of heat released by complete combustion of a unit mass of fuel (e.g., cal/g or kcal/kg)."
+        },
+        {
+            "id": "ec1-q15",
+            "type": "True/False",
+            "difficulty": "Medium",
+            "concept": "Corrosion",
+            "question": "Corrosion of a metal occurs more rapidly in acidic environments than in alkaline ones.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": "True",
+            "explanation": "Acidic conditions provide H+ ions which facilitate the cathodic reaction, speeding up the overall corrosion process."
+        },
+        {
+            "id": "ec1-q16",
+            "type": "MCQ",
+            "difficulty": "Medium",
+            "concept": "Polymers",
+            "question": "Bakelite is formed by the condensation of:",
+            "options": [
+                "A) Urea and Formaldehyde",
+                "B) Phenol and Formaldehyde",
+                "C) Ethylene and Glycol",
+                "D) Styrene and Butadiene"
+            ],
+            "answer": "B",
+            "explanation": "Bakelite is a thermosetting phenol-formaldehyde resin."
+        },
+        {
+            "id": "ec1-q17",
+            "type": "Q&A",
+            "difficulty": "Medium",
+            "concept": "Internal Treatment",
+            "question": "What is the purpose of 'Calgon' conditioning in boilers?",
+            "options": null,
+            "answer": "To prevent scale formation by forming soluble complexes.",
+            "explanation": "Sodium hexametaphosphate (Calgon) reacts with Ca/Mg ions to form soluble complexes instead of hard scales."
+        },
+        {
+            "id": "ec1-q18",
+            "type": "MCQ",
+            "difficulty": "Medium",
+            "concept": "Molecular Orbitals",
+            "question": "What is the bond order of an Oxygen molecule (O2)?",
+            "options": [
+                "A) 1",
+                "B) 1.5",
+                "C) 2",
+                "D) 2.5"
+            ],
+            "answer": "C",
+            "explanation": "Based on MOT, O2 has 10 bonding and 6 anti-bonding electrons. Bond Order = (10-6)/2 = 2."
+        },
+        {
+            "id": "ec1-q19",
+            "type": "True/False",
+            "difficulty": "Medium",
+            "concept": "Lubricants",
+            "question": "The Saponification value measures the amount of free acid in an oil.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": "False",
+            "explanation": "Acid value measures free acid; Saponification value measures both free acid and combined fatty acids (esters)."
+        },
+        {
+            "id": "ec1-q20",
+            "type": "MCQ",
+            "difficulty": "Medium",
+            "concept": "Liquid Crystals",
+            "question": "Which state of matter is also known as the 'mesomorphic' state?",
+            "options": [
+                "A) Plasma",
+                "B) Liquid Crystals",
+                "C) Bose-Einstein Condensate",
+                "D) Supercritical Fluid"
+            ],
+            "answer": "B",
+            "explanation": "Liquid crystals exist between the solid crystalline and clear liquid phases, hence 'mesomorphic'."
+        },
+        {
+            "id": "ec1-q21",
+            "type": "MCQ",
+            "difficulty": "Hard",
+            "concept": "Thermodynamics",
+            "question": "For a spontaneous process at constant temperature and pressure, which condition is correct?",
+            "options": [
+                "A) ΔG > 0",
+                "B) ΔS(universe) < 0",
+                "C) ΔG < 0",
+                "D) ΔH = 0"
+            ],
+            "answer": "C",
+            "explanation": "A decrease in Gibbs Free Energy (ΔG < 0) is the criterion for spontaneity in a closed system."
+        },
+        {
+            "id": "ec1-q22",
+            "type": "Q&A",
+            "difficulty": "Hard",
+            "concept": "Water Analysis",
+            "question": "Calculate the hardness (in ppm) of a water sample containing 16.2 mg/L of Calcium Bicarbonate.",
+            "options": null,
+            "answer": "10 ppm",
+            "explanation": "Ca(HCO3)2 eq = (16.2 * 100) / 162 = 10 mg/L as CaCO3, which equals 10 ppm."
+        },
+        {
+            "id": "ec1-q23",
+            "type": "MCQ",
+            "difficulty": "Hard",
+            "concept": "Corrosion",
+            "question": "Which thermodynamic equation relates the EMF of a cell to the concentration of reactants and products?",
+            "options": [
+                "A) Arrhenius Equation",
+                "B) Nernst Equation",
+                "C) Henderson Equation",
+                "D) Gibbs-Helmholtz Equation"
+            ],
+            "answer": "B",
+            "explanation": "The Nernst Equation determines the cell potential under non-standard conditions."
+        },
+        {
+            "id": "ec1-q24",
+            "type": "MCQ",
+            "difficulty": "Hard",
+            "concept": "Polymers",
+            "question": "Tacticity in polymers refers to the:",
+            "options": [
+                "A) Degree of polymerization",
+                "B) Molecular weight distribution",
+                "C) Spatial arrangement of functional groups",
+                "D) Number of monomers"
+            ],
+            "answer": "C",
+            "explanation": "Tacticity (Isotactic, Syndiotactic, Atactic) describes the stereochemical arrangement of side groups along the polymer chain."
+        },
+        {
+            "id": "ec1-q25",
+            "type": "True/False",
+            "difficulty": "Hard",
+            "concept": "Spectroscopy",
+            "question": "The Selection Rule for IR spectroscopy is that the molecule must undergo a change in dipole moment during vibration.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": "True",
+            "explanation": "Only vibrations that cause a rhythmic change in the dipole moment of the molecule can absorb IR radiation."
+        },
+        {
+            "id": "ec1-q26",
+            "type": "MCQ",
+            "difficulty": "Hard",
+            "concept": "Fuels",
+            "question": "Ultimate analysis of coal involves the determination of which elements?",
+            "options": [
+                "A) Moisture and Ash",
+                "B) Fixed Carbon and Volatile Matter",
+                "C) C, H, N, S, and O",
+                "D) Gross and Net Calorific Value"
+            ],
+            "answer": "C",
+            "explanation": "Ultimate analysis provides the elemental composition (C, H, N, S, O), while Proximate analysis provides physical constituents like moisture and ash."
+        },
+        {
+            "id": "ec1-q27",
+            "type": "Q&A",
+            "difficulty": "Hard",
+            "concept": "Kinetics",
+            "question": "What is the unit of the rate constant (k) for a second-order reaction?",
+            "options": null,
+            "answer": "L mol^-1 s^-1",
+            "explanation": "Units for nth order: (mol/L)^(1-n) s^-1. For n=2: (mol/L)^-1 s^-1 = L mol^-1 s^-1."
+        },
+        {
+            "id": "ec1-q28",
+            "type": "MCQ",
+            "difficulty": "Hard",
+            "concept": "Phase Rule",
+            "question": "In a condensed phase system (Ag-Pb system), the reduced phase rule is applied as:",
+            "options": [
+                "A) F = C - P + 2",
+                "B) F = C - P + 1",
+                "C) F = C - P",
+                "D) F = C - P + 3"
+            ],
+            "answer": "B",
+            "explanation": "Since pressure is constant (atmospheric), one degree of freedom is removed, changing '+ 2' to '+ 1'."
+        },
+        {
+            "id": "ec1-q29",
+            "type": "True/False",
+            "difficulty": "Hard",
+            "concept": "Quantum Mechanics",
+            "question": "The square of the wave function (ψ^2) represents the probability density of finding an electron.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": "True",
+            "explanation": "According to the Born interpretation, the intensity of the wave function at a point represents the probability of locating the electron there."
+        },
+        {
+            "id": "ec1-q30",
+            "type": "MCQ",
+            "difficulty": "Hard",
+            "concept": "Lubricants",
+            "question": "The 'Flash Point' of a lubricant is defined as the temperature at which it:",
+            "options": [
+                "A) Catches fire and burns continuously",
+                "B) Gives off enough vapor to ignite momentarily",
+                "C) Becomes a solid",
+                "D) Evaporates completely"
+            ],
+            "answer": "B",
+            "explanation": "Flash point is the lowest temperature at which vapors ignite briefly; Fire point is where it burns for at least 5 seconds."
+        }
+    ]
+}

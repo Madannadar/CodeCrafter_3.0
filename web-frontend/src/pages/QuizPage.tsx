@@ -1,10 +1,12 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
 import { useQuizData } from '../context/QuizDataContext';
 import type { Subject, Question } from '../data/quizData';
 import { SUBJECT_ROADMAPS } from '../data/subjectRoadmaps';
 import { SUBJECT_PREREQUISITES } from '../data/subjectPrerequisites';
+import gsap from 'gsap';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 type Phase = 'select' | 'difficulty' | 'quiz' | 'suggestion' | 'report';
@@ -57,12 +59,37 @@ function countByDifficulty(questions: Question[], difficulty: DifficultyChoice):
 export default function QuizPage() {
   const { user, updateUser } = useAuth();
   const { mainSubjects, getPrerequisite, loading: quizLoading, error: quizError } = useQuizData();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const pageRef = useRef<HTMLDivElement>(null);
 
   const [phase, setPhase] = useState<Phase>('select');
   const [currentSubject, setCurrentSubject] = useState<Subject | null>(null);
   const [selectedDifficulty, setSelectedDifficulty] = useState<DifficultyChoice | null>(null);
   const [quizQuestions, setQuizQuestions] = useState<Question[]>([]);
   const [usedFallback, setUsedFallback] = useState(false);
+
+  // GSAP page entrance
+  useEffect(() => {
+    if (!pageRef.current) return;
+    gsap.fromTo(pageRef.current, 
+      { y: 12, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.45, ease: 'power2.out' }
+    );
+  }, []);
+
+  // Auto-start from Dashboard navigation state
+  useEffect(() => {
+    if (!quizLoading && location.state?.subjectId) {
+      const subj = mainSubjects.find(s => s.id === location.state.subjectId);
+      if (subj && subj.questions.length > 0) {
+        const diff: DifficultyChoice = location.state.difficulty || 'intermediate';
+        setCurrentSubject(subj);
+        setSelectedDifficulty(diff);
+        setPhase('difficulty');
+      }
+    }
+  }, [quizLoading, mainSubjects, location.state]);
 
   const [currentQ, setCurrentQ] = useState(0);
   const [userAnswer, setUserAnswer] = useState('');
@@ -203,27 +230,18 @@ export default function QuizPage() {
   }, [phase, finalReport]);
 
   // ── Reset ──────────────────────────────────────────────────────────────────
-  const resetAll = () => {
-    setPhase('select');
-    setCurrentSubject(null);
-    setSelectedDifficulty(null);
-    setQuizQuestions([]);
-    setAnswers([]);
-    setAttemptChain([]);
-    setFinalReport(null);
-    setUsedFallback(false);
-  };
+  // Removed unused resetAll function
 
-  // ─── Loading / Error ───────────────────────────────────────────────────────
-  if (quizLoading) return <div style={{ padding: 48, textAlign: 'center', color: '#6b7280' }}>Loading quiz data…</div>;
-  if (quizError) return <div style={{ padding: 48, textAlign: 'center', color: '#dc2626' }}>Could not load quiz data. Is the API running? ({quizError})</div>;
+  // ─── Loading / Error ───────────────────────────────────────────
+  if (quizLoading) return <div style={{ padding: 48, textAlign: 'center', color: 'var(--text-muted)' }}>Loading quiz data…</div>;
+  if (quizError) return <div style={{ padding: 48, textAlign: 'center', color: 'var(--error)' }}>Could not load quiz data. Is the API running? ({quizError})</div>;
 
   // ─────────────────────────────────────────────────────────────────────────
   // PHASE: SELECT SUBJECT
   // ─────────────────────────────────────────────────────────────────────────
   if (phase === 'select') {
     return (
-      <div>
+      <div ref={pageRef}>
         <h1 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: 8, display: 'flex', alignItems: 'center', gap: 12 }}>
           📝 Start a Quiz
         </h1>
@@ -570,9 +588,9 @@ export default function QuizPage() {
                 Take {prereq.shortName} Quiz →
               </button>
             )}
-            <button onClick={resetAll}
-              style={{ background: 'white', color: '#6b7280', border: '1px solid #e5e7eb', padding: '12px 24px', borderRadius: 12, fontWeight: 600, cursor: 'pointer' }}>
-              Back to Subject Selection
+            <button onClick={() => navigate('/dashboard', { state: { quizReport: finalReport } })}
+              style={{ background: 'linear-gradient(135deg, #8b5cf6, #6d28d9)', color: 'white', border: 'none', padding: '12px 24px', borderRadius: 12, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8 }}>
+              ⬡ Dashboard & AI Summary
             </button>
           </div>
         </div>
@@ -691,9 +709,9 @@ export default function QuizPage() {
           ))}
         </div>
 
-        <button onClick={resetAll}
-          style={{ background: `linear-gradient(135deg, ${currentSubject.color}, ${currentSubject.color}cc)`, color: 'white', border: 'none', padding: '14px 32px', borderRadius: 12, fontWeight: 700, cursor: 'pointer', fontSize: '1rem', width: '100%' }}>
-          Take Another Quiz
+        <button onClick={() => navigate('/dashboard', { state: { quizReport: finalReport } })}
+          style={{ background: 'linear-gradient(135deg, #8b5cf6, #6d28d9)', color: 'white', border: 'none', padding: '14px 32px', borderRadius: 12, fontWeight: 700, cursor: 'pointer', fontSize: '1rem', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
+          ⬡ Return to Dashboard for AI Summary
         </button>
       </div>
     );

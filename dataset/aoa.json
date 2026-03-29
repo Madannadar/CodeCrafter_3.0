@@ -1,0 +1,411 @@
+{
+    "subject": "Analysis of Algorithms",
+    "questions": [
+        {
+            "id": "aoa-q1",
+            "type": "MCQ",
+            "difficulty": "Easy",
+            "concept": "Asymptotic Notation",
+            "question": "Which notation provides the strict upper bound for the growth of a function?",
+            "options": [
+                "A) Omega (Ω)",
+                "B) Theta (Θ)",
+                "C) Big O (O)",
+                "D) Small o (o)"
+            ],
+            "answer": "C",
+            "explanation": "Big O notation describes the worst-case scenario or the maximum time an algorithm will take."
+        },
+        {
+            "id": "aoa-q2",
+            "type": "True/False",
+            "difficulty": "Easy",
+            "concept": "Complexity",
+            "question": "An algorithm with O(1) time complexity is slower than an algorithm with O(n) complexity.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": "False",
+            "explanation": "O(1) represents constant time, which is independent of input size and is the fastest possible complexity."
+        },
+        {
+            "id": "aoa-q3",
+            "type": "MCQ",
+            "difficulty": "Easy",
+            "concept": "Sorting",
+            "question": "What is the best-case time complexity of Bubble Sort when the input array is already sorted?",
+            "options": [
+                "A) O(n^2)",
+                "B) O(n log n)",
+                "C) O(n)",
+                "D) O(1)"
+            ],
+            "answer": "C",
+            "explanation": "With an optimized version using a flag to detect swaps, Bubble Sort can finish in a single pass if the list is sorted."
+        },
+        {
+            "id": "aoa-q4",
+            "type": "Q&A",
+            "difficulty": "Easy",
+            "concept": "Divide and Conquer",
+            "question": "What are the three steps involved in the Divide and Conquer strategy?",
+            "options": null,
+            "answer": "Divide, Conquer, and Combine.",
+            "explanation": "The problem is split into subproblems, solved recursively, and their results are merged."
+        },
+        {
+            "id": "aoa-q5",
+            "type": "MCQ",
+            "difficulty": "Easy",
+            "concept": "Space Complexity",
+            "question": "What is the auxiliary space complexity of an in-place sorting algorithm?",
+            "options": [
+                "A) O(n)",
+                "B) O(1)",
+                "C) O(log n)",
+                "D) O(n^2)"
+            ],
+            "answer": "B",
+            "explanation": "In-place algorithms use a constant amount of extra memory relative to the input size."
+        },
+        {
+            "id": "aoa-q6",
+            "type": "True/False",
+            "difficulty": "Easy",
+            "concept": "Greedy Method",
+            "question": "The Greedy approach always yields the global optimal solution for every problem.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": "False",
+            "explanation": "Greedy makes locally optimal choices; while it works for Dijkstra's or Prim's, it fails for problems like 0/1 Knapsack."
+        },
+        {
+            "id": "aoa-q7",
+            "type": "MCQ",
+            "difficulty": "Easy",
+            "concept": "Growth of Functions",
+            "question": "Arrange in increasing order of growth: n, n^2, log n, 1.",
+            "options": [
+                "A) 1 < log n < n < n^2",
+                "B) log n < 1 < n < n^2",
+                "C) 1 < n < log n < n^2",
+                "D) n^2 < n < log n < 1"
+            ],
+            "answer": "A",
+            "explanation": "Constant is slowest growth, followed by logarithmic, linear, and quadratic."
+        },
+        {
+            "id": "aoa-q8",
+            "type": "Q&A",
+            "difficulty": "Easy",
+            "concept": "Searching",
+            "question": "What is the time complexity of Binary Search?",
+            "options": null,
+            "answer": "O(log n)",
+            "explanation": "Binary search reduces the search space by half in every iteration."
+        },
+        {
+            "id": "aoa-q9",
+            "type": "MCQ",
+            "difficulty": "Easy",
+            "concept": "Recursion",
+            "question": "The recurrence relation T(n) = T(n-1) + 1 corresponds to which complexity?",
+            "options": [
+                "A) O(log n)",
+                "B) O(n)",
+                "C) O(n^2)",
+                "D) O(2^n)"
+            ],
+            "answer": "B",
+            "explanation": "Each recursive call reduces n by 1 until the base case, leading to n calls."
+        },
+        {
+            "id": "aoa-q10",
+            "type": "True/False",
+            "difficulty": "Easy",
+            "concept": "Sorting",
+            "question": "Merge Sort is a stable sorting algorithm.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": "True",
+            "explanation": "Merge Sort maintains the relative order of elements with equal values."
+        },
+        {
+            "id": "aoa-q11",
+            "type": "MCQ",
+            "difficulty": "Medium",
+            "concept": "Master Theorem",
+            "question": "According to Master Theorem, what is the complexity of T(n) = 2T(n/2) + n?",
+            "options": [
+                "A) O(n)",
+                "B) O(n log n)",
+                "C) O(n^2)",
+                "D) O(log n)"
+            ],
+            "answer": "B",
+            "explanation": "Here a=2, b=2, k=1. Since log_b(a) = log_2(2) = 1, it falls into the case where complexity is O(n^k log n)."
+        },
+        {
+            "id": "aoa-q12",
+            "type": "MCQ",
+            "difficulty": "Medium",
+            "concept": "Dynamic Programming",
+            "question": "Dynamic Programming is based on which of the following?",
+            "options": [
+                "A) Local optimization",
+                "B) Overlapping subproblems",
+                "C) Random selection",
+                "D) Sorting"
+            ],
+            "answer": "B",
+            "explanation": "DP stores the results of subproblems (memoization/tabulation) to avoid redundant calculations."
+        },
+        {
+            "id": "aoa-q13",
+            "type": "Q&A",
+            "difficulty": "Medium",
+            "concept": "Greedy Method",
+            "question": "Which Knapsack version can be solved optimally using a Greedy approach?",
+            "options": null,
+            "answer": "Fractional Knapsack",
+            "explanation": "In Fractional Knapsack, we can take fractions of items based on their value-to-weight ratio."
+        },
+        {
+            "id": "aoa-q14",
+            "type": "MCQ",
+            "difficulty": "Medium",
+            "concept": "Backtracking",
+            "question": "The N-Queens problem is typically solved using:",
+            "options": [
+                "A) Greedy Method",
+                "B) Divide and Conquer",
+                "C) Backtracking",
+                "D) Branch and Bound"
+            ],
+            "answer": "C",
+            "explanation": "Backtracking explores all possibilities and prunes those that violate the safety constraints."
+        },
+        {
+            "id": "aoa-q15",
+            "type": "True/False",
+            "difficulty": "Medium",
+            "concept": "Complexity Classes",
+            "question": "P is the class of problems that can be solved in polynomial time by a deterministic Turing machine.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": "True",
+            "explanation": "The class P (Polynomial) represents efficiently solvable problems."
+        },
+        {
+            "id": "aoa-q16",
+            "type": "MCQ",
+            "difficulty": "Medium",
+            "concept": "Graph Algorithms",
+            "question": "What is the time complexity of Dijkstra’s algorithm using a Binary Heap?",
+            "options": [
+                "A) O(V^2)",
+                "B) O(E log V)",
+                "C) O(V + E)",
+                "D) O(E^2)"
+            ],
+            "answer": "B",
+            "explanation": "Using a priority queue (heap) allows for efficient extraction of the minimum distance vertex."
+        },
+        {
+            "id": "aoa-q17",
+            "type": "Q&A",
+            "difficulty": "Medium",
+            "concept": "Amortized Analysis",
+            "question": "What is Amortized Analysis?",
+            "options": null,
+            "answer": "Calculating the average performance of each operation in a sequence of operations.",
+            "explanation": "It ensures that even if a single operation is expensive, the total cost for N operations is low."
+        },
+        {
+            "id": "aoa-q18",
+            "type": "MCQ",
+            "difficulty": "Medium",
+            "concept": "Sorting",
+            "question": "What is the worst-case complexity of QuickSort?",
+            "options": [
+                "A) O(n log n)",
+                "B) O(n^2)",
+                "C) O(n^3)",
+                "D) O(2^n)"
+            ],
+            "answer": "B",
+            "explanation": "Worst case occurs when the pivot is the smallest or largest element, leading to highly unbalanced partitions."
+        },
+        {
+            "id": "aoa-q19",
+            "type": "True/False",
+            "difficulty": "Medium",
+            "concept": "Graph Theory",
+            "question": "Prim's algorithm starts by picking an arbitrary vertex and growing the MST from it.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": "True",
+            "explanation": "Unlike Kruskal's, which picks edges, Prim's grows a single tree from an initial vertex."
+        },
+        {
+            "id": "aoa-q20",
+            "type": "MCQ",
+            "difficulty": "Medium",
+            "concept": "Dynamic Programming",
+            "question": "The Floyd-Warshall algorithm is used to find:",
+            "options": [
+                "A) Single Source Shortest Path",
+                "B) Minimum Spanning Tree",
+                "C) All-Pairs Shortest Path",
+                "D) Maximum Flow"
+            ],
+            "answer": "C",
+            "explanation": "Floyd-Warshall uses DP to find the shortest path between every pair of vertices in O(V^3)."
+        },
+        {
+            "id": "aoa-q21",
+            "type": "MCQ",
+            "difficulty": "Hard",
+            "concept": "NP-Completeness",
+            "question": "A problem L is NP-Complete if:",
+            "options": [
+                "A) L is in P",
+                "B) L is in NP and every problem in NP reduces to L in polynomial time",
+                "C) L cannot be solved",
+                "D) L is in EXPTIME"
+            ],
+            "answer": "B",
+            "explanation": "NP-Complete problems are the 'hardest' problems in the NP class."
+        },
+        {
+            "id": "aoa-q22",
+            "type": "Q&A",
+            "difficulty": "Hard",
+            "concept": "Recursive Analysis",
+            "question": "Solve the recurrence T(n) = T(n-1) + n using the substitution method.",
+            "options": null,
+            "answer": "O(n^2)",
+            "explanation": "T(n) = n + (n-1) + (n-2) + ... + 1, which is the sum of first n natural numbers, n(n+1)/2."
+        },
+        {
+            "id": "aoa-q23",
+            "type": "MCQ",
+            "difficulty": "Hard",
+            "concept": "String Matching",
+            "question": "What is the worst-case time complexity of the Knuth-Morris-Pratt (KMP) algorithm?",
+            "options": [
+                "A) O(m*n)",
+                "B) O(n + m)",
+                "C) O(n^2)",
+                "D) O(log n)"
+            ],
+            "answer": "B",
+            "explanation": "KMP avoids redundant shifts by using a prefix function, allowing it to run in linear time relative to the text and pattern length."
+        },
+        {
+            "id": "aoa-q24",
+            "type": "MCQ",
+            "difficulty": "Hard",
+            "concept": "Dynamic Programming",
+            "question": "In the Matrix Chain Multiplication problem, for 4 matrices, how many ways can they be parenthesized?",
+            "options": [
+                "A) 4",
+                "B) 5",
+                "C) 14",
+                "D) 42"
+            ],
+            "answer": "B",
+            "explanation": "The number of ways to parenthesize n matrices is given by the (n-1)-th Catalan Number. C(3) = 5."
+        },
+        {
+            "id": "aoa-q25",
+            "type": "True/False",
+            "difficulty": "Hard",
+            "concept": "Complexity Theory",
+            "question": "If any NP-Complete problem can be solved in polynomial time, then P = NP.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": "True",
+            "explanation": "This is a fundamental property of NP-Completeness; they are all reducible to each other."
+        },
+        {
+            "id": "aoa-q26",
+            "type": "MCQ",
+            "difficulty": "Hard",
+            "concept": "Divide and Conquer",
+            "question": "Strassen’s Matrix Multiplication algorithm reduces the number of recursive multiplications from 8 to:",
+            "options": [
+                "A) 4",
+                "B) 6",
+                "C) 7",
+                "D) 5"
+            ],
+            "answer": "C",
+            "explanation": "Strassen's uses 7 multiplications instead of 8, lowering the complexity to O(n^{2.81})."
+        },
+        {
+            "id": "aoa-q27",
+            "type": "Q&A",
+            "difficulty": "Hard",
+            "concept": "Dynamic Programming",
+            "question": "What is the Bellman-Ford algorithm used for that Dijkstra's cannot handle?",
+            "options": null,
+            "answer": "Graphs with negative edge weights.",
+            "explanation": "Bellman-Ford can handle negative weights and detect negative cycles, though it is slower than Dijkstra's."
+        },
+        {
+            "id": "aoa-q28",
+            "type": "MCQ",
+            "difficulty": "Hard",
+            "concept": "Approximation Algorithms",
+            "question": "Approximation algorithms are used for:",
+            "options": [
+                "A) Finding perfect solutions for P problems",
+                "B) Finding near-optimal solutions for NP-Hard problems in polynomial time",
+                "C) Sorting small arrays",
+                "D) Compressing data"
+            ],
+            "answer": "B",
+            "explanation": "Since NP-Hard problems can't be solved exactly in polynomial time, we use approximations with a guaranteed bound."
+        },
+        {
+            "id": "aoa-q29",
+            "type": "True/False",
+            "difficulty": "Hard",
+            "concept": "Computational Complexity",
+            "question": "The Traveling Salesperson Problem (TSP) is NP-Hard.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": "True",
+            "explanation": "TSP's decision version is NP-Complete, making the optimization version NP-Hard."
+        },
+        {
+            "id": "aoa-q30",
+            "type": "MCQ",
+            "difficulty": "Hard",
+            "concept": "NP-Completeness",
+            "question": "Which of the following is considered the first NP-Complete problem (Cook-Levin Theorem)?",
+            "options": [
+                "A) Vertex Cover",
+                "B) Hamiltonian Cycle",
+                "C) Boolean Satisfiability (SAT)",
+                "D) Clique Problem"
+            ],
+            "answer": "C",
+            "explanation": "SAT was the first problem proven to be NP-Complete by Stephen Cook and Leonid Levin independently."
+        }
+    ]
+}
