@@ -164,7 +164,7 @@ export default function LoginPage() {
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             color: 'white', fontWeight: 900, fontSize: 20,
             boxShadow: '0 20px 36px rgba(109,94,252,0.24)',
-          }}>CC</div>
+          }}><div style={{ fontSize: '1.2rem',  fontWeight: 700 }}>{'<>'}</div></div>
           <div>
             <div style={{ fontWeight: 900, fontSize: '1.4rem', color: 'var(--text-primary)', letterSpacing: '-0.5px' }}>
               Code<span style={{ color: 'var(--purple-light)' }}>Crafters</span>

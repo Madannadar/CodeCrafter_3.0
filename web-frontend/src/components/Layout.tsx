@@ -70,7 +70,8 @@ export default function Layout() {
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             color: 'white', fontWeight: 900, fontSize: 16, flexShrink: 0,
             boxShadow: '0 14px 26px rgba(109,94,252,0.28)',
-          }}>CC</div>
+          }}><div style={{ fontSize: '1.2rem',  fontWeight: 700 }}>{'<>'}</div></div>
+          
           <div>
             <div style={{ fontWeight: 800, fontSize: '0.95rem', color: 'var(--text-primary)', letterSpacing: '-0.3px' }}>
               Code<span style={{ color: 'var(--purple)' }}>Crafters</span>

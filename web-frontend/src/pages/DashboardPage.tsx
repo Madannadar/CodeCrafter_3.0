@@ -372,16 +372,16 @@ export default function DashboardPage() {
         const total = rows.length;
         const avgScore = total
           ? Math.round(
-              rows.reduce(
-                (sum: number, row: { score: number; totalQuestions: number }) =>
-                  sum + (row.score / row.totalQuestions) * 100,
-                0
-              ) / total
-            )
+            rows.reduce(
+              (sum: number, row: { score: number; totalQuestions: number }) =>
+                sum + (row.score / row.totalQuestions) * 100,
+              0
+            ) / total
+          )
           : 0;
         setQuizStats({ total, avgScore, weak: user.weak_subjects?.length || 0 });
       })
-      .catch(() => {});
+      .catch(() => { });
   }, [user]);
 
   useEffect(() => {
@@ -770,8 +770,8 @@ export default function DashboardPage() {
                   quizStats.avgScore >= 70
                     ? '#22c55e'
                     : quizStats.avgScore >= 50
-                    ? '#f59e0b'
-                    : '#ef4444',
+                      ? '#f59e0b'
+                      : '#ef4444',
               },
               {
                 label: `${quizStats.weak} Gaps`,
@@ -1349,7 +1349,7 @@ export default function DashboardPage() {
                           <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 700 }}>
                             Pattern Level
                           </div>
-                          <div style={{ marginTop: 6, color: 'var(--text-primary)', fontWeight: 800 }}>
+                          <div style={{ marginTop: 6, color: 'var(--text-faint)', fontWeight: 800 }}>
                             {feedbackSummary.difficultyPattern || 'Mixed'}
                           </div>
                         </div>
