@@ -50,7 +50,7 @@ class _SubjectQuizState extends State<SubjectQuiz> {
     _actualSubjectId = widget.subjectId;
     
     if (widget.initialQuizData != null) {
-      debugPrint("[SubjectQuiz] Using AI-generated quiz data");
+      debugPrint('[SubjectQuiz] Using AI-generated quiz data');
       _fullQuizData = widget.initialQuizData;
       // If questions are already here, we can jump to quiz if we want, 
       // but let's allow difficulty selection to filter if AI sent many.
@@ -282,7 +282,7 @@ class _SubjectQuizState extends State<SubjectQuiz> {
       height: 60,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: color.withOpacity(0.1),
+          backgroundColor: color.withValues(alpha: 0.1),
           foregroundColor: color,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),
@@ -310,7 +310,7 @@ class _SubjectQuizState extends State<SubjectQuiz> {
           preferredSize: const Size.fromHeight(6),
           child: LinearProgressIndicator(
             value: (currentIndex + 1) / _filteredQuestions.length,
-            backgroundColor: Colors.grey.withOpacity(0.2),
+            backgroundColor: Colors.grey.withValues(alpha: 0.2),
           ),
         ),
       ),
@@ -366,7 +366,7 @@ class _SubjectQuizState extends State<SubjectQuiz> {
     if (diff.toLowerCase() == 'hard') c = Colors.red;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-      decoration: BoxDecoration(color: c.withOpacity(0.1), borderRadius: BorderRadius.circular(20)),
+      decoration: BoxDecoration(color: c.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(20)),
       child: Text(diff.toUpperCase(), style: TextStyle(color: c, fontSize: 10, fontWeight: FontWeight.bold)),
     );
   }
@@ -402,7 +402,7 @@ class _SubjectQuizState extends State<SubjectQuiz> {
       }
     } else if (isSelected) {
       borderColor = theme.colorScheme.primary;
-      bgColor = theme.colorScheme.primary.withOpacity(0.05);
+      bgColor = theme.colorScheme.primary.withValues(alpha: 0.05);
     }
 
     return GestureDetector(

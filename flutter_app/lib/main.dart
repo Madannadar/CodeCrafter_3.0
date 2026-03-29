@@ -20,7 +20,6 @@ class MyApp extends StatelessWidget {
           primary: const Color(0xFF8B5CF6),
           secondary: const Color(0xFF10B981),
           surface: Colors.white,
-          background: const Color(0xFFF9FAFB), // Very light grey background
         ),
         scaffoldBackgroundColor: const Color(0xFFF9FAFB),
         appBarTheme: const AppBarTheme(

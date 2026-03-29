@@ -31,7 +31,7 @@ class _LoginViewState extends State<LoginView> {
       );
       _isGoogleInitialized = true;
     } catch (e) {
-      debugPrint("Google Initialize Error: $e");
+      debugPrint('[GoogleSignIn] Initialize Error: $e');
     }
   }
 
@@ -90,7 +90,7 @@ class _LoginViewState extends State<LoginView> {
         throw Exception("Failed to get ID Token from Google");
       }
     } catch (e) {
-      debugPrint("Google Sign-In Error: $e");
+      debugPrint('[GoogleSignIn] Error: $e');
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Google Sign-In failed. Ensure SHA-1 is registered.")),

@@ -34,7 +34,7 @@ class _RegisterViewState extends State<RegisterView> {
       // Assuming you might add a register method to ApiService later
       // For now, let's just use a placeholder or add it to ApiService
       // To keep it simple and consistent with your current ApiService:
-      final response = await _apiService.register(name, email, password);
+      await _apiService.register(name, email, password);
       
       if (mounted) {
         Navigator.pushReplacement(
