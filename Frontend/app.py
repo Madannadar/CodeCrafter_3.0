@@ -2,7 +2,8 @@ import streamlit as st
 import requests
 import json
 
-API_URL = "http://127.0.0.1:8000/chat"
+# API_URL = "http://127.0.0.1:8000/chat"
+API_URL = "http://backend.80.225.195.137.sslip.io/chat"
 
 st.set_page_config(
     page_title="AI Learning Assistant",
